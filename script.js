@@ -137,11 +137,6 @@ window.addEventListener('scroll', function() {
 
 
 
-const sound = document.getElementById('sound');
-
-logo.addEventListener('mouseenter', () => {
-    sound.play();
-});
 
 
 
