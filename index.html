@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lion's Life</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1 class="logo">Lion's Life</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="category-filter">
+            <h2>Categories</h2>
+            <ul>
+                <li><a href="#" onclick="loadProducts('all')" data-category="all">All</a></li>
+                <li><a href="#" onclick="loadProducts('kids')" data-category="kids">Kids</a></li>
+                <li><a href="#" onclick="loadProducts('men')" data-category="men">Men</a></li>
+                <li><a href="#" onclick="loadProducts('women')" data-category="women">Women</a></li>
+            </ul>
+            <!-- Add the search input and button -->
+            <form id="filter-form">
+                <input type="text" id="search-input" placeholder="Search Product Here">
+                
+                <!-- Add an icon or button that opens the filter.html page with a class -->
+<a href="filter.html" class="filter-icon-link">
+    <img src="filter-icon.png" alt="Filter Icon">
+</a>
+
+
+
+
+            </form>
+        </section>
+        
+        <section class="featured-products">
+            <h2>Featured Products</h2>
+            <div class="product-grid" id="product-grid">
+                <!-- Product cards will be dynamically added here -->
+            </div>
+        </section>
+
+        <section class="shopping-cart">
+            <h2>Shopping Cart</h2>
+            <ul id="cart-items">
+                <!-- Cart items will be added here -->
+            </ul>
+            <p>Total: <span id="cart-total">0.00 MAD</span></p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2023 Lion's Life</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <!-- Add this line to include filter.js -->
+<script src="filter.js"></script>
+
+</body>
+</html>
