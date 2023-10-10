@@ -581,7 +581,7 @@ const products = [
     {
         category: 'kids',
         name: 'Kids Product 1',
-        image: 'images/kids-product1.jpg',
+        image: 'kids-product1.jpg',
         price: 40.00,
     },
     {
