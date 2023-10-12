@@ -1,163 +1,10 @@
-/* Define reusable variables */
-:root {
-    --primary-color: #ff5733;
-    --secondary-color: #333;
-    --font-size-small: 14px;
-}
-
-/* Cart Link Styles */
-/*.cart-link {
-    text-decoration: none;
-    color: var(--secondary-color);
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-    transition: color 0.2s ease-in-out;
-    border: 2px solid transparent;
-    border-radius: 20px;
-    padding: 10px 20px;
-}
-
-.cart-link:hover {
-    color: var(--primary-color);
-    background-color: var(--secondary-color);
-    border-color: var(--primary-color);
-}
-*/
-/* Cart Icon Styles */
-.cart-icon {
-    position: fixed;
-    margin-left: +136px;
-    margin-top: -14px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 34px;
-    height: 34px;
-    background-color: var(--primary-color);
-    border-radius: 100%;
-}
-
-.cart-icon-image {
-    width: 32px;
-    height: 32px;
-    border-radius: 100%;
-}
-
-/* Cart Count Styles */
-.cart-count {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background-color: var(--primary-color);
-    color: #fff;
-    border-radius: 20px 2px;
-    padding: 2px 2px;
-    font-size: var(--font-size-small);
-    font-weight: bold;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-/* Cart Text Styles */
-/*.cart-text {
-    display: flex;
-    flex-direction: column;
-}
-
-.cart-label {
-    font-size: var(--font-size-small);
-}
-
-.cart-arrow-icon {
-    font-size: 18px;
-    margin-top: -5px;
-}
-*/
-/* Hover Effects */
-.cart-link:hover .cart-icon {
-    background-color: var(--secondary-color);
-}
-
-.cart-link:hover .cart-icon-image {
-    filter: invert(1); /* Invert icon color on hover */
-}
-
-.cart-link:hover .cart-count {
-    background-color: var(--secondary-color);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.sidebar {
-    position: fixed;
-    left: -250px; /* Start off-screen */
-    top: -3px;
-    width: 250px;
-    height: 800px;
-    background-color: #0000004d;
-    transition: left 0.3s ease; /* Add transition effect */
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* Add these styles to your existing CSS or create a new CSS file */
 
 /* Styles for the sidebar */
-/*.sidebar {
-    /* ... Your existing styles ... */
-    /*transform: translateX(-100px); /* Initially hide the sidebar */
-    /*background-color: #eae9ee;
-    color: #000;
+.sidebar {
+    background-color: #FFFFFF;
+    color: #FFFFFF;
     padding: 20px;
     position: fixed;
     top: 0;
@@ -168,27 +15,13 @@
     box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
     z-index: 1000;
     transition: transform 0.3s ease-in-out;
-}*/
-
-
-
-.show-sidebar .sidebar {
-    transform: translateX(-100); /* Show the sidebar when the "show-sidebar" class is applied */
 }
 
-
-
-
-
-
-
 .sidebar h3 {
-    font-size: 32px;
-     
-    margin-top: 70px;   
-    background-color: #33333300;
-    color: #00ff11;
-    padding: 2px 5px;
+    font-size: 10px;
+    margin-bottom: none;    
+    background-color: #000;
+    padding: none;   
 }
 
 /* Style for theme switch container */
@@ -196,7 +29,6 @@
     display: flex;
     align-items: center;
     margin-bottom: 15px;
-    background-color: #0000;
 }
 
 .theme-switch label {
@@ -207,9 +39,8 @@
 
 /* Dark Theme Styles */
 .dark-theme {
-    background-color: #1b1b1bb9;
-    color: #00ff11;
-    
+    background-color: #111;
+    color: #fff;
 }
 
 /* Light Theme Styles */
@@ -225,6 +56,22 @@
 
 
 
+/* Modify your existing styles and add these styles */
+
+/* Styles for the sidebar */
+.sidebar {
+    background-color: #000000;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: -250px; /* Start with the sidebar hidden */
+    width: 250px;
+    height: 100%;
+    overflow-y: auto;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: left 0.3s ease-in-out;
+}
 
 /* Styles for the sidebar header */
 .sidebar-header {
@@ -235,14 +82,11 @@
 
 /* Style for the toggle button */
 .toggle-button {
-    background-color: black;
-    border: solid;
-    font-size: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
     cursor: pointer;
     color: #fff;
-    height: 40px;
-    padding: 10px;
-    margin-left: 140px;
 }
 
 /* Rest of your existing styles */
@@ -254,6 +98,29 @@
 
 
 /* Modify your existing styles and add these styles */
+
+/* Style for the sidebar header */
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+    position: relative;
+}
+
+/* Style for the toggle button */
+.toggle-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -15px; /* Adjust the positioning as needed */
+}
 
 /* Rest of your existing styles */
 
@@ -304,177 +171,171 @@
 
 
 
-/* Hide the default radio buttons */
+
 input[type="radio"] {
-    display: none;
-  }
-  
-  /* Style the labels as buttons */
-  label {
-    display: inline-block;
-    padding: 8px 16px;
-    border: 2px solid #3498db;
+  display: none; /* hide the radio button */
+}
+
+label.h-l, label.l-h, label.new, label.b-s, /*label.ft*/{
+  display: inline-block; /* make the label behave like a button */
+  padding: 1px 2px; /* add some padding */
+  border: 1px solid black; /* add a border */
+  cursor: pointer; /* change the cursor to pointer */
+}
+
+
+
+input[type="radio"]:checked + label.l-h {
+  background-color: green; /* change the background color when checked */
+}
+
+
+input[type="radio"]:checked + label.new {
+  background-color: green; /* change the background color when checked */
+}
+
+
+
+
+
+
+input[type="radio"]:checked + label.b-s {
+  background-color: green; /* change the background color when checked */
+}
+
+
+
+
+input[type="radio"]:checked + label.ft {
+  background-color: green; /* change the background color when checked */
+}
+
+
+
+
+
+/* CSS for the radio button label when active (filter is active) */
+label.active-filter1 {
+    background-color: green; /* Change the background color when the filter is active */
+    color: #fff; /* Change the text color when the filter is active */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.l-h {
+    background-color: #3498db;
+    color: #fff;
+    padding: 2px 6px;
+    border: none;
     border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    margin: 4px;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-  }
-  
-  /* Style the labels for checked radio buttons */
-  input[type="radio"]:checked + label {
+    font-size:10px;
+    fony-style: bold;
+
+}
+
+
+
+.h-l1 {
+    background-color: green;
+    color: #fff;
+    padding: 2px 6px;
+    border: none;
+    border-radius: 5px;
+    font-size:10px;
+    fony-style: bold;
+
+}
+
+
+
+input[type="radio"]:checked + label.h-l {
+  background-color: green; /* change the background color when checked */
+}
+
+
+
+.h-l {
     background-color: #3498db;
     color: #fff;
-    border-color: #3498db;
-  }
-  
-  /* Add a hover effect */
-  label:hover {
+    padding: 2px 6px;
+    border: none;
+    border-radius: 5px;
+    font-size:10px;
+    fony-style: bold;
+
+}
+
+
+
+
+
+
+
+
+.b-s {
     background-color: #3498db;
     color: #fff;
-    border-color: #3498db;
-  }
-  
-  /* Additional styles for specific labels */
-  label.h-l {
-    background-color: #e74c3c;
-    border-color: #e74c3c;
-  }
-  
-  label.l-h {
-    background-color: #27ae60;
-    border-color: #27ae60;
-  }
-  
-  label.new {
-    background-color: #f39c12;
-    border-color: #f39c12;
-  }
-  
-  label.b-s {
-    background-color: #9b59b6;
-    border-color: #9b59b6;
-  }
-  
-  label.ft {
-    background-color: #34495e;
-    border-color: #34495e;
-  }
-  
-  /* Add a style for active filters */
-  label.active-filter {
-    background-color: #e74c3c;
+    padding: 2px 6px;
+    border: none;
+    border-radius: 5px;
+    font-size:10px;
+    fony-style: bold;
+
+}
+
+
+
+
+
+
+
+.new {
+    background-color: #3498db;
     color: #fff;
-    border-color: #e74c3c;
-  }
-  
-  /* Add a class for font-size if needed */
-  .label-large {
-    font-size: 14px;
-  }
-  
+    padding: 2px 6px;
+    border: none;
+    border-radius: 5px;
+    font-size:10px;
+    fony-style: bold;
+
+}
+
+.ft {
+    background-color: #3498db;
+    color: #fff;
+    padding: 2px 6px;
+    border: none;
+    border-radius: 5px;
+    font-size:10px;
+    fony-style: bold;
+
+}
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Hide the default checkbox */
-.toggle-switch {
-    display: none;
-  }
-  
-  /* Style the toggle switch */
-  .toggle-slider {
-    width: 60px;
-    height: 30px;
-    background-color: #08691a;
-    border-radius: 15px;
-    position: relative;
-    cursor: pointer;
-  }
-  
-  /* Style the slider knob */
-  .toggle-slider::before {
-    content: "";
-    width: 28px;
-    height: 28px;
-    background-color: rgb(255, 255, 255);
-    border-radius: 50%;
-    position: absolute;
-    top: 1px;
-    left: 31px;
-    transition: 0.2s;
-  }
-  
-  /* Style the label text */
-  .toggle-label {
-    margin-left: 10px;
-    font-size: 16px;
-    cursor: pointer; /* Add cursor pointer to make label clickable */
-  }
-  
-  /* When the toggle switch is checked, move the slider to the right */
-  .toggle-switch:checked + .toggle-slider::before {
-    transform: translateX(-30px);
-  }
-  
-  /* Change the background color of the slider when checked */
-  .toggle-switch:checked + .toggle-slider {
-    background-color: #bfeabf;
-  }
-  
-
-
-
-
-
-
-
-
-
-
-
-  
-
+/* Define the size of the filter icon */
+.filter-icon-link img {
+    width: 20px; /* Adjust the width as needed */
+    height: 20px; /* Adjust the height as needed */
+    margin-left: 315px;
+    transform: translateY(-41.5px);
+}
 
 /* Reset some default browser styles */
 body, h1, h2, h3, p, ul, li, button, input {
@@ -490,131 +351,26 @@ body {
     line-height: 1.6;
 }
 
-.header-container {
-   /* display: flex;*/
-    justify-content: space-between;
-    align-items: center;
-    background-color: #333;
-    
-}
-
 header {
-    /*background-color: #333;*/
+    background-color: #333;
     color: #fff;
     padding: 20px 0;
     text-align: center;
 }
 
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
 .logo {
-
-
-    background-color: #333;
-    /*padding: 10px 20px 20px 20px;*/
-    width: 390px;
-    height: 44px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 20px;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    position: fixed;
-    top: 0;
-   /* left: 50%;
-    /*transform: translateX(-50%);*/
-    
-    
-    
-    
-    
-    
-    
-    /* Define the initial state of the logo */
-
-    /* Your initial styles here */
-    /*transition: transform 0s ease-in-out;*/
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
 }
-
-/* Define the animation keyframes */
-/*@keyframes slideUp {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(-100%);
-    }
-}
-
-/* Apply the animation when the element has a class of "scroll-up" */
-/*.logo.scroll-up {
-    animation: slideUp 0.5s ease-in-out forwards;
-}*/
-    
-    
-    
-    
-    
-    
-.sidebar,
-.cart-icon,
-.logo {
-    transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1), opacity 0.6s ease-in-out, box-shadow 0.6s ease-in-out;
-    transform-origin: center top;
-    opacity: 1;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Define the class to hide elements */
-.hide-elements {
-    transform: translateY(-100%) scale(0.8);
-    opacity: 0;
-    box-shadow: none;
-    transition-delay: 0.2s;
-}
-
-/* Add a smooth scale and fade-out effect for the cart icon */
-.hide-elements .cart-icon {
-    transform: translateY(-100%) scale(0.6);
-}
-
-/* Add a subtle rotation and fade-out effect for the logo */
-.hide-elements .logo {
-    transform: translateY(-100%) rotate(0) scale(0.9);
-    opacity: 0.7;
-}
-
-/* Add a fade-in effect with opacity animation for the logo */
-.logo:hover {
-    animation: fadeIn 0.5s ease-in-out forwards;
-    transform: translateY(0) rotate(0) scale(1);
-    opacity: 1;
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
 
 nav ul {
     display: flex;
@@ -683,46 +439,7 @@ main {
 .search-container {
     margin-top: 10px;
     text-align: center;
-    
 }
-
-/* Style for the search input */
-.s-i {
-
-
-    
-    
-    /* Add padding to the input for spacing */
-    padding: 10px;
-    
-    /* Add a border with rounded corners */
-    border: 2px solid #ccc;
-    border-radius: 5px;
-
-    /* Add a box shadow for depth */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-    /* Add a background color */
-    background-color: #fff;
-
-    /* Adjust the width and font size */
-    width: 250px;
-    font-size: 16px;
-    
-
-    /* Style the placeholder text */
-    ::placeholder {
-        color: #999;
-    }
-
-    /* Style on focus (when the input is clicked) */
-    :focus {
-        border-color: #007bff; /* Change the border color on focus */
-        outline: none; /* Remove the default focus outline */
-    }
-}
-
-
 
 .search-container input[type="text"] {
     padding: 10px;
