@@ -6,6 +6,12 @@
     padding: 20px;
     height: 100%;
     position: fixed;
+    transform: translateX(-200px);
+    transition: transform 0.3s;
+}
+
+.show-sidebar {
+    transform: translateX(0);
 }
 
 .sidebar ul {
@@ -23,18 +29,10 @@
 }
 
 .content {
-    margin-left: 220px; /* Adjust for sidebar width + padding */
+    margin-left: 0;
     padding: 20px;
 }
 
-.heading {
-    color: blue;
-    font-size: 24px;
-    text-align: center;
-}
-
-#output {
-    font-size: 18px;
-    text-align: center;
-    margin-top: 20px;
+#toggleButton {
+    margin: 10px;
 }
