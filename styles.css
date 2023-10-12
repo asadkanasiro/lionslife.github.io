@@ -33,6 +33,15 @@
     padding: 20px;
 }
 
-#toggleButton {
+.toggle-button {
     margin: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.toggle-button.active {
+    background-color: #555;
 }
