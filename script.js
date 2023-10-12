@@ -8,4 +8,12 @@ document.addEventListener("DOMContentLoaded", function() {
     let greeting = greet(userName);
 
     document.getElementById("output").innerHTML = greeting;
+
+    // Toggle sidebar
+    const toggleButton = document.getElementById("toggleButton");
+    const sidebar = document.getElementById("sidebar");
+
+    toggleButton.addEventListener("click", function() {
+        sidebar.classList.toggle("show-sidebar");
+    });
 });
