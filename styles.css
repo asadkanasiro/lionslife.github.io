@@ -1,0 +1,40 @@
+/* styles.css */
+.sidebar {
+    background-color: #333;
+    color: #fff;
+    width: 200px;
+    padding: 20px;
+    height: 100%;
+    position: fixed;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.content {
+    margin-left: 220px; /* Adjust for sidebar width + padding */
+    padding: 20px;
+}
+
+.heading {
+    color: blue;
+    font-size: 24px;
+    text-align: center;
+}
+
+#output {
+    font-size: 18px;
+    text-align: center;
+    margin-top: 20px;
+}
