@@ -15,5 +15,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     toggleButton.addEventListener("click", function() {
         sidebar.classList.toggle("show-sidebar");
+        toggleButton.classList.toggle("active");
     });
 });
