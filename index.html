@@ -8,10 +8,53 @@
 </head>
 <body>
     <header>
+        <aside>
         <div class="header-container">
             <h1 class="logo">Lion's Life</h1>
             
         </div>
+    </aside>
+        
+        
+        
+        <!-- Add this button wherever you want in your HTML -->
+
+
+        
+        
+       <!-- Add this code inside your <body> element, before the main content -->
+<aside class="sidebar">
+    
+    <div class="sidebar-header">
+        
+        <h3>Theme</h3>
+        
+        </button><button id="sidebar-toggle" class="toggle-button">&#9776;</button>
+        
+        
+        
+    </div>
+    <div class="theme-switch">
+        <label for="dark-theme">Dark</label>
+        <input type="radio" id="dark-theme" name="theme" value="dark" onchange="setTheme(this.value)">
+    </div>
+    <div class="theme-switch">
+        <label for="light-theme">Light</label>
+        <input type="radio" id="light-theme" name="theme" value="light" onchange="setTheme(this.value)">
+    </div>
+</aside>
+
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </header>
 
     <main>
@@ -50,24 +93,47 @@
 <input type="radio" id="l-h" name="group" onclick="filterByPriceLowToHigh()" />
 <label for="l-h" class="l-h">Price: Low-High</label>
 
-<input type="radio" id="b-s" name="group" onclick="filterByPriceHighToLow()" />
-<label for="b-s" class="-s">Price: Best selling</label>     
+<input type="radio" id="b-s" name="group" onclick="filterByBestSellers()" />
+<label for="b-s" class="b-s">Best selling</label>     
         
+        
+        <input type="radio" id="new" name="group" onclick="filterByNewest()" />
+<label for="new" class="new">Newest</label>
+
+        
+        <input type="radio" id="ft" name="group" onclick="filterByFeatured()" />
+<label for="ft" class="ft">featured</label>
         
 
-        <button onclick="filterByNewest()" class="new">Newest</button>
-        <button onclick="filterByFeatured()" class="ft">Featured</button>
+<!-- Add a button to toggle the filter options -->
+<button id="filter-toggle-button" class="filter-icon-btn">
+    <img src="filter-icon.png" alt="Filter Icon">
+</button>
+
+    
+
+        
+        
     </div>
 </div>
             
-        </section>
-        <!-- Add a button to toggle the filter options -->
-    <button id="filter-toggle-button"> <!-- Add an icon or button that opens the filter.html page with a class -->
-<a class="filter-icon-link">
-    <img src="filter-icon.png" alt="Filter Icon">
-</a></button>
             
-        </section>
+            
+            
+          
+
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+     
         
         <section class="featured-products">
             <h2>Featured Products</h2>
@@ -94,17 +160,7 @@
     <script src="script.js"></script>
     <!-- Add this line to include filter.js -->
 <script src="filter.js"></script>
-<script>
-        // JavaScript to toggle the filter options
-        const filterOptions = document.querySelector('.filter-options');
-        const filterToggleButton = document.getElementById('filter-toggle-button');
-
-        filterToggleButton.addEventListener('click', () => {
-            filterOptions.classList.toggle('hidden');
-        });
-
-        // Your filter functions go here
-    </script>
+<script src="sidebartheme.js"></script>
 
 
 </body>
