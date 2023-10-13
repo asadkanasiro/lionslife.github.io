@@ -230,14 +230,14 @@ function toggleSidebar() {
     const sidebar = document.querySelector('.sidebar');
     sidebar.classList.toggle('closed');
 }
-
+/*
 // Check if user has a theme preference stored and apply it
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme === 'dark') {
     setTheme('dark');
 } else {
     setTheme('light');
-}
+}*/
 
 // Add event listener to the sidebar toggle button
 const sidebarToggleBtn = document.getElementById('sidebar-toggle');
