@@ -22,8 +22,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const imageContainer = document.getElementById("imageContainer");
     
     const imageSources = [
-        "kids-product1.jpg",
-        "kids-product1.jpg",
+        "cart-icon.png",
+        "filter-icon.png",
         "image3.jpg"
     ];
 
