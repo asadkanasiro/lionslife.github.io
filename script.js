@@ -1,38 +1,45 @@
-
-
-// Initialize a variable to keep track of the active radio button
+// Initialize a variable to keep track of the active radio button and category
 let activeRadioButton = null;
+let activeCategory = null;
 
 // Function to handle radio button click
-function handleRadioButtonClick(radioButton) {
+function handleRadioButtonClick(radioButton, category) {
     if (activeRadioButton === radioButton) {
-        // Clicking the same radio button again resets the color and filter state
-        activeRadioButton.checked = false;
-        activeRadioButton = null;
-        radioButton.style.backgroundColor = ''; // Reset button color
-        // Reset filter function here
-        resetFilter();
+        // Clicking the same radio button again resets it and the category
+        deactivateRadioButton(radioButton);
+        resetFilter(); // Reset the filter
     } else {
-        // Deactivate the previously active radio button
         if (activeRadioButton) {
-            activeRadioButton.checked = false;
-            activeRadioButton.style.backgroundColor = ''; // Reset the color of the previously active button
+            deactivateRadioButton(activeRadioButton);
         }
-        
-        // Activate the clicked radio button
-        activeRadioButton = radioButton;
-        radioButton.checked = true;
-        radioButton.style.backgroundColor = '#fff'; // Set the background color for the active button
-        // Perform your filter function here based on the active radio button
-        performFilter(radioButton.value); // You may replace this with your actual filter logic
+        activateRadioButton(radioButton, category);
     }
+}
+
+// Function to activate a radio button
+function activateRadioButton(radioButton, category) {
+    activeRadioButton = radioButton;
+    activeCategory = category;
+    radioButton.checked = true;
+    radioButton.style.backgroundColor = '#fff'; // Set the background color for the active button
+    // Perform your filter function here based on the active radio button
+    performFilter(category); // You may replace this with your actual filter logic
+}
+
+// Function to deactivate a radio button
+function deactivateRadioButton(radioButton) {
+    activeRadioButton = null;
+    activeCategory = null;
+    radioButton.checked = false;
+    radioButton.style.backgroundColor = ''; // Reset button color
 }
 
 // Attach click event listeners to all radio buttons
 const radioButtons = document.querySelectorAll('input[type="radio"]');
 radioButtons.forEach(radioButton => {
     radioButton.addEventListener('click', function () {
-        handleRadioButtonClick(this);
+        const category = this.value;
+        handleRadioButtonClick(this, category);
     });
 });
 
@@ -46,7 +53,192 @@ function resetFilter() {
 function performFilter(category) {
     // Implement your filter logic here based on the selected category
     // This function should handle the filtering logic without loading products
+    // You can use the activeCategory variable to access the currently selected category
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Function to toggle the filter state and update the button color
+function toggleFilter() {
+    const filterToggleButton = document.getElementById('filter-toggle-button');
+
+    // Toggle the filter state
+    isFilterActive = !isFilterActive;
+
+    // Update the button color based on filter state
+    if (isFilterActive) {
+        filterToggleButton.classList.add('active-filter');
+    } else {
+        filterToggleButton.classList.remove('active-filter');
+    }
+
+    // Toggle the visibility of the filter options
+    const filterOptions = document.querySelector('.filter-options');
+    filterOptions.classList.toggle('hidden');
+}
+
+
+// Function to handle category clicks
+function handleCategoryClick(category) {
+    // Clear the filter button color and state
+    const filterToggleButton = document.getElementById('filter-toggle-button');
+    filterToggleButton.classList.remove('active-filter');
+    isFilterActive = false;
+
+    // Call the loadProducts function with the selected category
+    loadProducts(category);
+}
+
+// Attach category click event listeners
+const categoryLinks = document.querySelectorAll('.category-filter ul li a');
+categoryLinks.forEach(link => {
+    link.addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent the default link behavior
+        const selectedCategory = link.getAttribute('data-category');
+        handleCategoryClick(selectedCategory);
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+// Function to toggle the filter state and update the button color
+function toggleFilter() {
+    const filterOptions = document.querySelectorAll('.filter-options label');
+    const filterToggleButton = document.getElementById('filter-toggle-button');
+
+    // Check if the filter is currently active
+    const isFilterActive = filterToggleButton.classList.contains('active');
+
+    // Toggle the filter state
+    if (isFilterActive) {
+        // Deactivate the filter
+        filterToggleButton.classList.remove('active');
+        // Reset the button color to its default
+        filterToggleButton.style.backgroundColor = ''; // or whatever your default color is
+    } else {
+        // Activate the filter
+        filterToggleButton.classList.add('active');
+        // Change the button color when filter is active
+        filterToggleButton.style.backgroundColor = ''; // Replace with your desired color
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Rest of your code...
+
+
+
+// Function to toggle the filter state and update the button color
+function toggleFilter() {
+    const filterOptions = document.querySelectorAll('.filter-options label');
+    const filterToggleButton = document.getElementById('filter-toggle-button');
+
+    
+    
+
+    
+
+    // Toggle the visibility of the filter options
+    const filterOptionsContainer = document.querySelector('.filter-options');
+    filterOptionsContainer.classList.toggle('');
+}
+
+
+// Add a click event listener to the filter button
+const filterToggleButton = document.getElementById('filter-toggle-button');
+filterToggleButton.addEventListener('click', toggleFilter);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -303,22 +495,4 @@ searchInput.addEventListener('keyup', function (event) {
     }
 });
 
-// Highlight the selected category link when clicked
-const categoryLinks = document.querySelectorAll('.category-filter ul li a');
-categoryLinks.forEach(link => {
-    link.addEventListener('click', function () {
-        // Remove the "selected" class from all category links
-        categoryLinks.forEach(link => {
-            link.classList.remove('selected');
-        });
 
-        // Add the "selected" class to the clicked category link
-        link.classList.add('selected');
-        
-        
-        
-        
-        
-        
-    });
-});
