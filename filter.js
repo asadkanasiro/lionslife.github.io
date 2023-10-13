@@ -5,8 +5,6 @@
 
 
 
-
-
 // Function to filter products by price (High to Low)
 function filterByPriceHighToLow() {
     const productGrid = document.getElementById('product-grid');
