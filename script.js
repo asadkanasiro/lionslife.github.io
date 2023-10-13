@@ -18,25 +18,19 @@ document.addEventListener("DOMContentLoaded", function() {
         toggleButton.classList.toggle("active");
     });
 
-    // Save and retrieve data in JSON format
-    const jsonData = {
-        name: "Alice",
-        age: 30,
-        location: "New York"
-    };
+    // Load images dynamically
+    const imageContainer = document.getElementById("imageContainer");
+    
+    const imageSources = [
+        "kids-product1.jpg",
+        "kids-product1.jpg",
+        "image3.jpg"
+    ];
 
-    // Save data to local storage
-    localStorage.setItem("userData", JSON.stringify(jsonData));
-
-    // Retrieve and display data from local storage
-    const storedData = JSON.parse(localStorage.getItem("userData"));
-    const userDataDiv = document.getElementById("userData");
-
-    if (storedData) {
-        userDataDiv.innerHTML = `
-            <p>Name: ${storedData.name}</p>
-            <p>Age: ${storedData.age}</p>
-            <p>Location: ${storedData.location}</p>
-        `;
+    for (let src of imageSources) {
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = "Image";
+        imageContainer.appendChild(img);
     }
 });
