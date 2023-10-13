@@ -6,12 +6,6 @@
     padding: 20px;
     height: 100%;
     position: fixed;
-    transform: translateX(-200px);
-    transition: transform 0.3s;
-}
-
-.show-sidebar {
-    transform: translateX(0);
 }
 
 .sidebar ul {
@@ -29,32 +23,18 @@
 }
 
 .content {
-    margin-left: 0;
+    margin-left: 220px; /* Adjust for sidebar width + padding */
     padding: 20px;
 }
 
-.toggle-button {
-    margin: 10px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    cursor: pointer;
+.heading {
+    color: blue;
+    font-size: 24px;
+    text-align: center;
+}
+
+#output {
     font-size: 18px;
-}
-
-.toggle-button.active {
-    background-color: #555;
-}
-
-/* Style for the user data */
-#userData {
+    text-align: center;
     margin-top: 20px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    background-color: #f7f7f7;
-}
-
-#userData p {
-    margin: 5px;
-    font-size: 18px;
 }
