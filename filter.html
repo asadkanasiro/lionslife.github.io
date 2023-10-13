@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter Options</title>
+    <!-- Include any CSS styles you want for this page -->
+</head>
+<body>
+    <h1>Filter Options</h1>
+    <!-- Add these buttons for filtering options in your index.html -->
+    <div class="filter-options">
+        <button onclick="filterByPriceHighToLow()">Price: High-Low</button>
+        <button onclick="filterByPriceLowToHigh()">Price: Low-High</button>
+        <button onclick="filterByBestSellers()">Best Sellers</button>
+        <button onclick="filterByNewest()">Newest</button>
+        <button onclick="filterByFeatured()">Featured</button>
+    </div>
+
+    <script>
+        function filterByPriceHighToLow() {
+    window.location.href = 'index.html?filter=price-high-to-low';
+}
+// Repeat this for other filter options
+
+
+        function filterByPriceLowToHigh() {
+            // Add logic to filter by low to high price
+            // Redirect to index.html with filtered results
+            window.location.href = 'index.html?filter=price-low-to-high';
+        }
+
+        function filterByBestSellers() {
+            // Add logic to filter by best sellers
+            // Redirect to index.html with filtered results
+            window.location.href = 'index.html?filter=best-sellers';
+        }
+
+        function filterByNewest() {
+            // Add logic to filter by newest items
+            // Redirect to index.html with filtered results
+            window.location.href = 'index.html?filter=newest';
+        }
+
+        function filterByFeatured() {
+            // Add logic to filter by featured items
+            // Redirect to index.html with filtered results
+            window.location.href = 'index.html?filter=featured';
+        }
+    </script>
+</body>
+</html>
