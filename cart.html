@@ -54,7 +54,7 @@
                 const productCard = document.createElement('div');
                 productCard.classList.add('product-card');
                 productCard.innerHTML = `
-                    <img src="${item.imagePath}" alt="${item.name}" width="300" height="300">
+                    <img src="${item.image}" alt="${item.name}" width="300" height="300">
                     <h3>${item.name}</h3>
                     <p class="price">${item.price.toFixed(2)} MAD</p>
                     <button onclick="removeFromCart(${index})">Remove</button>
@@ -80,11 +80,11 @@
             const cart = getCartData();
             const name = document.getElementById(nameElementId).textContent;
             const price = parseFloat(document.getElementById(priceElementId).textContent);
-            const imagePath = document.getElementById(imageElementId).getAttribute('src');
+            const image = document.getElementById(imageElementId).getAttribute('src');
             const item = {
                 name: name,
                 price: price,
-                imagePath: imagePath
+                image: image
             };
             cart.push(item);
             saveCartData(cart);
