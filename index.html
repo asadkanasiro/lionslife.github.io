@@ -11,56 +11,51 @@
 <body>
     <header>
         <aside>
+            
+            
+            
             <div class="header-container">
-                <h1 class="logo">Lion's Life</h1>
+                
+                
+                <h1 class="logo">Li  .  n's Life</h1>
             </div>
         </aside>
+
+
+
+
+
+
+
 
         <aside class="sidebar">
             <div class="sidebar-header">
-                <h3>Theme</h3>
-                <button id="sidebar-toggle" class="toggle-button">&#9776;</button>
-            </div>
-            <div class="theme-switch">
-                <label for="dark-theme">Dark</label>
-                <input type="radio" id="dark-theme" name="theme" value="dark" onchange="setTheme(this.value)">
-            </div>
-            <div class="theme-switch">
-                <label for="light-theme">Light</label>
-                <input type="radio" id="light-theme" name="theme" value="light" onchange="setTheme(this.value)">
-            </div>
-        </aside>
-
-        <a href="cart.html" aria-label="Shopping Cart" class="nav-cart-link">
-            <div class="cart-icon">
-                <img src="cart-icon.png" alt="Cart Icon" class="cart-icon-image">
-                <span class="cart-count">3</span>
-            </div>
-           
-        </a>
-        
-        
-        
-        
-    </header>
-
-    <main>
-        <section>
-            <section class="category-filter">
-                <h2>Categories</h2>
-                <ul>
-                    <li><a href="#" onclick="loadProducts('all')" data-category="all">All</a></li>
-                    <li><a href="#" onclick="loadProducts('kids')" data-category="kids">Kids</a></li>
-                    <li><a href="#" onclick="loadProducts('men')" data-category="men">Men</a></li>
-                    <li><a href="#" onclick="loadProducts('women')" data-category="women">Women</a></li>
-                </ul>
-                <form id="filter-form">
-                    <input type="text" id="search-input" class="s-i" placeholder="Search Product Here">
-                </form>
-                <label for="filter-toggle-button" class="filter-toggle">
-                    <input type="checkbox" id="filter-toggle-button" class="toggle-switch">
-                    <div class="toggle-slider"></div>
-                </label>
+                
+                
+            
+            
+            
+            
+            
+            
+            
+          
+          
+          
+          
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
                 <div class="filter-options">
                     <input type="radio" id="h-l" name="group" onclick="filterByPriceHighToLow()" />
                     <label for="h-l" class="h-l">Price: High-Low</label>
@@ -73,10 +68,196 @@
                     <input type="radio" id="ft" name="group" onclick="filterByFeatured()" />
                     <label for="ft" class="ft">featured</label>
                 </div>
+            <section>
+            <button id="sidebar-toggle" class="toggle-button">&#9776;</button>
+            </div></section>
+        </aside>
+        
+        
+        
+        
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       <aside class="sidebar">
+           
+           <button  class="toggle-button-3" onclick="toggleSidebar()"
+    
+    <div >
+        
+    <img src="filter.png" alt="Cart Icon" class="cart-icon-image-2"> </div>
+    ></button>
+    
+           
+        <div class="sidebar-header">
+    <h3>Theme</h3>
+    
+    
+            
+           <button id="duplicate-button" class="toggle-button-2" 
+    <div class="cart-icon-2">
+    
+    
+</div>
+<div class="globe"></div>
+    ></button>
+        
+        
+    
+    
+</div>
+
+</aside>
+
+        
+        
+        <aside class="sidebar">
+        <div class="sidebar-header">
+    <h3>Theme</h3>
+    
+    
+            
+           
+        
+        
+    
+
+
+</aside>
+
+        
+        
+        
+        
+
+
+
+
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+
+
+
+
+
+
+
+        <a href="cart.html" aria-label="Shopping Cart" class="nav-cart-link">
+            <div class="cart-icon">
+    <img src="cart-icon.png" alt="Cart Icon" class="cart-icon-image">
+    <span id="cart-count" class="cart-count">0</span>
+</div>
+
+           
+        </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    </header>
+
+    <main>
+        <section>
+              
+            
+            
+            <section class="category-filter">
+                <h2>Categories</h2>
+                <ul>
+                    <li><a href="#" onclick="loadProducts('all')" data-category="all">All</a></li>
+                    <li><a href="#" onclick="loadProducts('kids')" data-category="kids">Kids</a></li>
+                    <li><a href="#" onclick="loadProducts('men')" data-category="men">Men</a></li>
+                    <li><a href="#" onclick="loadProducts('women')" data-category="women">Women</a></li>
+                </ul>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
             </section>
 
             <section class="featured-products">
-                <h2>Featured Products</h2>
+                
+                
+                <form id="filter-form">
+                    <input type="text" id="search-input" class="s-i" placeholder="Search Product Here">
+                </form>
+                
+                
+                
+                <h4>Featured Products</h4>
+                
+                
+                
+                
                 <div class="product-grid" id="product-grid">
                     <!-- Product cards will be dynamically added here -->
                 </div>
@@ -91,5 +272,12 @@
     </footer>
 
     <script src="script.js"></script>
+    
+    
+    
+    
+    
+    
+    
 </body>
 </html>
