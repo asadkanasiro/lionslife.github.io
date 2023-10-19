@@ -1,3 +1,16 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
     
  // Initialize a variable to keep track of the active radio button and category
 let activeRadioButton = null;
@@ -63,13 +76,7 @@ function performFilter(category) {
  
 
 
-// Event listener for theme switch
-document.querySelector('input[name="theme"]').addEventListener('change', function () {
-    const selectedTheme = this.value;
-    setTheme(selectedTheme);
-    // Save the selected theme preference
-    localStorage.setItem('theme', selectedTheme);
-});
+
 
 
 
@@ -115,6 +122,8 @@ var sidebar = document.querySelector('.sidebar');
 var cartIcon = document.querySelector('.cart-icon');
 var logo = document.querySelector('.logo');
 
+/*var togglebutton3 = document.querySelector('.toggle-button-3');
+*/
 var lastScrollY = 0;
 
 window.addEventListener('scroll', function() {
@@ -125,11 +134,19 @@ window.addEventListener('scroll', function() {
         headerContainer.classList.add('hide-elements');
         sidebar.classList.add('hide-elements');
         cartIcon.classList.add('hide-elements');
+        
+logo.classList.add('hide-elements');
+
+/*togglebutton3.classList.add('hide-elements');*/
     } else {
         // Scrolling up, so remove classes to show elements
         headerContainer.classList.remove('hide-elements');
         sidebar.classList.remove('hide-elements');
         cartIcon.classList.remove('hide-elements');
+
+logo.classList.remove('hide-elements');
+
+/*togglebutton3.classList.remove('hide-elements');*/
     }
 
     lastScrollY = currentScrollY;
@@ -225,11 +242,11 @@ function toggleSidebar() {
     const sidebar = document.querySelector('.sidebar');
     const sidebarToggleBtn = document.getElementById('sidebar-toggle');
 
-    if (sidebar.style.left === "-250px") {
+    if (sidebar.style.left === "-100%") {
         sidebar.style.left = "0";
         sidebarToggleBtn.innerHTML = "&#10006;"; // Display a cross symbol
     } else {
-        sidebar.style.left = "-250px";
+        sidebar.style.left = "-100%";
         sidebarToggleBtn.innerHTML = "&#9776;"; // Display three lines symbol
     }
 }
@@ -399,29 +416,7 @@ function toggleFilter() {
 
 
 
-// Rest of your code...
 
-
-
-// Function to toggle the filter state and update the button color
-function toggleFilter() {
-    const filterOptions = document.querySelectorAll('.filter-options label');
-    const filterToggleButton = document.getElementById('filter-toggle-button');
-
-    
-    
-
-    
-
-    // Toggle the visibility of the filter options
-    const filterOptionsContainer = document.querySelector('.filter-options');
-    filterOptionsContainer.classList.toggle('hidden');
-}
-
-
-// Add a click event listener to the filter button
-const filterToggleButton = document.getElementById('filter-toggle-button');
-filterToggleButton.addEventListener('click', toggleFilter);
 
 
 
@@ -456,20 +451,54 @@ filterToggleButton.addEventListener('click', toggleFilter);
 
 // Initialize cart from localStorage if available 
 let cart = JSON.parse(localStorage.getItem('cart')) || []; 
-let total = parseFloat(localStorage.getItem('total')) || 0; 
+let total = parseFloat(localStorage.getItem('total')) || 0;
+
+
+
+
 
 // Function to add a product to the cart
 function addToCart(productName, productPrice, productImage) {
     cart.push({ name: productName, price: productPrice, image: productImage });
     total += productPrice;
 
+    // Update the cart count and display
+    updateCartCount(cart.length);
+
     // Store the updated cart and total in localStorage
     localStorage.setItem('cart', JSON.stringify(cart));
     localStorage.setItem('total', total.toString());
 }
 
+// Function to remove an item from the cart
+function removeFromCart(index) {
+    const removedItem = cart.splice(index, 1)[0];
+    total -= removedItem.price;
+
+    // Update the cart count and display
+    updateCartCount(cart.length);
+
+    // Store the updated cart and total in localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('total', total.toString());
+
+    displayCart();
+}
+
+// Initialize the cart count based on the items in localStorage
+const savedCart = JSON.parse(localStorage.getItem('cart'));
+updateCartCount(savedCart ? savedCart.length : 0);
+
+// Function to update the cart count in the cart icon
+function updateCartCount(count) {
+    const cartCountElement = document.getElementById('cart-count');
+    cartCountElement.textContent = count.toString();
+}
+
+
 // Function to update the cart display
 function updateCartDisplay() {
+    
     const cartItems = document.getElementById('cart-items');
     const cartTotal = document.getElementById('cart-total');
 
@@ -489,7 +518,20 @@ function updateCartDisplay() {
 
     // Update the cart total
     cartTotal.textContent = total.toFixed(2) + ' MAD';
+    
+    
+    
+    // ... (your existing code)
+
+    // Update the cart count
+    updateCartCount(cart.length);
 }
+
+
+
+
+
+
 
 
 
