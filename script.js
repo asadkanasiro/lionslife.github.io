@@ -122,8 +122,8 @@ var sidebar = document.querySelector('.sidebar');
 var cartIcon = document.querySelector('.cart-icon');
 var logo = document.querySelector('.logo');
 
-/*var togglebutton3 = document.querySelector('.toggle-button-3');
-*/
+var togglebutton3 = document.querySelector('.toggle-button-3');
+
 var lastScrollY = 0;
 
 window.addEventListener('scroll', function() {
@@ -137,7 +137,7 @@ window.addEventListener('scroll', function() {
         
 logo.classList.add('hide-elements');
 
-/*togglebutton3.classList.add('hide-elements');*/
+togglebutton3.classList.add('hide-elements');
     } else {
         // Scrolling up, so remove classes to show elements
         headerContainer.classList.remove('hide-elements');
@@ -146,7 +146,7 @@ logo.classList.add('hide-elements');
 
 logo.classList.remove('hide-elements');
 
-/*togglebutton3.classList.remove('hide-elements');*/
+togglebutton3.classList.remove('hide-elements');
     }
 
     lastScrollY = currentScrollY;
