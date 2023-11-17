@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Firebase OTP Verification</title>
+  <!-- Include the latest Firebase Modular SDK (v10.6.0) -->
+  <script type="module" src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app.esm.min.mjs"></script>
+  <script type="module" src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.esm.min.mjs"></script>
+</head>
+<body>
+
+  <h1>Firebase OTP Verification</h1>
+
+  <form id="verification-form">
+    <label for="phone">Phone Number:</label>
+    <input type="tel" id="phone" name="phone" autocomplete="tel" required>
+
+    <!-- Add a container for reCAPTCHA -->
+    <div id="recaptcha-container"></div>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" autocomplete="email" required>
+
+    <!-- Call the functions directly in the onclick attribute -->
+    <button type="button" id="sendOtpButton">Send OTP</button>
+
+    <div id="otp-container" style="display:none;">
+      <label for="otp">Enter OTP:</label>
+      <input type="text" id="otp" autocomplete="one-time-code" required>
+      <button type="button" id="verifyOtpButton">Verify OTP</button>
+    </div>
+  </form>
+
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.6.0/firebase-app.esm.min.mjs';
+    import { getAuth, signInWithPhoneNumber, RecaptchaVerifier } from 'https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.esm.min.mjs';
+
+    // Use the Firebase config you provided
+    const firebaseConfig = {
+      apiKey: "AIzaSyAYQXMf4rMIYP-S0Sd6eDZFWepJFutjRRs",
+      authDomain: "lion-s-life-544b5.firebaseapp.com",
+      projectId: "lion-s-life-544b5",
+      storageBucket: "lion-s-life-544b5.appspot.com",
+      messagingSenderId: "1000750911480",
+      appId: "1:1000750911480:web:2158332431408f420cd00d",
+      measurementId: "G-1T50PD9JP3"
+    };
+
+    const firebaseApp = initializeApp(firebaseConfig);
+    const auth = getAuth(firebaseApp);
+
+    // Set the language code for localization
+    auth.languageCode = 'it';
+
+    // Disable app verification for testing
+    auth.settings.appVerificationDisabledForTesting = true;
+
+    // Define the functions after the Firebase imports
+    document.getElementById('sendOtpButton').addEventListener('click', function () {
+      const phoneNumber = document.getElementById('phone').value;
+      const email = document.getElementById('email').value;
+
+      // Use invisible reCAPTCHA with an optional 'recaptcha-container' parameter
+      const appVerifier = new RecaptchaVerifier('recaptcha-container', {
+        'size': 'invisible',
+        'callback': (response) => {
+          // reCAPTCHA solved, allow signInWithPhoneNumber.
+          onSignInSubmit();
+        }
+      });
+
+      // Render the reCAPTCHA element
+      appVerifier.render();
+
+      // Phone number verification
+      signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+        .then((confirmationResult) => {
+          window.confirmationResult = confirmationResult;
+          document.getElementById('otp-container').style.display = 'block';
+        })
+        .catch((error) => {
+          console.error('Error sending OTP:', error.message);
+        });
+
+      // Email verification (send email with OTP)
+      const actionCodeSettings = {
+        // URL to redirect to after verification
+        url: 'https://your-app-url.com',
+        handleCodeInApp: true,
+      };
+
+      auth.sendSignInLinkToEmail(email, actionCodeSettings)
+        .then(() => {
+          // Email sent
+          console.log('Email sent with OTP');
+        })
+        .catch((error) => {
+          console.error('Error sending email:', error.message);
+        });
+    });
+
+    document.getElementById('verifyOtpButton').addEventListener('click', function () {
+      const otp = document.getElementById('otp').value;
+
+      window.confirmationResult.confirm(otp)
+        .then((result) => {
+          console.log('Phone OTP Verified:', result.user);
+
+          // User signed in successfully with phone OTP.
+          const user = result.user;
+          // Add any additional logic you need after successful sign-in
+
+          // If you need to get an AuthCredential object for the user's account
+          // You can use the PhoneAuthProvider.credential method
+          const credential = firebase.auth.PhoneAuthProvider.credential(result.verificationId, otp);
+
+          // Then, sign in the user with the credential
+          firebase.auth().signInWithCredential(credential)
+            .then((userCredential) => {
+              // User signed in successfully with AuthCredential
+              const user = userCredential.user;
+              console.log('User signed in with AuthCredential:', user);
+
+              // Add any additional logic you need after signing in with AuthCredential
+            })
+            .catch((error) => {
+              console.error('Error signing in with AuthCredential:', error.message);
+            });
+        })
+        .catch((error) => {
+          console.error('Error verifying Phone OTP:', error.message);
+        });
+    });
+  </script>
+</body>
+</html>
