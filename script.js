@@ -121,6 +121,8 @@ var headerContainer = document.querySelector('.header-container');
 var sidebar = document.querySelector('.sidebar');
 var cartIcon = document.querySelector('.cart-icon');
 var logo = document.querySelector('.logo');
+var globe = document.querySelector('.globe');
+var filterbutton = document.querySelector('.toggle-button-3');
 
 /*var togglebutton3 = document.querySelector('.toggle-button-3');
 */
@@ -137,6 +139,10 @@ window.addEventListener('scroll', function() {
         
 logo.classList.add('hide-elements');
 
+globe.classList.add('hide-elements');
+
+filterbutton.classList.add('hide-elements');
+
 /*togglebutton3.classList.add('hide-elements');*/
     } else {
         // Scrolling up, so remove classes to show elements
@@ -145,6 +151,10 @@ logo.classList.add('hide-elements');
         cartIcon.classList.remove('hide-elements');
 
 logo.classList.remove('hide-elements');
+
+globe.classList.remove('hide-elements');
+
+filterbutton.classList.remove('hide-elements');
 
 /*togglebutton3.classList.remove('hide-elements');*/
     }
@@ -612,12 +622,115 @@ function updateCartDisplay() {
 
 
 
+  /*const products = [];
+
+        function generateOtherProductCard(product) {
+            return `
+                <div class="other-product-card">
+                    <img src="${product.image}" alt="${product.name}" width="150" height="150">
+                    <h3>${product.name}</h3>
+                    <p class="price">${product.price.toFixed(2)} MAD</p>
+                </div>
+            `;
+        }
+
+        function updateOtherProductContainer() {
+            const otherProductContainer = document.getElementById('other-product-container');
+            otherProductContainer.innerHTML = ''; // Clear existing content
+
+            products.forEach(product => {
+                const otherProductCard = generateOtherProductCard(product);
+                otherProductContainer.innerHTML += otherProductCard;
+            });
+        }
+
+        function loadproducts() {
+            const savedproducts = localStorage.getItem('savedproducts');
+
+            if (savedproducts) {
+                products.length = 0; // Clear existing products
+                const parsedproducts = JSON.parse(savedproducts);
+                products.push(...parsedproducts);
+                updateOtherProductContainer();
+                console.log('Other products loaded.');
+            } else {
+                console.log('No saved other products found.');
+            }
+        }
+
+        // Initial display of other products
+        loadproducts();
+
+*/
+
+
+/*
+
+// productPage.js
+
+function generateProductCard(product) {
+    return `
+        <div class="product-card" data-category="${product.category}">
+            <img src="${product.image}" alt="${product.name}" width="300" height="300">
+            <h3>${product.name}</h3>
+            <p class="price">${product.price.toFixed(2)} MAD</p>
+            <button onclick="addToCart('${product.name}', ${product.price}, '${product.image}')">Add to Cart</button>
+        </div>
+    `;
+}
+
+function addToCart(name, price, image) {
+    // Implement your add to cart logic here...
+    console.log(`Added ${name} to the cart!`);
+}
+
+function createProductContainer() {
+    const productContainer = document.createElement('div');
+    productContainer.id = 'product-container';
+    document.body.appendChild(productContainer);
+    return productContainer;
+}
+
+function updateProductContainer() {
+    const productContainer = document.getElementById('product-container') || createProductContainer();
+    productContainer.innerHTML = ''; // Clear existing content
+
+    const products = loadProductsFromLocalStorage();
+
+    products.forEach(product => {
+        const productCard = generateProductCard(product);
+        productContainer.innerHTML += productCard;
+    });
+}
+
+function loadProductsFromLocalStorage() {
+    const savedProducts = localStorage.getItem('savedProducts');
+
+    if (savedProducts) {
+        return JSON.parse(savedProducts);
+    } else {
+        return [
+            {
+                category: 'kids',
+                name: 'Default Kids Product',
+                image: 'default-image.jpg',
+                price: 20.00,
+            },
+            // Add default products or adjust as needed
+        ];
+    }
+}
+
+// Call the updateProductContainer function to display products on the page
+updateProductContainer();
+
+
+*/
 
 
 
 
-
-
+/*
 
 const products = [
     {
@@ -687,6 +800,248 @@ function generateProductCard(product) {
     `;
 }
 
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+// Load products from the provided JSON file URL or use default if not successful
+function loadProductsFromURL(url) {
+    return fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .catch(error => {
+            console.error('Error loading products from URL:', error);
+            // If loading from URL fails, provide default products or adjust as needed
+            return [
+                {
+                    category: 'default',
+                    name: 'Default Product',
+                    image: 'default-image.jpg',
+                    price: 10.00,
+                },
+                // Add default products or adjust as needed
+            ];
+        });
+}
+
+// Usage example:
+const url = 'https://github.com/asadkanasiro/lionslife.github.io/blob/main/products.json';
+loadProductsFromURL(url)
+    .then(products => {
+        // Use the loaded products here
+        console.log(products);
+        // Further logic to update the UI or perform operations with the products
+    });
+
+
+
+*/
+/*
+// Load products from localStorage or use default if not present
+let products = loadProductsFromLocalStorage();
+
+function loadProductsFromURL(url) {
+    return fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .catch(error => {
+            console.error('Error loading products from URL:', error);
+            // If loading from URL fails, provide default products or adjust as needed
+            return [
+                {
+                    category: 'default',
+                    name: 'Default Product',
+                    image: 'default-image.jpg',
+                    price: 10.00,
+                },
+                // Add default products or adjust as needed
+            ];
+        });
+}
+
+// Usage example:
+const githubURL = 'https://raw.githubusercontent.com/asadkanasiro/lionslife.github.io/main/products.json';
+loadProductsFromURL(githubURL)
+    .then(products => {
+        // Use the loaded products here
+        console.log(products);
+        // Further logic to update the UI or perform operations with the products
+    });
+    
+*/
+
+
+
+
+
+
+
+
+
+
+/*
+const products = loadProductsFromLocalStorage();
+
+function generateProductCard(product) {
+    return `
+        <div class="product-card" data-category="${product.category}">
+            <img src="${product.image}" alt="${product.name}" width="300" height="300">
+            <h3>${product.name}</h3>
+            <p class="price">${product.price.toFixed(2)} MAD</p>
+            <button class="add-to-cart-btn" data-name="${product.name}" data-price="${product.price}" data-image="${product.image}">Add to Cart</button>
+        </div>
+    `;
+}
+
+function renderProducts(productGrid, products) {
+    productGrid.innerHTML = products.map(generateProductCard).join('');
+}
+
+function loadProductsFromLocalStorage() {
+    const savedProducts = localStorage.getItem('savedProducts');
+
+    return savedProducts ? JSON.parse(savedProducts) : getDefaultProducts();
+}
+
+function getDefaultProducts() {
+    return [
+        {
+            category: 'default',
+            name: 'Default Product',
+            image: 'default-image.jpg',
+            price: 10.00,
+        },
+        // Add default products or adjust as needed
+    ];
+}
+
+function loadProducts(category = 'all') {
+    const productGrid = document.getElementById('product-grid');
+    const filteredProducts = (category === 'all') ? products : products.filter(product => product.category === category);
+    renderProducts(productGrid, filteredProducts);
+
+    updateCategoryLinks(category);
+}
+
+function updateCategoryLinks(category) {
+    const categoryLinks = document.querySelectorAll('.category-filter ul li a');
+    categoryLinks.forEach(link => link.classList.remove('selected'));
+
+    const selectedCategoryLink = document.querySelector(`.category-filter ul li a[data-category="${category}"]`);
+    if (selectedCategoryLink) {
+        selectedCategoryLink.classList.add('selected');
+    }
+}
+
+document.querySelector('.category-filter ul').addEventListener('click', function (event) {
+    if (event.target.tagName === 'A') {
+        const category = event.target.getAttribute('data-category');
+        loadProducts(category);
+    }
+});
+
+function performSearch() {
+    const searchInput = document.getElementById('search-input').value.toLowerCase();
+
+    const productCards = document.querySelectorAll('.product-card');
+    productCards.forEach(card => {
+        const productName = card.querySelector('h3').textContent.toLowerCase();
+        card.style.display = productName.includes(searchInput) ? 'block' : 'none';
+    });
+}
+
+const searchInput = document.getElementById('search-input');
+searchInput.addEventListener('input', performSearch);
+
+searchInput.addEventListener('keyup', function (event) {
+    if (event.key === 'Enter') {
+        performSearch();
+    }
+});*/
+
+
+
+
+
+
+
+
+
+const username = 'asadkanasiro';
+const repo = 'lionslife.github.io';
+const path = 'products.json';
+const token = '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';
+
+let products; // Declare a variable to store the products
+
+async function retrieveDataAndDisplay() {
+    try {
+        const response = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${path}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        const data = await response.json();
+        const decodedContent = atob(data.content);
+        products = JSON.parse(decodedContent); // Assign the parsed data to the variable
+        console.log('Retrieved data:', products);
+        loadProducts('all'); // Load products initially
+    } catch (error) {
+        console.error('Error retrieving data:', error);
+        showErrorMessage('Error retrieving data. Please try again.');
+    }
+}
+
+function showErrorMessage(message) {
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: message,
+    });
+}
+
 function loadProducts(category) {
     const productGrid = document.getElementById('product-grid');
     productGrid.innerHTML = '';
@@ -697,7 +1052,10 @@ function loadProducts(category) {
         productGrid.innerHTML += generateProductCard(product);
     });
 
-    // Add the "selected" class to the clicked category link
+    updateCategoryLinks(category);
+}
+
+function updateCategoryLinks(category) {
     const categoryLinks = document.querySelectorAll('.category-filter ul li a');
     categoryLinks.forEach(link => link.classList.remove('selected'));
     const selectedCategoryLink = document.querySelector(`.category-filter ul li a[data-category="${category}"]`);
@@ -706,8 +1064,19 @@ function loadProducts(category) {
     }
 }
 
+function generateProductCard(product) {
+    return `
+        <div class="product-card" data-category="${product.category}">
+            <img src="${product.image}" alt="${product.name}" width="300" height="300">
+            <h3>${product.name}</h3>
+            <p class="price">${product.price.toFixed(2)} MAD</p>
+            <button onclick="addToCart('${product.name}', ${product.price}, '${product.image}')">Add to Cart</button>
+        </div>
+    `;
+}
+
 // Load all products initially
-loadProducts('all');
+retrieveDataAndDisplay();
 
 document.querySelector('.category-filter ul').addEventListener('click', function (event) {
     if (event.target.tagName === 'A') {
@@ -734,6 +1103,29 @@ searchInput.addEventListener('keyup', function (event) {
         performSearch();
     }
 });
+
+// Rest of your code...
+
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener('click', function (event) {
+    if (event.target.classList.contains('add-to-cart-btn')) {
+        const name = event.target.getAttribute('data-name');
+        const price = parseFloat(event.target.getAttribute('data-price'));
+        const image = event.target.getAttribute('data-image');
+        addToCart(name, price, image);
+    }
+});
+
 
 
 
