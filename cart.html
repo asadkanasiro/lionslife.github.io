@@ -18,11 +18,21 @@
                 <!-- Cart items will be added here using JavaScript -->
             </div>
             <p>Total: <span id="cart-total">0.00 MAD</span></p>
+            
+            <a href="login.html"> <button class="buy-button">Buy</button> </a>
+            
         </section>
     </main>
 
+
+
+
     <footer>
         <div class="footer-container">
+            
+            
+                
+            
             <p>&copy; 2023 Lion's Life</p>
         </div>
     </footer>
@@ -58,6 +68,11 @@
                     <h3>${item.name}</h3>
                     <p class="price">${item.price.toFixed(2)} MAD</p>
                     <button onclick="removeFromCart(${index})">Remove</button>
+                    
+                    
+  
+
+ <a href="login.html">    <button onclick="buyItem(${index})">Buy</button></a>
                 `;
                 cartItems.appendChild(productCard);
                 total += item.price;
@@ -91,8 +106,73 @@
             displayCart();
         }
 
+        // Function to handle the buying process
+        function buyItem(index) {
+            const cart = getCartData();
+            const boughtItem = cart[index];
+
+            // Implement your buy logic here, e.g., process payment, update inventory, etc.
+            // For demonstration purposes, let's just log the bought item for now
+            console.log('Item bought:', boughtItem);
+
+            // Optionally, you can remove the item from the cart after buying
+            cart.splice(index, 1);
+            saveCartData(cart);
+            displayCart();
+        }
+        
+        
+        
+      /*  
+
+// Function to handle the buying process and redirect to checkout.html
+function buyItem(index) {
+    const cart = getCartData();
+    const boughtItem = cart[index];
+
+    // Implement your buy logic here, e.g., process payment, update inventory, etc.
+    // For demonstration purposes, let's just log the bought item for now
+    console.log('Item bought:', boughtItem);
+
+    // Optionally, you can remove the item from the cart after buying
+    cart.splice(index, 1);
+    saveCartData(cart);
+    displayCart();
+
+    // Create a query parameter string for the bought item
+    const queryParams = `?name=${boughtItem.name}&price=${boughtItem.price}&image=${boughtItem.image}`;
+
+    // Redirect to checkout.html with the query parameter
+    window.location.href = `checkout.html${queryParams}`;
+}
+
+*/
+
+
+
+
         // Call the displayCart function when the page loads
         displayCart();
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
     </script>
+    
+    
+    
+    
+    
+    
+    
 </body>
 </html>
