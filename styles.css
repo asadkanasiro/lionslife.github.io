@@ -1,3 +1,30 @@
+.buy-button {
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: 2px solid #4CAF50;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    margin: 4px auto; /* Updated to auto for left and right margins */
+    width: 200px; /* Adjust the width as needed */
+    transition: background-color 0.3s;
+}
+
+.buy-button:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50; /* Maintain the border color on hover */
+}
+
+
+
+
+
 /* Define reusable variables */
 :root {
     --primary-color: #ff5733;
@@ -94,8 +121,8 @@
 
 
 .cart-icon-image-2 {
-    width: 34px;
-    height: 34px;
+    width: 30px;
+    height: 30px;
     border-radius: 100%;
     margin-top: -6px;
     margin-left: -186%;
@@ -124,7 +151,7 @@ cart-icon-image-3 {
 
 .globe {
   margin-left: 550px;
-  margin-top: -40px;
+  margin-top: -35px;
   width: 20px;
   height: 20px;
   background-image: url('earth.png'); /* Replace 'earth.png' with your globe image */
@@ -658,21 +685,22 @@ header {
     
     
     
-.sidebar,
+/*.sidebar,
 .cart-icon,
-.logo {
+.logo,
+.toggle-button-3 {
     transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1), opacity 0.6s ease-in-out, box-shadow 0.6s ease-in-out;
     transform-origin: center top;
     opacity: 1;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+}*/
 
 /* Define the class to hide elements */
 .hide-elements {
     transform: translateY(-100%) scale(0.8);
     opacity: 0;
     box-shadow: none;
-    transition-delay: 0.2s;
+    transition-delay: 0s;
 }
 
 /* Add a smooth scale and fade-out effect for the cart icon */
@@ -685,6 +713,9 @@ header {
     transform: translateY(-100%) rotate(0) scale(0.9);
     opacity: 0.7;
 }
+
+
+
 
 /* Add a fade-in effect with opacity animation for the logo */
 .logo:hover {
