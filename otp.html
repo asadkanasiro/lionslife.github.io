@@ -1,137 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Firebase OTP Verification</title>
-  <!-- Include the latest Firebase Modular SDK (v10.6.0) -->
-  <script type="module" src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app.esm.min.mjs"></script>
-  <script type="module" src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.esm.min.mjs"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Include your CSS file -->
 </head>
 <body>
+    <header>
+        <h1>Shopping Cart</h1>
+    </header>
 
-  <h1>Firebase OTP Verification</h1>
+    <main>
+        <section class="shopping-cart">
+            <h2>Your Cart</h2>
+            <div class="product-grid" id="cart-items">
+                <!-- Cart items will be added here using JavaScript -->
+            </div>
+            <p>Total: <span id="cart-total">0.00 MAD</span></p>
+            
+            <a href="login.html"> <button class="buy-button">Buy</button> </a>
+            
+        </section>
+    </main>
 
-  <form id="verification-form">
-    <label for="phone">Phone Number:</label>
-    <input type="tel" id="phone" name="phone" autocomplete="tel" required>
 
-    <!-- Add a container for reCAPTCHA -->
-    <div id="recaptcha-container"></div>
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" autocomplete="email" required>
 
-    <!-- Call the functions directly in the onclick attribute -->
-    <button type="button" id="sendOtpButton">Send OTP</button>
+    <footer>
+        <div class="footer-container">
+            
+            
+                
+            
+            <p>&copy; 2023 Lion's Life</p>
+        </div>
+    </footer>
 
-    <div id="otp-container" style="display:none;">
-      <label for="otp">Enter OTP:</label>
-      <input type="text" id="otp" autocomplete="one-time-code" required>
-      <button type="button" id="verifyOtpButton">Verify OTP</button>
-    </div>
-  </form>
-
-  <script type="module">
-    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.6.0/firebase-app.esm.min.mjs';
-    import { getAuth, signInWithPhoneNumber, RecaptchaVerifier } from 'https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.esm.min.mjs';
-
-    // Use the Firebase config you provided
-    const firebaseConfig = {
-      apiKey: "AIzaSyAYQXMf4rMIYP-S0Sd6eDZFWepJFutjRRs",
-      authDomain: "lion-s-life-544b5.firebaseapp.com",
-      projectId: "lion-s-life-544b5",
-      storageBucket: "lion-s-life-544b5.appspot.com",
-      messagingSenderId: "1000750911480",
-      appId: "1:1000750911480:web:2158332431408f420cd00d",
-      measurementId: "G-1T50PD9JP3"
-    };
-
-    const firebaseApp = initializeApp(firebaseConfig);
-    const auth = getAuth(firebaseApp);
-
-    // Set the language code for localization
-    auth.languageCode = 'it';
-
-    // Disable app verification for testing
-    auth.settings.appVerificationDisabledForTesting = true;
-
-    // Define the functions after the Firebase imports
-    document.getElementById('sendOtpButton').addEventListener('click', function () {
-      const phoneNumber = document.getElementById('phone').value;
-      const email = document.getElementById('email').value;
-
-      // Use invisible reCAPTCHA with an optional 'recaptcha-container' parameter
-      const appVerifier = new RecaptchaVerifier('recaptcha-container', {
-        'size': 'invisible',
-        'callback': (response) => {
-          // reCAPTCHA solved, allow signInWithPhoneNumber.
-          onSignInSubmit();
+    <script>
+        // Function to retrieve cart data from localStorage
+        function getCartData() {
+            return JSON.parse(localStorage.getItem('cart')) || [];
         }
-      });
 
-      // Render the reCAPTCHA element
-      appVerifier.render();
+        // Function to save cart data to localStorage
+        function saveCartData(cart) {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
 
-      // Phone number verification
-      signInWithPhoneNumber(auth, phoneNumber, appVerifier)
-        .then((confirmationResult) => {
-          window.confirmationResult = confirmationResult;
-          document.getElementById('otp-container').style.display = 'block';
-        })
-        .catch((error) => {
-          console.error('Error sending OTP:', error.message);
-        });
+        // Function to display cart items and calculate the total
+        function displayCart() {
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
 
-      // Email verification (send email with OTP)
-      const actionCodeSettings = {
-        // URL to redirect to after verification
-        url: 'https://your-app-url.com',
-        handleCodeInApp: true,
-      };
+            const cart = getCartData();
+            let total = 0;
 
-      auth.sendSignInLinkToEmail(email, actionCodeSettings)
-        .then(() => {
-          // Email sent
-          console.log('Email sent with OTP');
-        })
-        .catch((error) => {
-          console.error('Error sending email:', error.message);
-        });
-    });
+            // Clear previous cart items
+            cartItems.innerHTML = '';
 
-    document.getElementById('verifyOtpButton').addEventListener('click', function () {
-      const otp = document.getElementById('otp').value;
+            // Add items to the cart
+            cart.forEach((item, index) => {
+                const productCard = document.createElement('div');
+                productCard.classList.add('product-card');
+                productCard.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" width="300" height="300">
+                    <h3>${item.name}</h3>
+                    <p class="price">${item.price.toFixed(2)} MAD</p>
+                    <button onclick="removeFromCart(${index})">Remove</button>
+                    
+                    
+  
 
-      window.confirmationResult.confirm(otp)
-        .then((result) => {
-          console.log('Phone OTP Verified:', result.user);
-
-          // User signed in successfully with phone OTP.
-          const user = result.user;
-          // Add any additional logic you need after successful sign-in
-
-          // If you need to get an AuthCredential object for the user's account
-          // You can use the PhoneAuthProvider.credential method
-          const credential = firebase.auth.PhoneAuthProvider.credential(result.verificationId, otp);
-
-          // Then, sign in the user with the credential
-          firebase.auth().signInWithCredential(credential)
-            .then((userCredential) => {
-              // User signed in successfully with AuthCredential
-              const user = userCredential.user;
-              console.log('User signed in with AuthCredential:', user);
-
-              // Add any additional logic you need after signing in with AuthCredential
-            })
-            .catch((error) => {
-              console.error('Error signing in with AuthCredential:', error.message);
+ <a href="login.html">    <button onclick="buyItem(${index})">Buy</button></a>
+                `;
+                cartItems.appendChild(productCard);
+                total += item.price;
             });
-        })
-        .catch((error) => {
-          console.error('Error verifying Phone OTP:', error.message);
-        });
-    });
-  </script>
+
+            // Update the total
+            cartTotal.textContent = total.toFixed(2) + ' MAD';
+        }
+
+        // Function to remove an item from the cart
+        function removeFromCart(index) {
+            const cart = getCartData();
+            const removedItem = cart.splice(index, 1)[0];
+            saveCartData(cart);
+            displayCart();
+        }
+
+        // Function to add an item to the cart
+        function addToCart(nameElementId, priceElementId, imageElementId) {
+            const cart = getCartData();
+            const name = document.getElementById(nameElementId).textContent;
+            const price = parseFloat(document.getElementById(priceElementId).textContent);
+            const image = document.getElementById(imageElementId).getAttribute('src');
+            const item = {
+                name: name,
+                price: price,
+                image: image
+            };
+            cart.push(item);
+            saveCartData(cart);
+            displayCart();
+        }
+
+        // Function to handle the buying process
+        function buyItem(index) {
+            const cart = getCartData();
+            const boughtItem = cart[index];
+
+            // Implement your buy logic here, e.g., process payment, update inventory, etc.
+            // For demonstration purposes, let's just log the bought item for now
+            console.log('Item bought:', boughtItem);
+
+            // Optionally, you can remove the item from the cart after buying
+            cart.splice(index, 1);
+            saveCartData(cart);
+            displayCart();
+        }
+        
+        
+        
+      /*  
+
+// Function to handle the buying process and redirect to checkout.html
+function buyItem(index) {
+    const cart = getCartData();
+    const boughtItem = cart[index];
+
+    // Implement your buy logic here, e.g., process payment, update inventory, etc.
+    // For demonstration purposes, let's just log the bought item for now
+    console.log('Item bought:', boughtItem);
+
+    // Optionally, you can remove the item from the cart after buying
+    cart.splice(index, 1);
+    saveCartData(cart);
+    displayCart();
+
+    // Create a query parameter string for the bought item
+    const queryParams = `?name=${boughtItem.name}&price=${boughtItem.price}&image=${boughtItem.image}`;
+
+    // Redirect to checkout.html with the query parameter
+    window.location.href = `checkout.html${queryParams}`;
+}
+
+*/
+
+
+
+
+        // Call the displayCart function when the page loads
+        displayCart();
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+    </script>
+    
+    
+    
+    
+    
+    
+    
 </body>
 </html>
