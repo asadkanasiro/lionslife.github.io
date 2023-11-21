@@ -1011,7 +1011,7 @@ searchInput.addEventListener('keyup', function (event) {
 const username = 'asadkanasiro';
 const repo = 'lionslife.github.io';
 const path = 'products.json';
-const token = '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';
+const token = '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';
 
 let products; // Declare a variable to store the products
 
