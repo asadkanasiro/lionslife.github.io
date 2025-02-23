@@ -635,81 +635,6 @@
             border-bottom: 1px solid rgba(184, 155, 94, 0.2);
         }
 
-        /* Admin Section */
-        .admin {
-            padding: clamp(80px, 10vw, 150px) clamp(50px, 5vw, 100px);
-            text-align: center;
-            background: #1c2526;
-            display: none;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .admin.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .admin h2 {
-            font-size: clamp(28px, 5vw, 48px);
-            margin-bottom: clamp(30px, 4vw, 60px);
-            color: #b89b5e;
-            text-transform: uppercase;
-            letter-spacing: clamp(2px, 0.5vw, 4px);
-        }
-
-        .admin form {
-            max-width: clamp(300px, 90vw, 700px);
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: clamp(15px, 2vw, 25px);
-            background: #0d3b34;
-            padding: clamp(20px, 4vw, 40px);
-        }
-
-        .admin input, .admin textarea {
-            padding: clamp(10px, 2vw, 15px);
-            font-size: clamp(14px, 2.5vw, 18px);
-            border: none;
-            border-bottom: 2px solid #b89b5e;
-            background: transparent;
-            color: #fff;
-            font-weight: 300;
-            transition: border-color 0.3s ease;
-        }
-
-        .admin input:focus, .admin textarea:focus {
-            outline: none;
-            border-color: #fff;
-        }
-
-        .admin textarea {
-            height: clamp(100px, 20vw, 150px);
-            resize: none;
-        }
-
-        .admin button {
-            padding: clamp(10px, 2vw, 15px);
-            background: linear-gradient(45deg, #b89b5e, #967e41);
-            color: #000;
-            border: none;
-            font-size: clamp(12px, 1.5vw, 14px);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: clamp(1px, 0.2vw, 2px);
-            cursor: pointer;
-            transition: background 0.3s ease, transform 0.3s ease;
-            min-width: 48px;
-            min-height: 48px;
-        }
-
-        .admin button:hover {
-            background: linear-gradient(45deg, #fff, #b89b5e);
-            transform: translateY(-5px);
-        }
-
         /* Contact Section */
         .contact {
             padding: clamp(80px, 10vw, 150px) clamp(50px, 5vw, 100px);
@@ -988,7 +913,7 @@
                 font-size: clamp(14px, 4vw, 16px);
             }
 
-            .products, .profile, .admin, .contact, .newsletter {
+            .products, .profile, .contact, .newsletter {
                 padding: clamp(50px, 8vw, 80px) clamp(20px, 3vw, 50px);
             }
 
@@ -1016,7 +941,6 @@
             <li><a href="#products" title="Collection"><i class="fas fa-box"></i></a></li>
             <li><a href="#profile" title="Profile"><i class="fas fa-user"></i></a></li>
             <li><a href="#cart" title="Cart"><i class="fas fa-shopping-cart"></i></a></li>
-            <li><a href="#admin" title="Admin"><i class="fas fa-cog"></i></a></li>
             <li><a href="#contact" title="Contact"><i class="fas fa-envelope"></i></a></li>
         </ul>
     </div>
@@ -1027,10 +951,8 @@
         <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
-                <li><a href="#products">Collection</a></li>
                 <li><a href="#profile">Profile</a></li>
                 <li><a href="#cart">Cart (<span id="cartCount">0</span>)</a></li>
-                <li><a href="#admin">Admin</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><button id="loginBtn">Login</button></li>
                 <li><button id="signupBtn">Sign Up</button></li>
@@ -1121,19 +1043,6 @@
             <h3>Saved Cart</h3>
             <ul id="profileCartItems"></ul>
         </div>
-    </section>
-
-    <!-- Admin Section -->
-    <section class="admin" id="admin" aria-label="Admin Panel">
-        <h2>Admin Panel</h2>
-        <form id="adminForm">
-            <input type="text" name="name" placeholder="Product Name" required aria-label="Product Name">
-            <textarea name="description" placeholder="Full Description" required aria-label="Full Description"></textarea>
-            <input type="text" name="shortDesc" placeholder="Short Description" required aria-label="Short Description">
-            <input type="url" name="imageUrl" placeholder="Image URL" required aria-label="Image URL">
-            <input type="number" name="price" placeholder="Price (in PKR)" step="0.01" required aria-label="Price">
-            <button type="submit">Add Product</button>
-        </form>
     </section>
 
     <!-- Contact Section -->
@@ -1460,9 +1369,8 @@
         const authSubmit = document.getElementById('authSubmit');
         let loginBtn = document.getElementById('loginBtn');
         let signupBtn = document.getElementById('signupBtn');
-        const authButtons = document.querySelector('header nav ul'); // Now part of nav
+        const authButtons = document.querySelector('header nav ul');
         const profileSection = document.getElementById('profile');
-        const adminSection = document.getElementById('admin');
         const profileCartItems = document.getElementById('profileCartItems');
 
         let isLoginMode = true;
@@ -1517,24 +1425,19 @@
             if (user) {
                 authButtons.innerHTML = `
                     <li><a href="#home">Home</a></li>
-                    <li><a href="#products">Collection</a></li>
                     <li><a href="#profile">Profile</a></li>
                     <li><a href="#cart">Cart (<span id="cartCount">0</span>)</a></li>
-                    <li><a href="#admin">Admin</a></li>
                     <li><a href="#contact">Contact</a></li>
                     <li><button id="logoutBtn">Logout (${user.email})</button></li>
                 `;
                 profileSection.style.display = 'block';
-                adminSection.style.display = 'block';
                 document.getElementById('logoutBtn').addEventListener('click', () => {
                     signOut(auth).then(() => {
                         alert('Logged out successfully!');
                         authButtons.innerHTML = `
                             <li><a href="#home">Home</a></li>
-                            <li><a href="#products">Collection</a></li>
                             <li><a href="#profile">Profile</a></li>
                             <li><a href="#cart">Cart (<span id="cartCount">0</span>)</a></li>
-                            <li><a href="#admin">Admin</a></li>
                             <li><a href="#contact">Contact</a></li>
                             <li><button id="loginBtn">Login</button></li>
                             <li><button id="signupBtn">Sign Up</button></li>
@@ -1556,7 +1459,6 @@
                             authModal.classList.add('visible');
                         });
                         profileSection.style.display = 'none';
-                        adminSection.style.display = 'none';
                         cart = [];
                         updateCartUI();
                     });
@@ -1574,34 +1476,6 @@
                         profileCartItems.innerHTML = '<p>Your cart is empty.</p>';
                     }
                 });
-            }
-        });
-
-        // Admin product management
-        const adminForm = document.getElementById('adminForm');
-        adminForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            if (!auth.currentUser) {
-                alert('Please log in to add products.');
-                return;
-            }
-            const formData = new FormData(adminForm);
-            const product = {
-                name: formData.get('name'),
-                description: formData.get('description'),
-                shortDesc: formData.get('shortDesc'),
-                imageUrl: formData.get('imageUrl'),
-                price: parseFloat(formData.get('price')),
-                timestamp: serverTimestamp()
-            };
-            try {
-                await addDoc(collection(db, 'products'), product);
-                alert('Product added successfully!');
-                adminForm.reset();
-                logEvent(analytics, 'product_added', { product_name: product.name });
-            } catch (error) {
-                console.error('Error adding product:', error);
-                alert('Failed to add product. Please try again.');
             }
         });
 
