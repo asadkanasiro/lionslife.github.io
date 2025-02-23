@@ -120,6 +120,11 @@
             gap: clamp(20px, 3vw, 60px);
         }
 
+        header nav ul li {
+            display: flex;
+            align-items: center;
+        }
+
         header nav ul li a {
             color: #fff;
             text-decoration: none;
@@ -148,6 +153,27 @@
 
         header nav ul li a:hover::after {
             width: 100%;
+        }
+
+        header nav ul li button {
+            padding: clamp(8px, 1.5vw, 12px) clamp(20px, 3vw, 30px);
+            background: linear-gradient(45deg, #b89b5e, #967e41);
+            color: #000;
+            border: none;
+            font-size: clamp(12px, 1.5vw, 14px);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: clamp(1px, 0.2vw, 2px);
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+            min-width: 48px;
+            min-height: 48px;
+            border-radius: 5px;
+        }
+
+        header nav ul li button:hover {
+            background: linear-gradient(45deg, #fff, #b89b5e);
+            transform: translateY(-5px);
         }
 
         header .hamburger {
@@ -505,39 +531,7 @@
             transform: translateY(-5px);
         }
 
-        /* Auth Section */
-        .auth {
-            position: fixed;
-            top: clamp(10px, 2vw, 20px); /* Adjusted to avoid overlap with header */
-            right: clamp(10px, 2vw, 20px);
-            z-index: 1001;
-            display: flex;
-            gap: clamp(10px, 1vw, 15px);
-            padding: 10px; /* Added padding to prevent overlap */
-            flex-wrap: nowrap; /* Prevents wrapping unless necessary */
-        }
-
-        .auth button {
-            padding: clamp(8px, 1.5vw, 12px) clamp(20px, 3vw, 30px);
-            background: linear-gradient(45deg, #b89b5e, #967e41);
-            color: #000;
-            border: none;
-            font-size: clamp(12px, 1.5vw, 14px);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: clamp(1px, 0.2vw, 2px);
-            cursor: pointer;
-            transition: background 0.3s ease, transform 0.3s ease;
-            min-width: 48px;
-            min-height: 48px;
-            white-space: nowrap; /* Prevents text wrapping */
-        }
-
-        .auth button:hover {
-            background: linear-gradient(45deg, #fff, #b89b5e);
-            transform: translateY(-5px);
-        }
-
+        /* Auth Modal */
         .auth-modal-content {
             background: #0d3b34;
             padding: clamp(20px, 5vw, 50px);
@@ -961,15 +955,6 @@
                 display: none; /* Hidden on mobile */
             }
 
-            .auth {
-                top: clamp(40px, 5vw, 70px);
-                right: clamp(20px, 3vw, 50px);
-                flex-direction: column; /* Stack buttons vertically */
-                gap: 10px;
-                padding: 0; /* Remove padding to avoid overlap */
-                align-items: flex-end; /* Align to right */
-            }
-
             .hero-video {
                 object-fit: cover;
             }
@@ -991,13 +976,6 @@
         @media (min-width: 769px) {
             .sidebar-nav {
                 display: block; /* Show sidebar on larger screens */
-            }
-
-            .auth {
-                top: clamp(10px, 2vw, 20px);
-                right: clamp(10px, 2vw, 20px);
-                flex-direction: row; /* Side-by-side on larger screens */
-                gap: clamp(10px, 1vw, 15px);
             }
         }
 
@@ -1054,16 +1032,12 @@
                 <li><a href="#cart">Cart (<span id="cartCount">0</span>)</a></li>
                 <li><a href="#admin">Admin</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><button id="loginBtn">Login</button></li>
+                <li><button id="signupBtn">Sign Up</button></li>
             </ul>
         </nav>
         <div class="hamburger" aria-label="Menu">☰</div>
     </header>
-
-    <!-- Auth Buttons -->
-    <div class="auth" id="authButtons">
-        <button id="loginBtn">Login</button>
-        <button id="signupBtn">Sign Up</button>
-    </div>
 
     <!-- Auth Modal -->
     <div class="modal" id="authModal">
@@ -1486,7 +1460,7 @@
         const authSubmit = document.getElementById('authSubmit');
         let loginBtn = document.getElementById('loginBtn');
         let signupBtn = document.getElementById('signupBtn');
-        const authButtons = document.getElementById('authButtons');
+        const authButtons = document.querySelector('header nav ul'); // Now part of nav
         const profileSection = document.getElementById('profile');
         const adminSection = document.getElementById('admin');
         const profileCartItems = document.getElementById('profileCartItems');
@@ -1541,15 +1515,29 @@
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                authButtons.innerHTML = `<button id="logoutBtn">Logout (${user.email})</button>`;
+                authButtons.innerHTML = `
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">Collection</a></li>
+                    <li><a href="#profile">Profile</a></li>
+                    <li><a href="#cart">Cart (<span id="cartCount">0</span>)</a></li>
+                    <li><a href="#admin">Admin</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><button id="logoutBtn">Logout (${user.email})</button></li>
+                `;
                 profileSection.style.display = 'block';
                 adminSection.style.display = 'block';
                 document.getElementById('logoutBtn').addEventListener('click', () => {
                     signOut(auth).then(() => {
                         alert('Logged out successfully!');
                         authButtons.innerHTML = `
-                            <button id="loginBtn">Login</button>
-                            <button id="signupBtn">Sign Up</button>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#products">Collection</a></li>
+                            <li><a href="#profile">Profile</a></li>
+                            <li><a href="#cart">Cart (<span id="cartCount">0</span>)</a></li>
+                            <li><a href="#admin">Admin</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                            <li><button id="loginBtn">Login</button></li>
+                            <li><button id="signupBtn">Sign Up</button></li>
                         `;
                         loginBtn = document.getElementById('loginBtn');
                         signupBtn = document.getElementById('signupBtn');
