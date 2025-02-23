@@ -51,8 +51,9 @@
         }
 
         .preloader-logo {
-            width: 150px; /* Adjust size as needed */
-            height: auto;
+            font-family: 'Didot', serif;
+            font-size: clamp(36px, 8vw, 48px);
+            color: #b89b5e;
             animation: pulse 1.5s infinite;
         }
 
@@ -65,24 +66,25 @@
         .sidebar-nav {
             position: fixed;
             top: 50%;
-            left: 20px;
+            left: clamp(10px, 2vw, 20px);
             transform: translateY(-50%);
             background: rgba(28, 37, 38, 0.9);
-            padding: 15px;
+            padding: clamp(10px, 2vw, 15px);
             border-radius: 30px;
             z-index: 1000;
+            display: none; /* Hidden on mobile by default */
         }
 
         .sidebar-nav ul {
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: clamp(15px, 2vw, 20px);
         }
 
         .sidebar-nav ul li a {
             color: #b89b5e;
-            font-size: 20px;
+            font-size: clamp(16px, 2.5vw, 20px);
             text-decoration: none;
             transition: color 0.3s ease, transform 0.3s ease;
         }
@@ -97,7 +99,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 25px 100px;
+            padding: clamp(15px, 3vw, 25px) clamp(50px, 5vw, 100px);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -107,7 +109,7 @@
         }
 
         header .logo {
-            width: 120px; /* Adjust size as needed */
+            width: clamp(80px, 10vw, 120px);
             height: auto;
         }
 
@@ -115,19 +117,16 @@
             list-style: none;
             display: flex;
             align-items: center;
-        }
-
-        header nav ul li {
-            margin-left: 60px;
+            gap: clamp(20px, 3vw, 60px);
         }
 
         header nav ul li a {
             color: #fff;
             text-decoration: none;
-            font-size: 18px;
+            font-size: clamp(14px, 2vw, 18px);
             font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: clamp(1px, 0.2vw, 2px);
             position: relative;
             transition: color 0.3s ease;
         }
@@ -153,7 +152,7 @@
 
         header .hamburger {
             display: none;
-            font-size: 30px;
+            font-size: clamp(24px, 4vw, 30px);
             color: #fff;
             cursor: pointer;
         }
@@ -198,19 +197,19 @@
         }
 
         .hero-content h1 {
-            font-size: 72px;
+            font-size: clamp(36px, 8vw, 72px);
             text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: clamp(2px, 0.5vw, 4px);
             color: #b89b5e;
-            margin-bottom: 30px;
+            margin-bottom: clamp(15px, 2vw, 30px);
             text-shadow: 0 3px 15px rgba(0, 0, 0, 0.7);
         }
 
         .hero-content p {
-            font-size: 24px;
+            font-size: clamp(16px, 3vw, 24px);
             color: #fff;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: clamp(1.5px, 0.3vw, 3px);
             opacity: 0.9;
         }
 
@@ -225,12 +224,12 @@
             width: 60%;
             height: 1px;
             background: linear-gradient(to right, transparent, #b89b5e, transparent);
-            margin: 0 auto 80px;
+            margin: 0 auto clamp(40px, 5vw, 80px);
         }
 
         /* Products Section */
         .products {
-            padding: 150px 100px;
+            padding: clamp(80px, 10vw, 150px) clamp(50px, 5vw, 100px);
             text-align: center;
             background: #1c2526;
             opacity: 0;
@@ -244,22 +243,22 @@
         }
 
         .products h2 {
-            font-size: 48px;
-            margin-bottom: 80px;
+            font-size: clamp(28px, 5vw, 48px);
+            margin-bottom: clamp(40px, 5vw, 80px);
             color: #b89b5e;
             text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: clamp(2px, 0.5vw, 4px);
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
         .products .filter {
-            margin-bottom: 60px;
+            margin-bottom: clamp(30px, 4vw, 60px);
         }
 
         .products .filter input {
-            padding: 15px 30px;
-            width: 400px;
-            font-size: 18px;
+            padding: clamp(10px, 2vw, 15px) clamp(20px, 3vw, 30px);
+            width: clamp(250px, 50vw, 400px);
+            font-size: clamp(14px, 2vw, 18px);
             border: none;
             border-bottom: 2px solid #b89b5e;
             background: transparent;
@@ -271,20 +270,20 @@
         .products .filter input:focus {
             outline: none;
             border-color: #fff;
-            width: 450px;
+            width: clamp(280px, 55vw, 450px);
         }
 
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 60px;
-            padding: 0 30px;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(280px, 45vw, 340px), 1fr));
+            gap: clamp(20px, 3vw, 60px);
+            padding: 0 clamp(15px, 2vw, 30px);
             perspective: 1000px;
         }
 
         .product-card {
             background: #0d3b34;
-            padding: 30px;
+            padding: clamp(20px, 3vw, 30px);
             position: relative;
             transition: transform 0.5s ease, box-shadow 0.5s ease;
             opacity: 0;
@@ -308,7 +307,7 @@
 
         .product-card img {
             width: 100%;
-            height: 450px;
+            height: clamp(300px, 60vw, 450px);
             object-fit: cover;
             transition: opacity 0.3s ease;
         }
@@ -318,33 +317,35 @@
         }
 
         .product-card h3 {
-            font-size: 28px;
-            margin: 25px 0;
+            font-size: clamp(20px, 3vw, 28px);
+            margin: clamp(15px, 2vw, 25px) 0;
             color: #b89b5e;
             text-transform: uppercase;
-            letter-spacing: 2.5px;
+            letter-spacing: clamp(1.5px, 0.3vw, 2.5px);
         }
 
         .product-card p {
-            font-size: 16px;
+            font-size: clamp(12px, 2vw, 16px);
             color: #fff;
             font-weight: 300;
         }
 
         .product-card .add-to-cart {
-            padding: 12px 30px;
+            padding: clamp(8px, 1.5vw, 12px) clamp(20px, 3vw, 30px);
             background: linear-gradient(45deg, #b89b5e, #967e41);
             color: #000;
             border: none;
-            font-size: 14px;
+            font-size: clamp(12px, 1.5vw, 14px);
             font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: clamp(1px, 0.2vw, 2px);
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: clamp(10px, 2vw, 20px);
             position: relative;
             overflow: hidden;
             transition: transform 0.3s ease;
+            min-width: 48px;
+            min-height: 48px;
         }
 
         .product-card .add-to-cart::before {
@@ -387,8 +388,9 @@
 
         .modal-content {
             background: #0d3b34;
-            padding: 50px;
-            max-width: 700px;
+            padding: clamp(20px, 5vw, 50px);
+            max-width: clamp(300px, 80vw, 700px);
+            width: 90%;
             text-align: center;
             transform: translateY(50px);
             transition: transform 0.4s ease;
@@ -400,30 +402,30 @@
 
         .modal-content img {
             width: 100%;
-            height: 500px;
+            height: clamp(200px, 60vw, 500px);
             object-fit: cover;
             border: 1px solid rgba(184, 155, 94, 0.3);
         }
 
         .modal-content h3 {
-            font-size: 32px;
-            margin: 30px 0;
+            font-size: clamp(20px, 4vw, 32px);
+            margin: clamp(15px, 3vw, 30px) 0;
             color: #b89b5e;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: clamp(1.5px, 0.3vw, 3px);
         }
 
         .modal-content p {
-            font-size: 18px;
+            font-size: clamp(14px, 2.5vw, 18px);
             color: #fff;
             font-weight: 300;
         }
 
         .close-btn {
             position: absolute;
-            top: 20px;
-            right: 30px;
-            font-size: 40px;
+            top: clamp(10px, 2vw, 20px);
+            right: clamp(15px, 2vw, 30px);
+            font-size: clamp(24px, 5vw, 40px);
             cursor: pointer;
             color: #b89b5e;
             transition: color 0.3s ease, transform 0.3s ease;
@@ -436,33 +438,35 @@
 
         /* Cart Modal */
         .cart-modal-content {
-            max-width: 800px;
+            max-width: clamp(300px, 90vw, 800px);
             background: #0d3b34;
             text-align: left;
         }
 
         .cart-modal-content ul {
             list-style: none;
-            margin: 30px 0;
+            margin: clamp(15px, 3vw, 30px) 0;
         }
 
         .cart-modal-content li {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
+            padding: clamp(10px, 2vw, 20px) 0;
             border-bottom: 1px solid rgba(184, 155, 94, 0.2);
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .cart-modal-content li img {
-            width: 70px;
-            height: 70px;
+            width: clamp(50px, 10vw, 70px);
+            height: clamp(50px, 10vw, 70px);
             object-fit: cover;
         }
 
         .cart-modal-content input[type="number"] {
-            width: 80px;
-            padding: 10px;
+            width: clamp(60px, 15vw, 80px);
+            padding: clamp(5px, 1vw, 10px);
             border: 1px solid #b89b5e;
             background: #1c2526;
             color: #fff;
@@ -473,7 +477,7 @@
         .cart-modal-content .remove {
             color: #b89b5e;
             cursor: pointer;
-            font-size: 28px;
+            font-size: clamp(20px, 4vw, 28px);
             transition: transform 0.3s ease;
         }
 
@@ -482,16 +486,18 @@
         }
 
         .cart-modal-content .checkout {
-            padding: 15px 35px;
+            padding: clamp(10px, 2vw, 15px) clamp(20px, 3vw, 35px);
             background: linear-gradient(45deg, #b89b5e, #967e41);
             color: #000;
             border: none;
-            font-size: 14px;
+            font-size: clamp(12px, 1.5vw, 14px);
             font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: clamp(1px, 0.2vw, 2px);
             cursor: pointer;
             transition: background 0.3s ease, transform 0.3s ease;
+            min-width: 48px;
+            min-height: 48px;
         }
 
         .cart-modal-content .checkout:hover {
@@ -502,24 +508,29 @@
         /* Auth Section */
         .auth {
             position: fixed;
-            top: 80px;
-            right: 100px;
+            top: clamp(10px, 2vw, 20px); /* Adjusted to avoid overlap with header */
+            right: clamp(10px, 2vw, 20px);
             z-index: 1001;
             display: flex;
-            gap: 25px;
+            gap: clamp(10px, 1vw, 15px);
+            padding: 10px; /* Added padding to prevent overlap */
+            flex-wrap: nowrap; /* Prevents wrapping unless necessary */
         }
 
         .auth button {
-            padding: 12px 30px;
+            padding: clamp(8px, 1.5vw, 12px) clamp(20px, 3vw, 30px);
             background: linear-gradient(45deg, #b89b5e, #967e41);
             color: #000;
             border: none;
-            font-size: 14px;
+            font-size: clamp(12px, 1.5vw, 14px);
             font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: clamp(1px, 0.2vw, 2px);
             cursor: pointer;
             transition: background 0.3s ease, transform 0.3s ease;
+            min-width: 48px;
+            min-height: 48px;
+            white-space: nowrap; /* Prevents text wrapping */
         }
 
         .auth button:hover {
@@ -529,28 +540,29 @@
 
         .auth-modal-content {
             background: #0d3b34;
-            padding: 50px;
-            max-width: 500px;
+            padding: clamp(20px, 5vw, 50px);
+            max-width: clamp(300px, 80vw, 500px);
+            width: 90%;
             text-align: center;
         }
 
         .auth-modal-content h2 {
-            font-size: 32px;
-            margin-bottom: 35px;
+            font-size: clamp(20px, 4vw, 32px);
+            margin-bottom: clamp(20px, 3vw, 35px);
             color: #b89b5e;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: clamp(1.5px, 0.3vw, 3px);
         }
 
         .auth-modal-content input {
             width: 100%;
-            padding: 15px;
-            margin: 20px 0;
+            padding: clamp(10px, 2vw, 15px);
+            margin: clamp(10px, 2vw, 20px) 0;
             border: none;
             border-bottom: 2px solid #b89b5e;
             background: transparent;
             color: #fff;
-            font-size: 18px;
+            font-size: clamp(14px, 2.5vw, 18px);
             font-weight: 300;
             transition: border-color 0.3s ease;
         }
@@ -561,16 +573,18 @@
         }
 
         .auth-modal-content button {
-            padding: 15px 30px;
+            padding: clamp(10px, 2vw, 15px) clamp(20px, 3vw, 30px);
             background: linear-gradient(45deg, #b89b5e, #967e41);
             color: #000;
             border: none;
-            font-size: 14px;
+            font-size: clamp(12px, 1.5vw, 14px);
             font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: clamp(1px, 0.2vw, 2px);
             cursor: pointer;
             transition: background 0.3s ease, transform 0.3s ease;
+            min-width: 48px;
+            min-height: 48px;
         }
 
         .auth-modal-content button:hover {
@@ -580,7 +594,7 @@
 
         /* Profile Section */
         .profile {
-            padding: 150px 100px;
+            padding: clamp(80px, 10vw, 150px) clamp(50px, 5vw, 100px);
             text-align: center;
             background: #1c2526;
             display: none;
@@ -595,26 +609,26 @@
         }
 
         .profile h2 {
-            font-size: 48px;
-            margin-bottom: 60px;
+            font-size: clamp(28px, 5vw, 48px);
+            margin-bottom: clamp(30px, 4vw, 60px);
             color: #b89b5e;
             text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: clamp(2px, 0.5vw, 4px);
         }
 
         .profile .cart-items {
-            max-width: 800px;
+            max-width: clamp(300px, 90vw, 800px);
             margin: 0 auto;
             background: #0d3b34;
-            padding: 30px;
+            padding: clamp(20px, 3vw, 30px);
         }
 
         .profile .cart-items h3 {
-            font-size: 28px;
+            font-size: clamp(20px, 3vw, 28px);
             color: #b89b5e;
-            margin-bottom: 25px;
+            margin-bottom: clamp(15px, 2vw, 25px);
             text-transform: uppercase;
-            letter-spacing: 2.5px;
+            letter-spacing: clamp(1.5px, 0.3vw, 2.5px);
         }
 
         .profile .cart-items ul {
@@ -623,13 +637,13 @@
         }
 
         .profile .cart-items li {
-            padding: 20px 0;
+            padding: clamp(10px, 2vw, 20px) 0;
             border-bottom: 1px solid rgba(184, 155, 94, 0.2);
         }
 
         /* Admin Section */
         .admin {
-            padding: 150px 100px;
+            padding: clamp(80px, 10vw, 150px) clamp(50px, 5vw, 100px);
             text-align: center;
             background: #1c2526;
             display: none;
@@ -644,26 +658,26 @@
         }
 
         .admin h2 {
-            font-size: 48px;
-            margin-bottom: 60px;
+            font-size: clamp(28px, 5vw, 48px);
+            margin-bottom: clamp(30px, 4vw, 60px);
             color: #b89b5e;
             text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: clamp(2px, 0.5vw, 4px);
         }
 
         .admin form {
-            max-width: 700px;
+            max-width: clamp(300px, 90vw, 700px);
             margin: 0 auto;
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: clamp(15px, 2vw, 25px);
             background: #0d3b34;
-            padding: 40px;
+            padding: clamp(20px, 4vw, 40px);
         }
 
         .admin input, .admin textarea {
-            padding: 15px;
-            font-size: 18px;
+            padding: clamp(10px, 2vw, 15px);
+            font-size: clamp(14px, 2.5vw, 18px);
             border: none;
             border-bottom: 2px solid #b89b5e;
             background: transparent;
@@ -678,21 +692,23 @@
         }
 
         .admin textarea {
-            height: 150px;
+            height: clamp(100px, 20vw, 150px);
             resize: none;
         }
 
         .admin button {
-            padding: 15px;
+            padding: clamp(10px, 2vw, 15px);
             background: linear-gradient(45deg, #b89b5e, #967e41);
             color: #000;
             border: none;
-            font-size: 14px;
+            font-size: clamp(12px, 1.5vw, 14px);
             font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: clamp(1px, 0.2vw, 2px);
             cursor: pointer;
             transition: background 0.3s ease, transform 0.3s ease;
+            min-width: 48px;
+            min-height: 48px;
         }
 
         .admin button:hover {
@@ -702,7 +718,7 @@
 
         /* Contact Section */
         .contact {
-            padding: 150px 100px;
+            padding: clamp(80px, 10vw, 150px) clamp(50px, 5vw, 100px);
             text-align: center;
             background: #0d3b34;
             opacity: 0;
@@ -716,26 +732,26 @@
         }
 
         .contact h2 {
-            font-size: 48px;
-            margin-bottom: 60px;
+            font-size: clamp(28px, 5vw, 48px);
+            margin-bottom: clamp(30px, 4vw, 60px);
             color: #b89b5e;
             text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: clamp(2px, 0.5vw, 4px);
         }
 
         .contact form {
-            max-width: 700px;
+            max-width: clamp(300px, 90vw, 700px);
             margin: 0 auto;
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: clamp(15px, 2vw, 25px);
             background: #1c2526;
-            padding: 40px;
+            padding: clamp(20px, 4vw, 40px);
         }
 
         .contact input, .contact textarea {
-            padding: 15px;
-            font-size: 18px;
+            padding: clamp(10px, 2vw, 15px);
+            font-size: clamp(14px, 2.5vw, 18px);
             border: none;
             border-bottom: 2px solid #b89b5e;
             background: transparent;
@@ -750,21 +766,23 @@
         }
 
         .contact textarea {
-            height: 180px;
+            height: clamp(120px, 25vw, 180px);
             resize: none;
         }
 
         .contact button {
-            padding: 15px;
+            padding: clamp(10px, 2vw, 15px);
             background: linear-gradient(45deg, #b89b5e, #967e41);
             color: #000;
             border: none;
-            font-size: 14px;
+            font-size: clamp(12px, 1.5vw, 14px);
             font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: clamp(1px, 0.2vw, 2px);
             cursor: pointer;
             transition: background 0.3s ease, transform 0.3s ease;
+            min-width: 48px;
+            min-height: 48px;
         }
 
         .contact button:hover {
@@ -774,7 +792,7 @@
 
         /* Newsletter Section */
         .newsletter {
-            padding: 100px 100px;
+            padding: clamp(60px, 8vw, 100px) clamp(50px, 5vw, 100px);
             background: #0d3b34;
             text-align: center;
             opacity: 0;
@@ -788,25 +806,26 @@
         }
 
         .newsletter h2 {
-            font-size: 40px;
-            margin-bottom: 50px;
+            font-size: clamp(24px, 4vw, 40px);
+            margin-bottom: clamp(25px, 3vw, 50px);
             color: #b89b5e;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: clamp(1.5px, 0.3vw, 3px);
         }
 
         .newsletter form {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            max-width: 600px;
+            gap: clamp(10px, 2vw, 20px);
+            max-width: clamp(300px, 80vw, 600px);
             margin: 0 auto;
+            flex-wrap: wrap;
         }
 
         .newsletter input {
-            padding: 15px;
-            width: 70%;
-            font-size: 18px;
+            padding: clamp(10px, 2vw, 15px);
+            width: clamp(200px, 50vw, 70%);
+            font-size: clamp(14px, 2.5vw, 18px);
             border: none;
             border-bottom: 2px solid #b89b5e;
             background: transparent;
@@ -821,16 +840,18 @@
         }
 
         .newsletter button {
-            padding: 15px 30px;
+            padding: clamp(10px, 2vw, 15px) clamp(20px, 3vw, 30px);
             background: linear-gradient(45deg, #b89b5e, #967e41);
             color: #000;
             border: none;
-            font-size: 14px;
+            font-size: clamp(12px, 1.5vw, 14px);
             font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: clamp(1px, 0.2vw, 2px);
             cursor: pointer;
             transition: background 0.3s ease, transform 0.3s ease;
+            min-width: 48px;
+            min-height: 48px;
         }
 
         .newsletter button:hover {
@@ -841,7 +862,7 @@
         /* Footer */
         footer {
             background: #1c2526;
-            padding: 80px 100px;
+            padding: clamp(40px, 6vw, 80px) clamp(50px, 5vw, 100px);
             text-align: center;
             opacity: 0;
             transform: translateY(30px);
@@ -854,17 +875,17 @@
         }
 
         footer p {
-            font-size: 18px;
+            font-size: clamp(14px, 2vw, 18px);
             color: #b89b5e;
-            margin-bottom: 30px;
+            margin-bottom: clamp(15px, 2vw, 30px);
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: clamp(1.5px, 0.3vw, 3px);
         }
 
         footer .social a {
             color: #b89b5e;
-            font-size: 28px;
-            margin: 0 25px;
+            font-size: clamp(20px, 4vw, 28px);
+            margin: 0 clamp(15px, 2vw, 25px);
             text-decoration: none;
             transition: color 0.3s ease, transform 0.3s ease;
         }
@@ -877,18 +898,20 @@
         /* Back to Top Button */
         #backToTop {
             position: fixed;
-            bottom: 50px;
-            right: 50px;
-            padding: 15px;
+            bottom: clamp(20px, 3vw, 50px);
+            right: clamp(20px, 3vw, 50px);
+            padding: clamp(10px, 1.5vw, 15px);
             background: linear-gradient(45deg, #b89b5e, #967e41);
             color: #000;
             border: none;
             border-radius: 50%;
-            font-size: 24px;
+            font-size: clamp(18px, 3vw, 24px);
             cursor: pointer;
             opacity: 0;
             transition: opacity 0.3s ease, transform 0.3s ease;
             z-index: 1000;
+            min-width: 48px;
+            min-height: 48px;
         }
 
         #backToTop.visible {
@@ -903,17 +926,17 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             header {
-                padding: 20px 50px;
+                padding: clamp(15px, 2vw, 20px) clamp(20px, 3vw, 50px);
             }
 
             header nav {
                 display: none;
                 position: absolute;
-                top: 70px;
+                top: 100%;
                 left: 0;
                 width: 100%;
                 background: #1c2526;
-                padding: 25px;
+                padding: clamp(15px, 3vw, 25px);
                 flex-direction: column;
             }
 
@@ -923,49 +946,81 @@
 
             header nav ul {
                 flex-direction: column;
+                gap: 15px;
             }
 
             header nav ul li {
-                margin: 20px 0;
+                margin: 10px 0;
             }
 
             header .hamburger {
                 display: block;
             }
 
-            .hero-content h1 {
-                font-size: 48px;
+            .sidebar-nav {
+                display: none; /* Hidden on mobile */
             }
 
-            .hero-content p {
-                font-size: 18px;
+            .auth {
+                top: clamp(40px, 5vw, 70px);
+                right: clamp(20px, 3vw, 50px);
+                flex-direction: column; /* Stack buttons vertically */
+                gap: 10px;
+                padding: 0; /* Remove padding to avoid overlap */
+                align-items: flex-end; /* Align to right */
             }
 
-            .products, .profile, .admin, .contact, .newsletter {
-                padding: 100px 50px;
+            .hero-video {
+                object-fit: cover;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr; /* Single column on mobile */
+            }
+
+            .product-card {
+                margin: 0 auto;
+                max-width: 400px;
             }
 
             .products .filter input {
                 width: 100%;
             }
+        }
+
+        @media (min-width: 769px) {
+            .sidebar-nav {
+                display: block; /* Show sidebar on larger screens */
+            }
 
             .auth {
-                top: 70px;
-                right: 50px;
+                top: clamp(10px, 2vw, 20px);
+                right: clamp(10px, 2vw, 20px);
+                flex-direction: row; /* Side-by-side on larger screens */
+                gap: clamp(10px, 1vw, 15px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: clamp(28px, 8vw, 36px);
             }
 
-            .product-card {
-                padding: 25px;
+            .hero-content p {
+                font-size: clamp(14px, 4vw, 16px);
             }
 
-            .sidebar-nav {
-                left: 10px;
-                padding: 10px;
+            .products, .profile, .admin, .contact, .newsletter {
+                padding: clamp(50px, 8vw, 80px) clamp(20px, 3vw, 50px);
             }
 
-            #backToTop {
-                bottom: 30px;
-                right: 30px;
+            .newsletter form {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .newsletter input {
+                width: 100%;
             }
         }
     </style>
@@ -973,7 +1028,7 @@
 <body>
     <!-- Preloader -->
     <div id="preloader">
-        <img src="logo.png" alt="Zindagi Perfumes Logo" class="preloader-logo">
+        <div class="preloader-logo">Zindagi</div>
     </div>
 
     <!-- Sidebar Navigation -->
@@ -1042,21 +1097,21 @@
         </div>
         <div class="product-grid" id="productGrid">
             <div class="product-card" data-name="Eternal Pulse" data-desc="A vibrant blend of citrus and sandalwood to energize your spirit." data-img="https://images.unsplash.com/photo-1608248543821-86fa376b4931?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" data-id="1" data-price="4999.99">
-                <img src="https://images.unsplash.com/photo-1608248543821-86fa376b4931?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Eternal Pulse">
+                <img src="https://images.unsplash.com/photo-1608248543821-86fa376b4931?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Eternal Pulse" loading="lazy">
                 <h3>Eternal Pulse</h3>
                 <p>A vibrant blend of citrus and sandalwood.</p>
                 <p>PKR 4999.99</p>
                 <button class="add-to-cart">Add to Cart</button>
             </div>
             <div class="product-card" data-name="Midnight Essence" data-desc="Deep oud and amber for a timeless, bold statement." data-img="https://images.unsplash.com/photo-1587017539504-13cf5f91c4e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" data-id="2" data-price="5999.99">
-                <img src="https://images.unsplash.com/photo-1587017539504-13cf5f91c4e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Midnight Essence">
+                <img src="https://images.unsplash.com/photo-1587017539504-13cf5f91c4e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Midnight Essence" loading="lazy">
                 <h3>Midnight Essence</h3>
                 <p>Deep oud and amber for boldness.</p>
                 <p>PKR 5999.99</p>
                 <button class="add-to-cart">Add to Cart</button>
             </div>
             <div class="product-card" data-name="Saffron Whisper" data-desc="Rich saffron and rose notes for an elegant allure." data-img="https://images.unsplash.com/photo-1590736592526-2189d5da155d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" data-id="3" data-price="5499.99">
-                <img src="https://images.unsplash.com/photo-1590736592526-2189d5da155d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Saffron Whisper">
+                <img src="https://images.unsplash.com/photo-1590736592526-2189d5da155d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Saffron Whisper" loading="lazy">
                 <h3>Saffron Whisper</h3>
                 <p>Rich saffron and rose elegance.</p>
                 <p>PKR 5499.99</p>
@@ -1199,11 +1254,13 @@
                 }
             });
 
-            // Parallax effect for hero
-            const heroVideo = document.querySelector('.hero-video');
-            if (heroVideo) {
-                const scrollPos = window.scrollY;
-                heroVideo.style.transform = `translateY(${scrollPos * 0.3}px) scale(1.1)`;
+            // Parallax effect for hero (disabled on smaller screens for performance)
+            if (window.innerWidth > 768) {
+                const heroVideo = document.querySelector('.hero-video');
+                if (heroVideo) {
+                    const scrollPos = window.scrollY;
+                    heroVideo.style.transform = `translateY(${scrollPos * 0.3}px) scale(1.1)`;
+                }
             }
 
             // Show/hide Back to Top button
@@ -1263,7 +1320,7 @@
                 card.dataset.id = data.id;
                 card.dataset.price = data.price;
                 card.innerHTML = `
-                    <img src="${data.imageUrl}" alt="${data.name}" aria-label="${data.name}">
+                    <img src="${data.imageUrl}" alt="${data.name}" aria-label="${data.name}" loading="lazy">
                     <h3>${data.name}</h3>
                     <p>${data.shortDesc}</p>
                     <p>PKR ${data.price}</p>
