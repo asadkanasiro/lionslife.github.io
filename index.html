@@ -99,7 +99,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            padding: clamp(15px, 3vw, 25px) clamp(50px, 5vw, 100px);
+            padding: clamp(15px, 3vw, 25px) clamp(20px, 5vw, 50px);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -109,8 +109,17 @@
         }
 
         header .logo {
-            width: clamp(80px, 10vw, 120px);
+            width: clamp(60px, 10vw, 80px); /* Adjusted for mobile spacing */
             height: auto;
+        }
+
+        header .mobile-brand {
+            font-family: 'Didot', serif;
+            font-size: clamp(20px, 5vw, 28px);
+            color: #b89b5e;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: none; /* Hidden by default, shown on mobile */
         }
 
         header nav ul {
@@ -788,7 +797,7 @@
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
-        footer.visible {
+        .footer.visible {
             opacity: 1;
             transform: translateY(0);
         }
@@ -819,13 +828,13 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 50px; /* Fixed width */
-            height: 50px; /* Fixed height */
+            width: 50px;
+            height: 50px;
             background: linear-gradient(45deg, #b89b5e, #967e41);
             color: #000;
             border: none;
             border-radius: 50%;
-            font-size: 24px; /* Fixed font size */
+            font-size: 24px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -848,7 +857,24 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             header {
-                padding: clamp(15px, 2vw, 20px) clamp(20px, 3vw, 50px);
+                padding: clamp(10px, 2vw, 15px) clamp(15px, 3vw, 20px);
+                justify-content: space-between;
+            }
+
+            header .logo {
+                order: 1;
+            }
+
+            header .mobile-brand {
+                display: block;
+                order: 2;
+                flex-grow: 1;
+                text-align: center;
+            }
+
+            header .hamburger {
+                display: block;
+                order: 3;
             }
 
             header nav {
@@ -875,10 +901,6 @@
                 margin: 10px 0;
             }
 
-            header .hamburger {
-                display: block;
-            }
-
             .sidebar-nav {
                 display: none; /* Hidden on mobile */
             }
@@ -901,9 +923,9 @@
             }
 
             #backToTop {
-                width: 40px; /* Slightly smaller on mobile */
+                width: 40px;
                 height: 40px;
-                font-size: 20px; /* Adjusted font size */
+                font-size: 20px;
                 bottom: 20px;
                 right: 20px;
             }
@@ -912,6 +934,10 @@
         @media (min-width: 769px) {
             .sidebar-nav {
                 display: block; /* Show sidebar on larger screens */
+            }
+
+            header .mobile-brand {
+                display: none; /* Hidden on desktop */
             }
         }
 
@@ -959,6 +985,7 @@
     <!-- Header -->
     <header aria-label="Main Navigation">
         <img src="logo.png" alt="Zindagi Perfumes Logo" class="logo">
+        <span class="mobile-brand">Zindagi</span>
         <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
