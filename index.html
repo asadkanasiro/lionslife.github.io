@@ -1,1582 +1,1460 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" id="metaDesc" content="Zindagi Perfumes - Keep Moving with motivational scents">
-    <meta name="keywords" content="Zindagi Perfumes, motivational fragrances, keep moving, luxury scents, Pakistan">
-    <meta name="author" content="Zindagi Perfumes">
-    <title>Zindagi Perfumes - Keep Moving</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Didot:wght@400;700&family=Avenir:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            font-family: 'Avenir', 'Helvetica Neue', Arial, sans-serif;
-            color: #fff;
-            line-height: 1.8;
-            background: #1c2526;
-            overflow-x: hidden;
-        }
-        
-        h1, h2, h3 {
-            font-family: 'Didot', serif;
-            font-weight: 700;
-        }
-        
-        /* Preloader */
-        #preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #1c2526;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
-        }
-        
-        #preloader.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-        
-        .preloader-logo {
-            font-family: 'Didot', serif;
-            font-size: clamp(36px, 8vw, 48px);
-            color: #b89b5e;
-            animation: pulse 1.5s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        
-        /* Sidebar Navigation */
-        .sidebar-nav {
-            position: fixed;
-            top: 50%;
-            left: clamp(10px, 2vw, 20px);
-            transform: translateX(-50px) translateY(-50%);
-            background: rgba(28, 37, 38, 0.9);
-            padding: clamp(10px, 2vw, 15px);
-            border-radius: 30px;
-            z-index: 1000;
-            /* Initially hidden & animated */
-            opacity: 0;
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        
-        .sidebar-nav.visible {
-            opacity: 1;
-            transform: translateX(0) translateY(-50%);
-        }
-        
-        .sidebar-nav ul {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: clamp(15px, 2vw, 20px);
-        }
-        
-        .sidebar-nav ul li a {
-            color: #b89b5e;
-            font-size: clamp(16px, 2.5vw, 20px);
-            text-decoration: none;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-        
-        /* Animate individual icons on hover */
-        .sidebar-nav ul li a i {
-            transition: transform 0.4s ease-out;
-        }
-        
-        .sidebar-nav ul li a:hover i {
-            transform: scale(1.2) rotate(10deg);
-        }
-        
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: clamp(15px, 3vw, 25px) clamp(20px, 5vw, 50px);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(28, 37, 38, 0.95);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(184, 155, 94, 0.3);
-        }
-        
-        header .logo {
-            width: clamp(60px, 10vw, 80px);
-            height: auto;
-        }
-        
-        header .mobile-brand {
-            font-family: 'Didot', serif;
-            font-size: clamp(20px, 5vw, 28px);
-            color: #b89b5e;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            display: none;
-        }
-        
-        header nav ul {
-            list-style: none;
-            display: flex;
-            align-items: center;
-            gap: clamp(20px, 3vw, 60px);
-        }
-        
-        header nav ul li {
-            display: flex;
-            align-items: center;
-        }
-        
-        header nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-size: clamp(14px, 2vw, 18px);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: clamp(1px, 0.2vw, 2px);
-            position: relative;
-            transition: color 0.3s ease;
-        }
-        
-        header nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #b89b5e;
-            transition: width 0.3s ease;
-        }
-        
-        header nav ul li a:hover {
-            color: #b89b5e;
-        }
-        
-        header nav ul li a:hover::after {
-            width: 100%;
-        }
-        
-        header nav ul li button {
-            padding: clamp(8px, 1.5vw, 12px) clamp(20px, 3vw, 30px);
-            background: linear-gradient(45deg, #b89b5e, #967e41);
-            color: #000;
-            border: none;
-            font-size: clamp(12px, 1.5vw, 14px);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: clamp(1px, 0.2vw, 2px);
-            cursor: pointer;
-            transition: background 0.3s ease, transform 0.3s ease;
-            min-width: 48px;
-            min-height: 48px;
-            border-radius: 5px;
-        }
-        
-        header nav ul li button:hover {
-            background: linear-gradient(45deg, #fff, #b89b5e);
-            transform: translateY(-5px);
-        }
-        
-        header .hamburger {
-            display: none;
-            font-size: clamp(24px, 4vw, 30px);
-            color: #fff;
-            cursor: pointer;
-        }
-        
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-        
-        .hero-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -2;
-            filter: brightness(0.5);
-        }
-        
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(28, 37, 38, 0.3), rgba(28, 37, 38, 0.7));
-            z-index: -1;
-        }
-        
-        .hero-content {
-            z-index: 1;
-            transform: translateY(20px);
-            opacity: 0;
-            animation: heroFadeIn 1s ease forwards 0.5s;
-        }
-        
-        .hero-content h1 {
-            font-size: clamp(36px, 8vw, 72px);
-            text-transform: uppercase;
-            letter-spacing: clamp(2px, 0.5vw, 4px);
-            color: #b89b5e;
-            margin-bottom: clamp(15px, 2vw, 30px);
-            text-shadow: 0 3px 15px rgba(0, 0, 0, 0.7);
-        }
-        
-        .hero-content p {
-            font-size: clamp(16px, 3vw, 24px);
-            color: #fff;
-            text-transform: uppercase;
-            letter-spacing: clamp(1.5px, 0.3vw, 3px);
-            opacity: 0.9;
-        }
-        
-        @keyframes heroFadeIn {
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* Section Divider */
-        section:not(:first-child)::before {
-            content: '';
-            display: block;
-            width: 60%;
-            height: 1px;
-            background: linear-gradient(to right, transparent, #b89b5e, transparent);
-            margin: 0 auto clamp(40px, 5vw, 80px);
-        }
-        
-        /* Products Section */
-        .products {
-            padding: clamp(80px, 10vw, 150px) clamp(50px, 5vw, 100px);
-            text-align: center;
-            background: #1c2526;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .products.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .products h2 {
-            font-size: clamp(28px, 5vw, 48px);
-            margin-bottom: clamp(40px, 5vw, 80px);
-            color: #b89b5e;
-            text-transform: uppercase;
-            letter-spacing: clamp(2px, 0.5vw, 4px);
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-        }
-        
-        .products .filter {
-            margin-bottom: clamp(30px, 4vw, 60px);
-        }
-        
-        .products .filter input {
-            padding: clamp(10px, 2vw, 15px) clamp(20px, 3vw, 30px);
-            width: clamp(250px, 50vw, 400px);
-            font-size: clamp(14px, 2vw, 18px);
-            border: none;
-            border-bottom: 2px solid #b89b5e;
-            background: transparent;
-            color: #fff;
-            text-align: center;
-            transition: border-color 0.3s ease, width 0.3s ease;
-        }
-        
-        .products .filter input:focus {
-            outline: none;
-            border-color: #fff;
-            width: clamp(280px, 55vw, 450px);
-        }
-        
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(clamp(280px, 45vw, 340px), 1fr));
-            gap: clamp(20px, 3vw, 60px);
-            padding: 0 clamp(15px, 2vw, 30px);
-            perspective: 1000px;
-        }
-        
-        .product-card {
-            background: #0d3b34;
-            padding: clamp(20px, 3vw, 30px);
-            position: relative;
-            transition: transform 0.5s ease, box-shadow 0.5s ease;
-            opacity: 0;
-            transform: translateY(40px) rotateX(-10deg);
-            transform-style: preserve-3d;
-        }
-        
-        .product-card.visible {
-            opacity: 1;
-            transform: translateY(0) rotateX(0);
-            transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s;
-        }
-        
-        .product-card:nth-child(2) { transition-delay: 0.5s; }
-        .product-card:nth-child(3) { transition-delay: 0.7s; }
-        
-        .product-card:hover {
-            transform: translateY(-20px) rotateX(5deg);
-            box-shadow: 0 0 30px rgba(184, 155, 94, 0.4);
-        }
-        
-        .product-card img {
-            width: 100%;
-            height: clamp(300px, 60vw, 450px);
-            object-fit: cover;
-            transition: opacity 0.3s ease;
-        }
-        
-        .product-card:hover img {
-            opacity: 0.9;
-        }
-        
-        .product-card h3 {
-            font-size: clamp(20px, 3vw, 28px);
-            margin: clamp(15px, 2vw, 25px) 0;
-            color: #b89b5e;
-            text-transform: uppercase;
-            letter-spacing: clamp(1.5px, 0.3vw, 2.5px);
-        }
-        
-        .product-card p {
-            font-size: clamp(12px, 2vw, 16px);
-            color: #fff;
-            font-weight: 300;
-        }
-        
-        .product-card .add-to-cart {
-            padding: clamp(8px, 1.5vw, 12px) clamp(20px, 3vw, 30px);
-            background: linear-gradient(45deg, #b89b5e, #967e41);
-            color: #000;
-            border: none;
-            font-size: clamp(12px, 1.5vw, 14px);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: clamp(1px, 0.2vw, 2px);
-            cursor: pointer;
-            margin-top: clamp(10px, 2vw, 20px);
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-            min-width: 48px;
-            min-height: 48px;
-        }
-        
-        .product-card .add-to-cart::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s ease, height 0.6s ease;
-        }
-        
-        .product-card .add-to-cart:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-        
-        .product-card .add-to-cart:hover {
-            transform: translateY(-5px);
-        }
-        
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(8px);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.4s ease;
-        }
-        
-        .modal-content {
-            background: #0d3b34;
-            padding: clamp(20px, 5vw, 50px);
-            max-width: clamp(300px, 80vw, 700px);
-            width: 90%;
-            text-align: center;
-            transform: translateY(50px);
-            transition: transform 0.4s ease;
-        }
-        
-        .modal.visible .modal-content {
-            transform: translateY(0);
-        }
-        
-        .modal-content img {
-            width: 100%;
-            height: clamp(200px, 60vw, 500px);
-            object-fit: cover;
-            border: 1px solid rgba(184, 155, 94, 0.3);
-        }
-        
-        .modal-content h3 {
-            font-size: clamp(20px, 4vw, 32px);
-            margin: clamp(15px, 3vw, 30px) 0;
-            color: #b89b5e;
-            text-transform: uppercase;
-            letter-spacing: clamp(1.5px, 0.3vw, 3px);
-        }
-        
-        .modal-content p {
-            font-size: clamp(14px, 2.5vw, 18px);
-            color: #fff;
-            font-weight: 300;
-        }
-        
-        .close-btn {
-            position: absolute;
-            top: clamp(10px, 2vw, 20px);
-            right: clamp(15px, 2vw, 30px);
-            font-size: clamp(24px, 5vw, 40px);
-            cursor: pointer;
-            color: #b89b5e;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-        
-        .close-btn:hover {
-            color: #fff;
-            transform: rotate(90deg);
-        }
-        
-        /* Cart Modal */
-        .cart-modal-content {
-            max-width: clamp(300px, 90vw, 800px);
-            background: #0d3b34;
-            text-align: left;
-        }
-        
-        .cart-modal-content ul {
-            list-style: none;
-            margin: clamp(15px, 3vw, 30px) 0;
-        }
-        
-        .cart-modal-content li {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: clamp(10px, 2vw, 20px) 0;
-            border-bottom: 1px solid rgba(184, 155, 94, 0.2);
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
-        .cart-modal-content li img {
-            width: clamp(50px, 10vw, 70px);
-            height: clamp(50px, 10vw, 70px);
-            object-fit: cover;
-        }
-        
-        .cart-modal-content input[type="number"] {
-            width: clamp(60px, 15vw, 80px);
-            padding: clamp(5px, 1vw, 10px);
-            border: 1px solid #b89b5e;
-            background: #1c2526;
-            color: #fff;
-            text-align: center;
-            font-weight: 300;
-        }
-        
-        .cart-modal-content .remove {
-            color: #b89b5e;
-            cursor: pointer;
-            font-size: clamp(20px, 4vw, 28px);
-            transition: transform 0.3s ease;
-        }
-        
-        .cart-modal-content .remove:hover {
-            transform: scale(1.2);
-        }
-        
-        .cart-modal-content .checkout {
-            padding: clamp(10px, 2vw, 15px) clamp(20px, 3vw, 35px);
-            background: linear-gradient(45deg, #b89b5e, #967e41);
-            color: #000;
-            border: none;
-            font-size: clamp(12px, 1.5vw, 14px);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: clamp(1px, 0.2vw, 2px);
-            cursor: pointer;
-            transition: background 0.3s ease, transform 0.3s ease;
-            min-width: 48px;
-            min-height: 48px;
-        }
-        
-        .cart-modal-content .checkout:hover {
-            background: linear-gradient(45deg, #fff, #b89b5e);
-            transform: translateY(-5px);
-        }
-        
-        /* Auth Modal */
-        .auth-modal-content {
-            background: #0d3b34;
-            padding: clamp(20px, 5vw, 50px);
-            max-width: clamp(300px, 80vw, 500px);
-            width: 90%;
-            text-align: center;
-        }
-        
-        .auth-modal-content h2 {
-            font-size: clamp(20px, 4vw, 32px);
-            margin-bottom: clamp(20px, 3vw, 35px);
-            color: #b89b5e;
-            text-transform: uppercase;
-            letter-spacing: clamp(1.5px, 0.3vw, 3px);
-        }
-        
-        .auth-modal-content input {
-            width: 100%;
-            padding: clamp(10px, 2vw, 15px);
-            margin: clamp(10px, 2vw, 20px) 0;
-            border: none;
-            border-bottom: 2px solid #b89b5e;
-            background: transparent;
-            color: #fff;
-            font-size: clamp(14px, 2.5vw, 18px);
-            font-weight: 300;
-            transition: border-color 0.3s ease;
-        }
-        
-        .auth-modal-content input:focus {
-            outline: none;
-            border-color: #fff;
-        }
-        
-        .auth-modal-content button {
-            padding: clamp(10px, 2vw, 15px) clamp(20px, 3vw, 30px);
-            background: linear-gradient(45deg, #b89b5e, #967e41);
-            color: #000;
-            border: none;
-            font-size: clamp(12px, 1.5vw, 14px);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: clamp(1px, 0.2vw, 2px);
-            cursor: pointer;
-            transition: background 0.3s ease, transform 0.3s ease;
-            min-width: 48px;
-            min-height: 48px;
-        }
-        
-        .auth-modal-content button:hover {
-            background: linear-gradient(45deg, #fff, #b89b5e);
-            transform: translateY(-5px);
-        }
-        
-        /* Profile Section */
-        .profile {
-            padding: clamp(80px, 10vw, 150px) clamp(50px, 5vw, 100px);
-            text-align: center;
-            background: #1c2526;
-            display: none;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .profile.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .profile h2 {
-            font-size: clamp(28px, 5vw, 48px);
-            margin-bottom: clamp(30px, 4vw, 60px);
-            color: #b89b5e;
-            text-transform: uppercase;
-            letter-spacing: clamp(2px, 0.5vw, 4px);
-        }
-        
-        .profile .cart-items {
-            max-width: clamp(300px, 90vw, 800px);
-            margin: 0 auto;
-            background: #0d3b34;
-            padding: clamp(20px, 3vw, 30px);
-        }
-        
-        .profile .cart-items h3 {
-            font-size: clamp(20px, 3vw, 28px);
-            color: #b89b5e;
-            margin-bottom: clamp(15px, 2vw, 25px);
-            text-transform: uppercase;
-            letter-spacing: clamp(1.5px, 0.3vw, 2.5px);
-        }
-        
-        .profile .cart-items ul {
-            list-style: none;
-            color: #fff;
-        }
-        
-        .profile .cart-items li {
-            padding: clamp(10px, 2vw, 20px) 0;
-            border-bottom: 1px solid rgba(184, 155, 94, 0.2);
-        }
-        
-        /* Contact Section */
-        .contact {
-            padding: clamp(80px, 10vw, 150px) clamp(50px, 5vw, 100px);
-            text-align: center;
-            background: #0d3b34;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .contact.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .contact h2 {
-            font-size: clamp(28px, 5vw, 48px);
-            margin-bottom: clamp(30px, 4vw, 60px);
-            color: #b89b5e;
-            text-transform: uppercase;
-            letter-spacing: clamp(2px, 0.5vw, 4px);
-        }
-        
-        .contact form {
-            max-width: clamp(300px, 90vw, 700px);
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: clamp(15px, 2vw, 25px);
-            background: #1c2526;
-            padding: clamp(20px, 4vw, 40px);
-        }
-        
-        .contact input, .contact textarea {
-            padding: clamp(10px, 2vw, 15px);
-            font-size: clamp(14px, 2.5vw, 18px);
-            border: none;
-            border-bottom: 2px solid #b89b5e;
-            background: transparent;
-            color: #fff;
-            font-weight: 300;
-            transition: border-color 0.3s ease;
-        }
-        
-        .contact input:focus, .contact textarea:focus {
-            outline: none;
-            border-color: #fff;
-        }
-        
-        .contact textarea {
-            height: clamp(120px, 25vw, 180px);
-            resize: none;
-        }
-        
-        .contact button {
-            padding: clamp(10px, 2vw, 15px);
-            background: linear-gradient(45deg, #b89b5e, #967e41);
-            color: #000;
-            border: none;
-            font-size: clamp(12px, 1.5vw, 14px);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: clamp(1px, 0.2vw, 2px);
-            cursor: pointer;
-            transition: background 0.3s ease, transform 0.3s ease;
-            min-width: 48px;
-            min-height: 48px;
-        }
-        
-        .contact button:hover {
-            background: linear-gradient(45deg, #fff, #b89b5e);
-            transform: translateY(-5px);
-        }
-        
-        /* Newsletter Section */
-        .newsletter {
-            padding: clamp(60px, 8vw, 100px) clamp(50px, 5vw, 100px);
-            background: #0d3b34;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .newsletter.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .newsletter h2 {
-            font-size: clamp(24px, 4vw, 40px);
-            margin-bottom: clamp(25px, 3vw, 50px);
-            color: #b89b5e;
-            text-transform: uppercase;
-            letter-spacing: clamp(1.5px, 0.3vw, 3px);
-        }
-        
-        .newsletter form {
-            display: flex;
-            justify-content: center;
-            gap: clamp(10px, 2vw, 20px);
-            max-width: clamp(300px, 80vw, 600px);
-            margin: 0 auto;
-            flex-wrap: wrap;
-        }
-        
-        .newsletter input {
-            padding: clamp(10px, 2vw, 15px);
-            width: clamp(200px, 50vw, 70%);
-            font-size: clamp(14px, 2.5vw, 18px);
-            border: none;
-            border-bottom: 2px solid #b89b5e;
-            background: transparent;
-            color: #fff;
-            font-weight: 300;
-            transition: border-color 0.3s ease;
-        }
-        
-        .newsletter input:focus {
-            outline: none;
-            border-color: #fff;
-        }
-        
-        .newsletter button {
-            padding: clamp(10px, 2vw, 15px) clamp(20px, 3vw, 30px);
-            background: linear-gradient(45deg, #b89b5e, #967e41);
-            color: #000;
-            border: none;
-            font-size: clamp(12px, 1.5vw, 14px);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: clamp(1px, 0.2vw, 2px);
-            cursor: pointer;
-            transition: background 0.3s ease, transform 0.3s ease;
-            min-width: 48px;
-            min-height: 48px;
-        }
-        
-        .newsletter button:hover {
-            background: linear-gradient(45deg, #fff, #b89b5e);
-            transform: translateY(-5px);
-        }
-        
-        /* Footer */
-        footer {
-            background: #1c2526;
-            padding: clamp(40px, 6vw, 80px) clamp(50px, 5vw, 100px);
-            text-align: center;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .footer.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        footer p {
-            font-size: clamp(14px, 2vw, 18px);
-            color: #b89b5e;
-            margin-bottom: clamp(15px, 2vw, 30px);
-            text-transform: uppercase;
-            letter-spacing: clamp(1.5px, 0.3vw, 3px);
-        }
-        
-        footer .social a {
-            color: #b89b5e;
-            font-size: clamp(20px, 4vw, 28px);
-            margin: 0 clamp(15px, 2vw, 25px);
-            text-decoration: none;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-        
-        footer .social a:hover {
-            color: #fff;
-            transform: scale(1.1);
-        }
-        
-        /* Back to Top Button */
-        #backToTop {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(45deg, #b89b5e, #967e41);
-            color: #000;
-            border: none;
-            border-radius: 50%;
-            font-size: 24px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            opacity: 0;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-        
-        #backToTop.visible {
-            opacity: 0.8;
-        }
-        
-        #backToTop:hover {
-            opacity: 1;
-            transform: scale(1.1);
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            header {
-                padding: clamp(10px, 2vw, 15px) clamp(15px, 3vw, 20px);
-                justify-content: space-between;
-            }
-            
-            header .logo {
-                order: 1;
-            }
-            
-            header .mobile-brand {
-                display: block;
-                order: 2;
-                flex-grow: 1;
-                text-align: center;
-            }
-            
-            header .hamburger {
-                display: block;
-                order: 3;
-            }
-            
-            header nav {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: #1c2526;
-                padding: clamp(15px, 3vw, 25px);
-                flex-direction: column;
-            }
-            
-            header nav.active {
-                display: flex;
-            }
-            
-            header nav ul {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            header nav ul li {
-                margin: 10px 0;
-            }
-            
-            .sidebar-nav {
-                display: none;
-            }
-            
-            .hero-video {
-                object-fit: cover;
-            }
-            
-            .product-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .product-card {
-                margin: 0 auto;
-                max-width: 400px;
-            }
-            
-            .products .filter input {
-                width: 100%;
-            }
-            
-            #backToTop {
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
-                bottom: 20px;
-                right: 20px;
-            }
-        }
-        
-        @media (min-width: 769px) {
-            .sidebar-nav {
-                display: block;
-            }
-            
-            header .mobile-brand {
-                display: none;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .hero-content h1 {
-                font-size: clamp(28px, 8vw, 36px);
-            }
-            
-            .hero-content p {
-                font-size: clamp(14px, 4vw, 16px);
-            }
-            
-            .products, .profile, .contact, .newsletter {
-                padding: clamp(50px, 8vw, 80px) clamp(20px, 3vw, 50px);
-            }
-            
-            .newsletter form {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .newsletter input {
-                width: 100%;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" id="metaDesc" content="Zindagi Perfumes - Keep Moving with motivational scents">
+  <meta name="keywords" content="Zindagi Perfumes, motivational fragrances, keep moving, luxury scents, Pakistan">
+  <meta name="author" content="Zindagi Perfumes">
+  <title>Zindagi Perfumes - Keep Moving</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Didot:wght@400;700&family=Avenir:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Avenir', 'Helvetica Neue', Arial, sans-serif;
+      color: #fff;
+      line-height: 1.8;
+      background: #1c2526;
+      overflow-x: hidden;
+    }
+    h1, h2, h3 {
+      font-family: 'Didot', serif;
+      font-weight: 700;
+    }
+    /* Preloader */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #1c2526;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+    #preloader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .preloader-logo {
+      font-family: 'Didot', serif;
+      font-size: clamp(36px, 8vw, 48px);
+      color: #b89b5e;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    /* Sidebar Navigation */
+    .sidebar-nav {
+      position: fixed;
+      top: 50%;
+      left: clamp(10px, 2vw, 20px);
+      transform: translateY(-50%);
+      background: rgba(28, 37, 38, 0.9);
+      padding: clamp(10px, 2vw, 15px);
+      border-radius: 30px;
+      z-index: 1000;
+      display: none; /* Hidden on mobile by default */
+    }
+    .sidebar-nav ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(15px, 2vw, 20px);
+    }
+    .sidebar-nav ul li a {
+      color: #b89b5e;
+      font-size: clamp(16px, 2.5vw, 20px);
+      text-decoration: none;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    /* New active animation for sidebar icons */
+    .sidebar-nav ul li a.active {
+      transform: scale(1.2);
+      color: #fff;
+      animation: pulse 1s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1.2); }
+      50% { transform: scale(1.3); }
+    }
+    .sidebar-nav ul li a:hover {
+      color: #fff;
+      transform: scale(1.2);
+    }
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: clamp(15px, 3vw, 25px) clamp(20px, 5vw, 50px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(28, 37, 38, 0.95);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(184, 155, 94, 0.3);
+    }
+    header .logo {
+      width: clamp(60px, 10vw, 80px);
+      height: auto;
+    }
+    header .mobile-brand {
+      font-family: 'Didot', serif;
+      font-size: clamp(20px, 5vw, 28px);
+      color: #b89b5e;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      display: none;
+    }
+    header nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: clamp(20px, 3vw, 60px);
+    }
+    header nav ul li {
+      display: flex;
+      align-items: center;
+    }
+    header nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: clamp(14px, 2vw, 18px);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: clamp(1px, 0.2vw, 2px);
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    header nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #b89b5e;
+      transition: width 0.3s ease;
+    }
+    header nav ul li a:hover {
+      color: #b89b5e;
+    }
+    header nav ul li a:hover::after {
+      width: 100%;
+    }
+    header nav ul li button {
+      padding: clamp(8px, 1.5vw, 12px) clamp(20px, 3vw, 30px);
+      background: linear-gradient(45deg, #b89b5e, #967e41);
+      color: #000;
+      border: none;
+      font-size: clamp(12px, 1.5vw, 14px);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: clamp(1px, 0.2vw, 2px);
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+      min-width: 48px;
+      min-height: 48px;
+      border-radius: 5px;
+    }
+    header nav ul li button:hover {
+      background: linear-gradient(45deg, #fff, #b89b5e);
+      transform: translateY(-5px);
+    }
+    header .hamburger {
+      display: none;
+      font-size: clamp(24px, 4vw, 30px);
+      color: #fff;
+      cursor: pointer;
+    }
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+      filter: brightness(0.5);
+    }
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(28, 37, 38, 0.3), rgba(28, 37, 38, 0.7));
+      z-index: -1;
+    }
+    .hero-content {
+      z-index: 1;
+      transform: translateY(20px);
+      opacity: 0;
+      animation: heroFadeIn 1s ease forwards 0.5s;
+    }
+    .hero-content h1 {
+      font-size: clamp(36px, 8vw, 72px);
+      text-transform: uppercase;
+      letter-spacing: clamp(2px, 0.5vw, 4px);
+      color: #b89b5e;
+      margin-bottom: clamp(15px, 2vw, 30px);
+      text-shadow: 0 3px 15px rgba(0, 0, 0, 0.7);
+    }
+    .hero-content p {
+      font-size: clamp(16px, 3vw, 24px);
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: clamp(1.5px, 0.3vw, 3px);
+      opacity: 0.9;
+    }
+    @keyframes heroFadeIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Section Divider */
+    section:not(:first-child)::before {
+      content: '';
+      display: block;
+      width: 60%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #b89b5e, transparent);
+      margin: 0 auto clamp(40px, 5vw, 80px);
+    }
+    /* Products Section */
+    .products {
+      padding: clamp(80px, 10vw, 150px) clamp(50px, 5vw, 100px);
+      text-align: center;
+      background: #1c2526;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .products.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .products h2 {
+      font-size: clamp(28px, 5vw, 48px);
+      margin-bottom: clamp(40px, 5vw, 80px);
+      color: #b89b5e;
+      text-transform: uppercase;
+      letter-spacing: clamp(2px, 0.5vw, 4px);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+    .products .filter {
+      margin-bottom: clamp(30px, 4vw, 60px);
+    }
+    .products .filter input {
+      padding: clamp(10px, 2vw, 15px) clamp(20px, 3vw, 30px);
+      width: clamp(250px, 50vw, 400px);
+      font-size: clamp(14px, 2vw, 18px);
+      border: none;
+      border-bottom: 2px solid #b89b5e;
+      background: transparent;
+      color: #fff;
+      text-align: center;
+      transition: border-color 0.3s ease, width 0.3s ease;
+    }
+    .products .filter input:focus {
+      outline: none;
+      border-color: #fff;
+      width: clamp(280px, 55vw, 450px);
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(clamp(280px, 45vw, 340px), 1fr));
+      gap: clamp(20px, 3vw, 60px);
+      padding: 0 clamp(15px, 2vw, 30px);
+      perspective: 1000px;
+    }
+    .product-card {
+      background: #0d3b34;
+      padding: clamp(20px, 3vw, 30px);
+      position: relative;
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      opacity: 0;
+      transform: translateY(40px) rotateX(-10deg);
+      transform-style: preserve-3d;
+    }
+    .product-card.visible {
+      opacity: 1;
+      transform: translateY(0) rotateX(0);
+      transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s;
+    }
+    .product-card:nth-child(2) { transition-delay: 0.5s; }
+    .product-card:nth-child(3) { transition-delay: 0.7s; }
+    .product-card:hover {
+      transform: translateY(-20px) rotateX(5deg);
+      box-shadow: 0 0 30px rgba(184, 155, 94, 0.4);
+    }
+    .product-card img {
+      width: 100%;
+      height: clamp(300px, 60vw, 450px);
+      object-fit: cover;
+      transition: opacity 0.3s ease;
+    }
+    .product-card:hover img {
+      opacity: 0.9;
+    }
+    .product-card h3 {
+      font-size: clamp(20px, 3vw, 28px);
+      margin: clamp(15px, 2vw, 25px) 0;
+      color: #b89b5e;
+      text-transform: uppercase;
+      letter-spacing: clamp(1.5px, 0.3vw, 2.5px);
+    }
+    .product-card p {
+      font-size: clamp(12px, 2vw, 16px);
+      color: #fff;
+      font-weight: 300;
+    }
+    .product-card .add-to-cart {
+      padding: clamp(8px, 1.5vw, 12px) clamp(20px, 3vw, 30px);
+      background: linear-gradient(45deg, #b89b5e, #967e41);
+      color: #000;
+      border: none;
+      font-size: clamp(12px, 1.5vw, 14px);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: clamp(1px, 0.2vw, 2px);
+      cursor: pointer;
+      margin-top: clamp(10px, 2vw, 20px);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      min-width: 48px;
+      min-height: 48px;
+    }
+    .product-card .add-to-cart::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+    .product-card .add-to-cart:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    .product-card .add-to-cart:hover {
+      transform: translateY(-5px);
+    }
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.4s ease;
+    }
+    .modal-content {
+      background: #0d3b34;
+      padding: clamp(20px, 5vw, 50px);
+      max-width: clamp(300px, 80vw, 700px);
+      width: 90%;
+      text-align: center;
+      transform: translateY(50px);
+      transition: transform 0.4s ease;
+    }
+    .modal.visible .modal-content {
+      transform: translateY(0);
+    }
+    .modal-content img {
+      width: 100%;
+      height: clamp(200px, 60vw, 500px);
+      object-fit: cover;
+      border: 1px solid rgba(184, 155, 94, 0.3);
+    }
+    .modal-content h3 {
+      font-size: clamp(20px, 4vw, 32px);
+      margin: clamp(15px, 3vw, 30px) 0;
+      color: #b89b5e;
+      text-transform: uppercase;
+      letter-spacing: clamp(1.5px, 0.3vw, 3px);
+    }
+    .modal-content p {
+      font-size: clamp(14px, 2.5vw, 18px);
+      color: #fff;
+      font-weight: 300;
+    }
+    .close-btn {
+      position: absolute;
+      top: clamp(10px, 2vw, 20px);
+      right: clamp(15px, 2vw, 30px);
+      font-size: clamp(24px, 5vw, 40px);
+      cursor: pointer;
+      color: #b89b5e;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .close-btn:hover {
+      color: #fff;
+      transform: rotate(90deg);
+    }
+    /* Cart Modal */
+    .cart-modal-content {
+      max-width: clamp(300px, 90vw, 800px);
+      background: #0d3b34;
+      text-align: left;
+    }
+    .cart-modal-content ul {
+      list-style: none;
+      margin: clamp(15px, 3vw, 30px) 0;
+    }
+    .cart-modal-content li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: clamp(10px, 2vw, 20px) 0;
+      border-bottom: 1px solid rgba(184, 155, 94, 0.2);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .cart-modal-content li img {
+      width: clamp(50px, 10vw, 70px);
+      height: clamp(50px, 10vw, 70px);
+      object-fit: cover;
+    }
+    .cart-modal-content input[type="number"] {
+      width: clamp(60px, 15vw, 80px);
+      padding: clamp(5px, 1vw, 10px);
+      border: 1px solid #b89b5e;
+      background: #1c2526;
+      color: #fff;
+      text-align: center;
+      font-weight: 300;
+    }
+    .cart-modal-content .remove {
+      color: #b89b5e;
+      cursor: pointer;
+      font-size: clamp(20px, 4vw, 28px);
+      transition: transform 0.3s ease;
+    }
+    .cart-modal-content .remove:hover {
+      transform: scale(1.2);
+    }
+    .cart-modal-content .checkout {
+      padding: clamp(10px, 2vw, 15px) clamp(20px, 3vw, 35px);
+      background: linear-gradient(45deg, #b89b5e, #967e41);
+      color: #000;
+      border: none;
+      font-size: clamp(12px, 1.5vw, 14px);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: clamp(1px, 0.2vw, 2px);
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+      min-width: 48px;
+      min-height: 48px;
+    }
+    .cart-modal-content .checkout:hover {
+      background: linear-gradient(45deg, #fff, #b89b5e);
+      transform: translateY(-5px);
+    }
+    /* Auth Modal */
+    .auth-modal-content {
+      background: #0d3b34;
+      padding: clamp(20px, 5vw, 50px);
+      max-width: clamp(300px, 80vw, 500px);
+      width: 90%;
+      text-align: center;
+    }
+    .auth-modal-content h2 {
+      font-size: clamp(20px, 4vw, 32px);
+      margin-bottom: clamp(20px, 3vw, 35px);
+      color: #b89b5e;
+      text-transform: uppercase;
+      letter-spacing: clamp(1.5px, 0.3vw, 3px);
+    }
+    .auth-modal-content input {
+      width: 100%;
+      padding: clamp(10px, 2vw, 15px);
+      margin: clamp(10px, 2vw, 20px) 0;
+      border: none;
+      border-bottom: 2px solid #b89b5e;
+      background: transparent;
+      color: #fff;
+      font-size: clamp(14px, 2.5vw, 18px);
+      font-weight: 300;
+      transition: border-color 0.3s ease;
+    }
+    .auth-modal-content input:focus {
+      outline: none;
+      border-color: #fff;
+    }
+    .auth-modal-content button {
+      padding: clamp(10px, 2vw, 15px) clamp(20px, 3vw, 30px);
+      background: linear-gradient(45deg, #b89b5e, #967e41);
+      color: #000;
+      border: none;
+      font-size: clamp(12px, 1.5vw, 14px);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: clamp(1px, 0.2vw, 2px);
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+      min-width: 48px;
+      min-height: 48px;
+    }
+    .auth-modal-content button:hover {
+      background: linear-gradient(45deg, #fff, #b89b5e);
+      transform: translateY(-5px);
+    }
+    /* Profile Section */
+    .profile {
+      padding: clamp(80px, 10vw, 150px) clamp(50px, 5vw, 100px);
+      text-align: center;
+      background: #1c2526;
+      display: none;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .profile.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .profile h2 {
+      font-size: clamp(28px, 5vw, 48px);
+      margin-bottom: clamp(30px, 4vw, 60px);
+      color: #b89b5e;
+      text-transform: uppercase;
+      letter-spacing: clamp(2px, 0.5vw, 4px);
+    }
+    .profile .cart-items {
+      max-width: clamp(300px, 90vw, 800px);
+      margin: 0 auto;
+      background: #0d3b34;
+      padding: clamp(20px, 3vw, 30px);
+    }
+    .profile .cart-items h3 {
+      font-size: clamp(20px, 3vw, 28px);
+      color: #b89b5e;
+      margin-bottom: clamp(15px, 2vw, 25px);
+      text-transform: uppercase;
+      letter-spacing: clamp(1.5px, 0.3vw, 2.5px);
+    }
+    .profile .cart-items ul {
+      list-style: none;
+      color: #fff;
+    }
+    .profile .cart-items li {
+      padding: clamp(10px, 2vw, 20px) 0;
+      border-bottom: 1px solid rgba(184, 155, 94, 0.2);
+    }
+    /* Contact Section */
+    .contact {
+      padding: clamp(80px, 10vw, 150px) clamp(50px, 5vw, 100px);
+      text-align: center;
+      background: #0d3b34;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .contact.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .contact h2 {
+      font-size: clamp(28px, 5vw, 48px);
+      margin-bottom: clamp(30px, 4vw, 60px);
+      color: #b89b5e;
+      text-transform: uppercase;
+      letter-spacing: clamp(2px, 0.5vw, 4px);
+    }
+    .contact form {
+      max-width: clamp(300px, 90vw, 700px);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(15px, 2vw, 25px);
+      background: #1c2526;
+      padding: clamp(20px, 4vw, 40px);
+    }
+    .contact input, .contact textarea {
+      padding: clamp(10px, 2vw, 15px);
+      font-size: clamp(14px, 2.5vw, 18px);
+      border: none;
+      border-bottom: 2px solid #b89b5e;
+      background: transparent;
+      color: #fff;
+      font-weight: 300;
+      transition: border-color 0.3s ease;
+    }
+    .contact input:focus, .contact textarea:focus {
+      outline: none;
+      border-color: #fff;
+    }
+    .contact textarea {
+      height: clamp(120px, 25vw, 180px);
+      resize: none;
+    }
+    .contact button {
+      padding: clamp(10px, 2vw, 15px);
+      background: linear-gradient(45deg, #b89b5e, #967e41);
+      color: #000;
+      border: none;
+      font-size: clamp(12px, 1.5vw, 14px);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: clamp(1px, 0.2vw, 2px);
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+      min-width: 48px;
+      min-height: 48px;
+    }
+    .contact button:hover {
+      background: linear-gradient(45deg, #fff, #b89b5e);
+      transform: translateY(-5px);
+    }
+    /* Newsletter Section */
+    .newsletter {
+      padding: clamp(60px, 8vw, 100px) clamp(50px, 5vw, 100px);
+      background: #0d3b34;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .newsletter.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .newsletter h2 {
+      font-size: clamp(24px, 4vw, 40px);
+      margin-bottom: clamp(25px, 3vw, 50px);
+      color: #b89b5e;
+      text-transform: uppercase;
+      letter-spacing: clamp(1.5px, 0.3vw, 3px);
+    }
+    .newsletter form {
+      display: flex;
+      justify-content: center;
+      gap: clamp(10px, 2vw, 20px);
+      max-width: clamp(300px, 80vw, 600px);
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+    .newsletter input {
+      padding: clamp(10px, 2vw, 15px);
+      width: clamp(200px, 50vw, 70%);
+      font-size: clamp(14px, 2.5vw, 18px);
+      border: none;
+      border-bottom: 2px solid #b89b5e;
+      background: transparent;
+      color: #fff;
+      font-weight: 300;
+      transition: border-color 0.3s ease;
+    }
+    .newsletter input:focus {
+      outline: none;
+      border-color: #fff;
+    }
+    .newsletter button {
+      padding: clamp(10px, 2vw, 15px) clamp(20px, 3vw, 30px);
+      background: linear-gradient(45deg, #b89b5e, #967e41);
+      color: #000;
+      border: none;
+      font-size: clamp(12px, 1.5vw, 14px);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: clamp(1px, 0.2vw, 2px);
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+      min-width: 48px;
+      min-height: 48px;
+    }
+    .newsletter button:hover {
+      background: linear-gradient(45deg, #fff, #b89b5e);
+      transform: translateY(-5px);
+    }
+    /* Footer */
+    footer {
+      background: #1c2526;
+      padding: clamp(40px, 6vw, 80px) clamp(50px, 5vw, 100px);
+      text-align: center;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .footer.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    footer p {
+      font-size: clamp(14px, 2vw, 18px);
+      color: #b89b5e;
+      margin-bottom: clamp(15px, 2vw, 30px);
+      text-transform: uppercase;
+      letter-spacing: clamp(1.5px, 0.3vw, 3px);
+    }
+    footer .social a {
+      color: #b89b5e;
+      font-size: clamp(20px, 4vw, 28px);
+      margin: 0 clamp(15px, 2vw, 25px);
+      text-decoration: none;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    footer .social a:hover {
+      color: #fff;
+      transform: scale(1.1);
+    }
+    /* Back to Top Button */
+    #backToTop {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(45deg, #b89b5e, #967e41);
+      color: #000;
+      border: none;
+      border-radius: 50%;
+      font-size: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    #backToTop.visible {
+      opacity: 0.8;
+    }
+    #backToTop:hover {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header {
+        padding: clamp(10px, 2vw, 15px) clamp(15px, 3vw, 20px);
+        justify-content: space-between;
+      }
+      header .logo {
+        order: 1;
+      }
+      header .mobile-brand {
+        display: block;
+        order: 2;
+        flex-grow: 1;
+        text-align: center;
+      }
+      header .hamburger {
+        display: block;
+        order: 3;
+      }
+      header nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #1c2526;
+        padding: clamp(15px, 3vw, 25px);
+        flex-direction: column;
+      }
+      header nav.active {
+        display: flex;
+      }
+      header nav ul {
+        flex-direction: column;
+        gap: 15px;
+      }
+      header nav ul li {
+        margin: 10px 0;
+      }
+      .sidebar-nav {
+        display: none;
+      }
+      .hero-video {
+        object-fit: cover;
+      }
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+      .product-card {
+        margin: 0 auto;
+        max-width: 400px;
+      }
+      .products .filter input {
+        width: 100%;
+      }
+      #backToTop {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        bottom: 20px;
+        right: 20px;
+      }
+    }
+    @media (min-width: 769px) {
+      .sidebar-nav {
+        display: block;
+      }
+      header .mobile-brand {
+        display: none;
+      }
+    }
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: clamp(28px, 8vw, 36px);
+      }
+      .hero-content p {
+        font-size: clamp(14px, 4vw, 16px);
+      }
+      .products, .profile, .contact, .newsletter {
+        padding: clamp(50px, 8vw, 80px) clamp(20px, 3vw, 50px);
+      }
+      .newsletter form {
+        flex-direction: column;
+        gap: 15px;
+      }
+      .newsletter input {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Preloader -->
-    <div id="preloader">
-        <div class="preloader-logo">Zindagi</div>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="preloader-logo">Zindagi</div>
+  </div>
+
+  <!-- Sidebar Navigation -->
+  <div class="sidebar-nav" id="sidebarNav">
+    <ul>
+      <li><a href="#home" title="Home"><i class="fas fa-home"></i></a></li>
+      <li><a href="#products" title="Collection"><i class="fas fa-box"></i></a></li>
+      <li><a href="#profile" title="Profile"><i class="fas fa-user"></i></a></li>
+      <li><a href="#cart" title="Cart"><i class="fas fa-shopping-cart"></i></a></li>
+      <li><a href="#contact" title="Contact"><i class="fas fa-envelope"></i></a></li>
+    </ul>
+  </div>
+
+  <!-- Header -->
+  <header aria-label="Main Navigation">
+    <img src="logo.png" alt="Zindagi Perfumes Logo" class="logo">
+    <span class="mobile-brand">Zindagi</span>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#profile">Profile</a></li>
+        <li><a href="#cart">Cart (<span id="cartCount">0</span>)</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><button id="loginBtn">Login</button></li>
+        <li><button id="signupBtn">Sign Up</button></li>
+      </ul>
+    </nav>
+    <div class="hamburger" aria-label="Menu">☰</div>
+  </header>
+
+  <!-- Auth Modal -->
+  <div class="modal" id="authModal">
+    <div class="auth-modal-content">
+      <span class="close-btn" aria-label="Close">×</span>
+      <h2 id="authTitle">Login</h2>
+      <input type="email" id="authEmail" placeholder="Email" required aria-label="Email">
+      <input type="password" id="authPassword" placeholder="Password" required aria-label="Password">
+      <button id="authSubmit">Submit</button>
     </div>
-    
-    <!-- Sidebar Navigation -->
-    <div class="sidebar-nav" id="sidebarNav">
-        <ul>
-            <li><a href="#home" title="Home"><i class="fas fa-home"></i></a></li>
-            <li><a href="#products" title="Collection"><i class="fas fa-box"></i></a></li>
-            <li><a href="#profile" title="Profile"><i class="fas fa-user"></i></a></li>
-            <li><a href="#cart" title="Cart"><i class="fas fa-shopping-cart"></i></a></li>
-            <li><a href="#contact" title="Contact"><i class="fas fa-envelope"></i></a></li>
-        </ul>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home" aria-label="Hero Section">
+    <video class="hero-video" autoplay loop muted playsinline>
+      <source src="https://assets.mixkit.co/videos/preview/mixkit-luxury-perfume-bottle-on-a-dark-background-157.mp4" type="video/mp4">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Luxury Perfume">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Keep Moving</h1>
+      <p>Zindagi Perfumes</p>
     </div>
-    
-    <!-- Header -->
-    <header aria-label="Main Navigation">
-        <img src="logo.png" alt="Zindagi Perfumes Logo" class="logo">
-        <span class="mobile-brand">Zindagi</span>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#profile">Profile</a></li>
-                <li><a href="#cart">Cart (<span id="cartCount">0</span>)</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><button id="loginBtn">Login</button></li>
-                <li><button id="signupBtn">Sign Up</button></li>
-            </ul>
-        </nav>
-        <div class="hamburger" aria-label="Menu">☰</div>
-    </header>
-    
-    <!-- Auth Modal -->
-    <div class="modal" id="authModal">
-        <div class="auth-modal-content">
-            <span class="close-btn" aria-label="Close">×</span>
-            <h2 id="authTitle">Login</h2>
-            <input type="email" id="authEmail" placeholder="Email" required aria-label="Email">
-            <input type="password" id="authPassword" placeholder="Password" required aria-label="Password">
-            <button id="authSubmit">Submit</button>
-        </div>
+  </section>
+
+  <!-- Products Section -->
+  <section class="products" id="products" aria-label="Products Section">
+    <h2>Our Collection</h2>
+    <div class="filter">
+      <input type="text" id="productFilter" placeholder="Search perfumes..." aria-label="Search perfumes">
     </div>
-    
-    <!-- Hero Section -->
-    <section class="hero" id="home" aria-label="Hero Section">
-        <video class="hero-video" autoplay loop muted playsinline>
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-luxury-perfume-bottle-on-a-dark-background-157.mp4" type="video/mp4">
-            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Luxury Perfume">
-        </video>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1>Keep Moving</h1>
-            <p>Zindagi Perfumes</p>
-        </div>
-    </section>
-    
-    <!-- Products Section -->
-    <section class="products" id="products" aria-label="Products Section">
-        <h2>Our Collection</h2>
-        <div class="filter">
-            <input type="text" id="productFilter" placeholder="Search perfumes..." aria-label="Search perfumes">
-        </div>
-        <div class="product-grid" id="productGrid">
-            <div class="product-card" data-name="Eternal Pulse" data-desc="A vibrant blend of citrus and sandalwood to energize your spirit." data-img="https://images.unsplash.com/photo-1608248543821-86fa376b4931?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" data-id="1" data-price="4999.99">
-                <img src="https://images.unsplash.com/photo-1608248543821-86fa376b4931?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Eternal Pulse" loading="lazy">
-                <h3>Eternal Pulse</h3>
-                <p>A vibrant blend of citrus and sandalwood.</p>
-                <p>PKR 4999.99</p>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-            <div class="product-card" data-name="Midnight Essence" data-desc="Deep oud and amber for a timeless, bold statement." data-img="https://images.unsplash.com/photo-1587017539504-13cf5f91c4e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" data-id="2" data-price="5999.99">
-                <img src="https://images.unsplash.com/photo-1587017539504-13cf5f91c4e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Midnight Essence" loading="lazy">
-                <h3>Midnight Essence</h3>
-                <p>Deep oud and amber for boldness.</p>
-                <p>PKR 5999.99</p>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-            <div class="product-card" data-name="Saffron Whisper" data-desc="Rich saffron and rose notes for an elegant allure." data-img="https://images.unsplash.com/photo-1590736592526-2189d5da155d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" data-id="3" data-price="5499.99">
-                <img src="https://images.unsplash.com/photo-1590736592526-2189d5da155d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Saffron Whisper" loading="lazy">
-                <h3>Saffron Whisper</h3>
-                <p>Rich saffron and rose elegance.</p>
-                <p>PKR 5499.99</p>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Product Modal -->
-    <div class="modal" id="productModal" aria-label="Product Details">
-        <div class="modal-content">
-            <span class="close-btn" aria-label="Close">×</span>
-            <img id="modalImg" src="" alt="">
-            <h3 id="modalName"></h3>
-            <p id="modalDesc"></p>
-        </div>
+    <div class="product-grid" id="productGrid">
+      <div class="product-card" data-name="Eternal Pulse" data-desc="A vibrant blend of citrus and sandalwood to energize your spirit." data-img="https://images.unsplash.com/photo-1608248543821-86fa376b4931?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" data-id="1" data-price="4999.99">
+        <img src="https://images.unsplash.com/photo-1608248543821-86fa376b4931?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Eternal Pulse" loading="lazy">
+        <h3>Eternal Pulse</h3>
+        <p>A vibrant blend of citrus and sandalwood.</p>
+        <p>PKR 4999.99</p>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+      <div class="product-card" data-name="Midnight Essence" data-desc="Deep oud and amber for a timeless, bold statement." data-img="https://images.unsplash.com/photo-1587017539504-13cf5f91c4e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" data-id="2" data-price="5999.99">
+        <img src="https://images.unsplash.com/photo-1587017539504-13cf5f91c4e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Midnight Essence" loading="lazy">
+        <h3>Midnight Essence</h3>
+        <p>Deep oud and amber for boldness.</p>
+        <p>PKR 5999.99</p>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+      <div class="product-card" data-name="Saffron Whisper" data-desc="Rich saffron and rose notes for an elegant allure." data-img="https://images.unsplash.com/photo-1590736592526-2189d5da155d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" data-id="3" data-price="5499.99">
+        <img src="https://images.unsplash.com/photo-1590736592526-2189d5da155d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Saffron Whisper" loading="lazy">
+        <h3>Saffron Whisper</h3>
+        <p>Rich saffron and rose elegance.</p>
+        <p>PKR 5499.99</p>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
     </div>
-    
-    <!-- Cart Modal -->
-    <div class="modal" id="cartModal" aria-label="Shopping Cart">
-        <div class="cart-modal-content">
-            <span class="close-btn" aria-label="Close">×</span>
-            <h2>Your Cart</h2>
-            <ul id="cartItems"></ul>
-            <button class="checkout">Proceed to Checkout with JazzCash</button>
-        </div>
+  </section>
+
+  <!-- Product Modal -->
+  <div class="modal" id="productModal" aria-label="Product Details">
+    <div class="modal-content">
+      <span class="close-btn" aria-label="Close">×</span>
+      <img id="modalImg" src="" alt="">
+      <h3 id="modalName"></h3>
+      <p id="modalDesc"></p>
     </div>
-    
-    <!-- Profile Section -->
-    <section class="profile" id="profile" aria-label="User Profile">
-        <h2>Your Profile</h2>
-        <div class="cart-items">
-            <h3>Saved Cart</h3>
-            <ul id="profileCartItems"></ul>
-        </div>
-    </section>
-    
-    <!-- Contact Section -->
-    <section class="contact" id="contact" aria-label="Contact Us">
-        <h2>Stay Connected</h2>
-        <form id="contactForm">
-            <input type="text" name="name" placeholder="Your Name" required aria-label="Your Name">
-            <input type="email" name="email" placeholder="Your Email" required aria-label="Your Email">
-            <textarea name="message" placeholder="Your Message" required aria-label="Your Message"></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-    </section>
-    
-    <!-- Newsletter Section -->
-    <section class="newsletter" aria-label="Newsletter Subscription">
-        <h2>Join the Movement</h2>
-        <form id="newsletterForm">
-            <input type="email" name="email" placeholder="Enter your email" required aria-label="Email for newsletter">
-            <button type="submit">Subscribe</button>
-        </form>
-    </section>
-    
-    <!-- Footer -->
-    <footer aria-label="Footer">
-        <p>© 2025 Zindagi Perfumes. Keep Moving.</p>
-        <div class="social">
-            <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-            <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        </div>
-    </footer>
-    
-    <!-- Back to Top Button -->
-    <button id="backToTop" aria-label="Back to Top"><i class="fas fa-arrow-up"></i></button>
-    
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, serverTimestamp, onSnapshot, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
-        import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-analytics.js";
-        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
-        
-        const firebaseConfig = {
-            apiKey: "AIzaSyC-sMxHYSiwld_U5GO7oGtHPw5CaVY_16s",
-            authDomain: "zindagi-334b7.firebaseapp.com",
-            databaseURL: "https://zindagi-334b7-default-rtdb.firebaseio.com",
-            projectId: "zindagi-334b7",
-            storageBucket: "zindagi-334b7.firebasestorage.app",
-            messagingSenderId: "936307521870",
-            appId: "1:936307521870:web:619c050d865cff2ac9861f",
-            measurementId: "G-B4HP267SJF"
-        };
-        
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const auth = getAuth(app);
-        const analytics = getAnalytics(app);
-        
-        logEvent(analytics, 'page_view', { page_title: 'Zindagi Perfumes Home' });
-        
-        // Preloader
-        window.addEventListener('load', () => {
-            const preloader = document.getElementById('preloader');
-            setTimeout(() => {
-                preloader.classList.add('hidden');
-            }, 1500);
-        });
-        
-        // Header and hamburger menu
-        const header = document.querySelector('header');
-        const nav = document.querySelector('nav');
-        const hamburger = document.querySelector('.hamburger');
-        
-        hamburger.addEventListener('click', () => {
-            nav.classList.toggle('active');
-        });
-        
-        // Scroll effect for sections and product cards
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section');
-            sections.forEach(section => {
-                const rect = section.getBoundingClientRect();
-                if (rect.top < window.innerHeight * 0.8 && rect.bottom > 0) {
-                    section.classList.add('visible');
-                }
-            });
-            
-            const productCards = document.querySelectorAll('.product-card');
-            productCards.forEach(card => {
-                const rect = card.getBoundingClientRect();
-                if (rect.top < window.innerHeight * 0.8 && rect.bottom > 0) {
-                    card.classList.add('visible');
-                }
-            });
-            
-            // Parallax effect for hero video on larger screens
-            if (window.innerWidth > 768) {
-                const heroVideo = document.querySelector('.hero-video');
-                if (heroVideo) {
-                    const scrollPos = window.scrollY;
-                    heroVideo.style.transform = `translateY(${scrollPos * 0.3}px) scale(1.1)`;
-                }
-            }
-            
-            // Back to Top button
-            const backToTop = document.getElementById('backToTop');
-            if (window.scrollY > 400) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-            
-            // Animate sidebar navigation on scroll (for PC UI)
-            const sidebar = document.getElementById('sidebarNav');
-            if (window.scrollY > 200) {
-                sidebar.classList.add('visible');
-            } else {
-                sidebar.classList.remove('visible');
-            }
-        });
-        
-        // Trigger initial visibility check
-        document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('section');
-            sections.forEach(section => {
-                const rect = section.getBoundingClientRect();
-                if (rect.top < window.innerHeight * 0.8) {
-                    section.classList.add('visible');
-                }
-            });
-            
-            const productCards = document.querySelectorAll('.product-card');
-            productCards.forEach(card => {
-                const rect = card.getBoundingClientRect();
-                if (rect.top < window.innerHeight * 0.8) {
-                    card.classList.add('visible');
-                }
-            });
-        });
-        
-        // Back to Top functionality
-        document.getElementById('backToTop').addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-        
-        // Smooth scrolling for anchor links with analytics
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-                logEvent(analytics, 'nav_click', { link: this.getAttribute('href') });
-            });
-        });
-        
-        // Fetch products from Firestore with real-time updates
-        const productGrid = document.getElementById('productGrid');
-        function renderProducts(products) {
-            productGrid.innerHTML = '';
-            products.forEach(data => {
-                const card = document.createElement('div');
-                card.classList.add('product-card');
-                card.dataset.name = data.name;
-                card.dataset.desc = data.description;
-                card.dataset.img = data.imageUrl;
-                card.dataset.id = data.id;
-                card.dataset.price = data.price;
-                card.innerHTML = `
-                    <img src="${data.imageUrl}" alt="${data.name}" aria-label="${data.name}" loading="lazy">
-                    <h3>${data.name}</h3>
-                    <p>${data.shortDesc}</p>
-                    <p>PKR ${data.price}</p>
-                    <button class="add-to-cart" aria-label="Add ${data.name} to cart">Add to Cart</button>
-                `;
-                productGrid.appendChild(card);
-            });
+  </div>
+
+  <!-- Cart Modal -->
+  <div class="modal" id="cartModal" aria-label="Shopping Cart">
+    <div class="cart-modal-content">
+      <span class="close-btn" aria-label="Close">×</span>
+      <h2>Your Cart</h2>
+      <ul id="cartItems"></ul>
+      <button class="checkout">Proceed to Checkout with JazzCash</button>
+    </div>
+  </div>
+
+  <!-- Profile Section -->
+  <section class="profile" id="profile" aria-label="User Profile">
+    <h2>Your Profile</h2>
+    <div class="cart-items">
+      <h3>Saved Cart</h3>
+      <ul id="profileCartItems"></ul>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact" aria-label="Contact Us">
+    <h2>Stay Connected</h2>
+    <form id="contactForm">
+      <input type="text" name="name" placeholder="Your Name" required aria-label="Your Name">
+      <input type="email" name="email" placeholder="Your Email" required aria-label="Your Email">
+      <textarea name="message" placeholder="Your Message" required aria-label="Your Message"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="newsletter" aria-label="Newsletter Subscription">
+    <h2>Join the Movement</h2>
+    <form id="newsletterForm">
+      <input type="email" name="email" placeholder="Enter your email" required aria-label="Email for newsletter">
+      <button type="submit">Subscribe</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer aria-label="Footer">
+    <p>© 2025 Zindagi Perfumes. Keep Moving.</p>
+    <div class="social">
+      <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" aria-label="Back to Top"><i class="fas fa-arrow-up"></i></button>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp, onSnapshot, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+    import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-analytics.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyC-sMxHYSiwld_U5GO7oGtHPw5CaVY_16s",
+      authDomain: "zindagi-334b7.firebaseapp.com",
+      databaseURL: "https://zindagi-334b7-default-rtdb.firebaseio.com",
+      projectId: "zindagi-334b7",
+      storageBucket: "zindagi-334b7.firebasestorage.app",
+      messagingSenderId: "936307521870",
+      appId: "1:936307521870:web:619c050d865cff2ac9861f",
+      measurementId: "G-B4HP267SJF"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+    const analytics = getAnalytics(app);
+
+    logEvent(analytics, 'page_view', { page_title: 'Zindagi Perfumes Home' });
+
+    // Preloader
+    window.addEventListener('load', () => {
+      const preloader = document.getElementById('preloader');
+      setTimeout(() => {
+        preloader.classList.add('hidden');
+      }, 1500);
+    });
+
+    // Header and hamburger menu
+    const header = document.querySelector('header');
+    const nav = document.querySelector('nav');
+    const hamburger = document.querySelector('.hamburger');
+
+    hamburger.addEventListener('click', () => {
+      nav.classList.toggle('active');
+    });
+
+    // Scroll event: visibility, parallax, back-to-top, AND sidebar active icons
+    window.addEventListener('scroll', () => {
+      // Section and product card visibility
+      const sections = document.querySelectorAll('section');
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.8 && rect.bottom > 0) {
+          section.classList.add('visible');
         }
-        
-        onSnapshot(collection(db, 'products'), (snapshot) => {
-            const products = [];
-            snapshot.forEach(doc => {
-                products.push({ id: doc.id, ...doc.data() });
+      });
+      const productCards = document.querySelectorAll('.product-card');
+      productCards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.8 && rect.bottom > 0) {
+          card.classList.add('visible');
+        }
+      });
+      // Parallax for hero video on larger screens
+      if (window.innerWidth > 768) {
+        const heroVideo = document.querySelector('.hero-video');
+        if (heroVideo) {
+          const scrollPos = window.scrollY;
+          heroVideo.style.transform = `translateY(${scrollPos * 0.3}px) scale(1.1)`;
+        }
+      }
+      // Back-to-top button visibility
+      const backToTop = document.getElementById('backToTop');
+      if (window.scrollY > 400) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+      // Animate sidebar icons based on section in view (for PC UI)
+      const sidebarLinks = document.querySelectorAll('.sidebar-nav ul li a');
+      sidebarLinks.forEach(link => link.classList.remove('active'));
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+          const activeSectionId = section.getAttribute('id');
+          const activeLink = document.querySelector(`.sidebar-nav ul li a[href="#${activeSectionId}"]`);
+          if (activeLink) {
+            activeLink.classList.add('active');
+          }
+        }
+      });
+    });
+
+    // Trigger initial visibility check on DOMContentLoaded
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('section');
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.8) {
+          section.classList.add('visible');
+        }
+      });
+      const productCards = document.querySelectorAll('.product-card');
+      productCards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.8) {
+          card.classList.add('visible');
+        }
+      });
+    });
+
+    // Back-to-top button functionality
+    document.getElementById('backToTop').addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+        logEvent(analytics, 'nav_click', { link: this.getAttribute('href') });
+      });
+    });
+
+    // Fetch products from Firestore with real-time updates
+    const productGrid = document.getElementById('productGrid');
+    function renderProducts(products) {
+      productGrid.innerHTML = '';
+      products.forEach(data => {
+        const card = document.createElement('div');
+        card.classList.add('product-card');
+        card.dataset.name = data.name;
+        card.dataset.desc = data.description;
+        card.dataset.img = data.imageUrl;
+        card.dataset.id = data.id;
+        card.dataset.price = data.price;
+        card.innerHTML = `
+          <img src="${data.imageUrl}" alt="${data.name}" aria-label="${data.name}" loading="lazy">
+          <h3>${data.name}</h3>
+          <p>${data.shortDesc}</p>
+          <p>PKR ${data.price}</p>
+          <button class="add-to-cart" aria-label="Add ${data.name} to cart">Add to Cart</button>
+        `;
+        productGrid.appendChild(card);
+      });
+    }
+
+    onSnapshot(collection(db, 'products'), (snapshot) => {
+      const products = [];
+      snapshot.forEach(doc => {
+        products.push({ id: doc.id, ...doc.data() });
+      });
+      renderProducts(products);
+    }, (error) => {
+      console.error('Error fetching products:', error);
+      productGrid.innerHTML = '<p>Error loading products. Please try again later.</p>';
+    });
+
+    // Product filter functionality
+    const filterInput = document.getElementById('productFilter');
+    filterInput.addEventListener('input', () => {
+      const filterValue = filterInput.value.toLowerCase();
+      document.querySelectorAll('.product-card').forEach(card => {
+        const name = card.dataset.name.toLowerCase();
+        card.style.display = name.includes(filterValue) ? 'block' : 'none';
+      });
+    });
+
+    // Modal functionality for product details and cart
+    const productModal = document.getElementById('productModal');
+    const modalImg = document.getElementById('modalImg');
+    const modalName = document.getElementById('modalName');
+    const modalDesc = document.getElementById('modalDesc');
+    const closeBtn = document.querySelectorAll('.close-btn');
+
+    productGrid.addEventListener('click', (e) => {
+      const card = e.target.closest('.product-card');
+      if (e.target.classList.contains('add-to-cart')) {
+        addToCart(card.dataset);
+      } else if (card) {
+        modalImg.src = card.dataset.img;
+        modalName.textContent = card.dataset.name;
+        modalDesc.textContent = card.dataset.desc;
+        productModal.style.display = 'flex';
+        productModal.classList.add('visible');
+        document.getElementById('metaDesc').content = `${card.dataset.name} - ${card.dataset.desc} at Zindagi Perfumes`;
+        logEvent(analytics, 'product_view', { product_name: card.dataset.name });
+      }
+    });
+
+    closeBtn.forEach(btn => {
+      btn.addEventListener('click', () => {
+        productModal.style.display = 'none';
+        document.getElementById('cartModal').style.display = 'none';
+        document.getElementById('authModal').style.display = 'none';
+        productModal.classList.remove('visible');
+      });
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === productModal || e.target === document.getElementById('cartModal') || e.target === document.getElementById('authModal')) {
+        productModal.style.display = 'none';
+        document.getElementById('cartModal').style.display = 'none';
+        document.getElementById('authModal').style.display = 'none';
+        productModal.classList.remove('visible');
+      }
+    });
+
+    // Cart functionality
+    const cartModal = document.getElementById('cartModal');
+    const cartItemsUl = document.getElementById('cartItems');
+    const cartCount = document.getElementById('cartCount');
+    let cart = [];
+
+    async function addToCart(product) {
+      const existingItem = cart.find(item => item.id === product.id);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({ ...product, quantity: 1 });
+      }
+      updateCartUI();
+      if (auth.currentUser) {
+        await setDoc(doc(db, 'carts', auth.currentUser.uid), { items: cart });
+      }
+      logEvent(analytics, 'add_to_cart', { product_name: product.name });
+    }
+
+    function updateCartUI() {
+      cartItemsUl.innerHTML = '';
+      cart.forEach(item => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <img src="${item.img}" alt="${item.name}">
+          <span>${item.name} - PKR ${item.price * item.quantity}</span>
+          <input type="number" value="${item.quantity}" min="1" data-id="${item.id}">
+          <span class="remove" data-id="${item.id}">×</span>
+        `;
+        cartItemsUl.appendChild(li);
+      });
+      cartCount.textContent = cart.reduce((sum, item) => sum + parseInt(item.quantity), 0);
+    }
+
+    cartItemsUl.addEventListener('change', (e) => {
+      if (e.target.type === 'number') {
+        const id = e.target.dataset.id;
+        const item = cart.find(i => i.id === id);
+        item.quantity = parseInt(e.target.value);
+        updateCartUI();
+        if (auth.currentUser) setDoc(doc(db, 'carts', auth.currentUser.uid), { items: cart });
+      }
+    });
+
+    cartItemsUl.addEventListener('click', (e) => {
+      if (e.target.classList.contains('remove')) {
+        const id = e.target.dataset.id;
+        cart = cart.filter(item => item.id !== id);
+        updateCartUI();
+        if (auth.currentUser) setDoc(doc(db, 'carts', auth.currentUser.uid), { items: cart });
+      }
+    });
+
+    document.querySelector('a[href="#cart"]').addEventListener('click', (e) => {
+      e.preventDefault();
+      cartModal.style.display = 'flex';
+      cartModal.classList.add('visible');
+    });
+
+    // JazzCash Checkout
+    document.querySelector('.checkout').addEventListener('click', async () => {
+      if (!auth.currentUser) {
+        alert('Please log in to checkout.');
+        return;
+      }
+      const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      const orderId = `ZINDAGI-${Date.now()}`;
+      const checkoutData = {
+        amount: totalAmount,
+        orderId: orderId,
+        customerEmail: auth.currentUser.email,
+        items: cart,
+        timestamp: serverTimestamp()
+      };
+
+      try {
+        await setDoc(doc(db, 'orders', orderId), checkoutData);
+        alert('Order placed successfully! Please complete payment via JazzCash.');
+        window.location.href = `https://sandbox.jazzcash.com.pk/Checkout?amount=${totalAmount}&orderId=${orderId}`;
+        cart = [];
+        updateCartUI();
+        if (auth.currentUser) setDoc(doc(db, 'carts', auth.currentUser.uid), { items: cart });
+      } catch (error) {
+        console.error('Checkout Error:', error);
+        alert('Checkout failed. Please try again.');
+      }
+    });
+
+    // Authentication
+    const authModal = document.getElementById('authModal');
+    const authTitle = document.getElementById('authTitle');
+    const authSubmit = document.getElementById('authSubmit');
+    let loginBtn = document.getElementById('loginBtn');
+    let signupBtn = document.getElementById('signupBtn');
+    const authButtons = document.querySelector('header nav ul');
+    const profileSection = document.getElementById('profile');
+    const profileCartItems = document.getElementById('profileCartItems');
+
+    let isLoginMode = true;
+
+    loginBtn.addEventListener('click', () => {
+      isLoginMode = true;
+      authTitle.textContent = 'Login';
+      authSubmit.textContent = 'Login';
+      authModal.style.display = 'flex';
+      authModal.classList.add('visible');
+    });
+
+    signupBtn.addEventListener('click', () => {
+      isLoginMode = false;
+      authTitle.textContent = 'Sign Up';
+      authSubmit.textContent = 'Sign Up';
+      authModal.style.display = 'flex';
+      authModal.classList.add('visible');
+    });
+
+    authSubmit.addEventListener('click', async () => {
+      const email = document.getElementById('authEmail').value;
+      const password = document.getElementById('authPassword').value;
+      try {
+        if (isLoginMode) {
+          await signInWithEmailAndPassword(auth, email, password);
+          alert('Logged in successfully!');
+        } else {
+          await createUserWithEmailAndPassword(auth, email, password);
+          alert('Account created successfully!');
+        }
+        authModal.style.display = 'none';
+        authModal.classList.remove('visible');
+        logEvent(analytics, isLoginMode ? 'login' : 'sign_up', { method: 'email' });
+      } catch (error) {
+        console.error('Auth Error:', error.code, error.message);
+        if (error.code === 'auth/invalid-email') {
+          alert('Invalid email format. Please check and try again.');
+        } else if (error.code === 'auth/weak-password') {
+          alert('Password must be at least 6 characters long.');
+        } else if (error.code === 'auth/wrong-password') {
+          alert('Incorrect password. Please try again.');
+        } else if (error.code === 'auth/user-not-found') {
+          alert('No account found with this email. Please sign up.');
+        } else {
+          alert(`Error: ${error.message}`);
+        }
+      }
+    });
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        authButtons.innerHTML = `
+          <li><a href="#home">Home</a></li>
+          <li><a href="#profile">Profile</a></li>
+          <li><a href="#cart">Cart (<span id="cartCount">0</span>)</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><button id="logoutBtn">Logout (${user.email})</button></li>
+        `;
+        profileSection.style.display = 'block';
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+          signOut(auth).then(() => {
+            alert('Logged out successfully!');
+            authButtons.innerHTML = `
+              <li><a href="#home">Home</a></li>
+              <li><a href="#profile">Profile</a></li>
+              <li><a href="#cart">Cart (<span id="cartCount">0</span>)</a></li>
+              <li><a href="#contact">Contact</a></li>
+              <li><button id="loginBtn">Login</button></li>
+              <li><button id="signupBtn">Sign Up</button></li>
+            `;
+            loginBtn = document.getElementById('loginBtn');
+            signupBtn = document.getElementById('signupBtn');
+            loginBtn.addEventListener('click', () => {
+              isLoginMode = true;
+              authTitle.textContent = 'Login';
+              authSubmit.textContent = 'Login';
+              authModal.style.display = 'flex';
+              authModal.classList.add('visible');
             });
-            renderProducts(products);
-        }, (error) => {
-            console.error('Error fetching products:', error);
-            productGrid.innerHTML = '<p>Error loading products. Please try again later.</p>';
-        });
-        
-        // Product filter
-        const filterInput = document.getElementById('productFilter');
-        filterInput.addEventListener('input', () => {
-            const filterValue = filterInput.value.toLowerCase();
-            document.querySelectorAll('.product-card').forEach(card => {
-                const name = card.dataset.name.toLowerCase();
-                card.style.display = name.includes(filterValue) ? 'block' : 'none';
+            signupBtn.addEventListener('click', () => {
+              isLoginMode = false;
+              authTitle.textContent = 'Sign Up';
+              authSubmit.textContent = 'Sign Up';
+              authModal.style.display = 'flex';
+              authModal.classList.add('visible');
             });
-        });
-        
-        // Modal functionality for product details and cart
-        const productModal = document.getElementById('productModal');
-        const modalImg = document.getElementById('modalImg');
-        const modalName = document.getElementById('modalName');
-        const modalDesc = document.getElementById('modalDesc');
-        const closeBtn = document.querySelectorAll('.close-btn');
-        
-        productGrid.addEventListener('click', (e) => {
-            const card = e.target.closest('.product-card');
-            if (e.target.classList.contains('add-to-cart')) {
-                addToCart(card.dataset);
-            } else if (card) {
-                modalImg.src = card.dataset.img;
-                modalName.textContent = card.dataset.name;
-                modalDesc.textContent = card.dataset.desc;
-                productModal.style.display = 'flex';
-                productModal.classList.add('visible');
-                document.getElementById('metaDesc').content = `${card.dataset.name} - ${card.dataset.desc} at Zindagi Perfumes`;
-                logEvent(analytics, 'product_view', { product_name: card.dataset.name });
-            }
-        });
-        
-        closeBtn.forEach(btn => {
-            btn.addEventListener('click', () => {
-                productModal.style.display = 'none';
-                document.getElementById('cartModal').style.display = 'none';
-                document.getElementById('authModal').style.display = 'none';
-                productModal.classList.remove('visible');
-            });
-        });
-        
-        window.addEventListener('click', (e) => {
-            if (e.target === productModal || e.target === document.getElementById('cartModal') || e.target === document.getElementById('authModal')) {
-                productModal.style.display = 'none';
-                document.getElementById('cartModal').style.display = 'none';
-                document.getElementById('authModal').style.display = 'none';
-                productModal.classList.remove('visible');
-            }
-        });
-        
-        // Cart functionality
-        const cartModal = document.getElementById('cartModal');
-        const cartItemsUl = document.getElementById('cartItems');
-        const cartCount = document.getElementById('cartCount');
-        let cart = [];
-        
-        async function addToCart(product) {
-            const existingItem = cart.find(item => item.id === product.id);
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({ ...product, quantity: 1 });
-            }
+            profileSection.style.display = 'none';
+            cart = [];
             updateCartUI();
-            if (auth.currentUser) {
-                await setDoc(doc(db, 'carts', auth.currentUser.uid), { items: cart });
-            }
-            logEvent(analytics, 'add_to_cart', { product_name: product.name });
-        }
-        
-        function updateCartUI() {
-            cartItemsUl.innerHTML = '';
-            cart.forEach(item => {
-                const li = document.createElement('li');
-                li.innerHTML = `
-                    <img src="${item.img}" alt="${item.name}">
-                    <span>${item.name} - PKR ${item.price * item.quantity}</span>
-                    <input type="number" value="${item.quantity}" min="1" data-id="${item.id}">
-                    <span class="remove" data-id="${item.id}">×</span>
-                `;
-                cartItemsUl.appendChild(li);
-            });
-            cartCount.textContent = cart.reduce((sum, item) => sum + parseInt(item.quantity), 0);
-        }
-        
-        cartItemsUl.addEventListener('change', (e) => {
-            if (e.target.type === 'number') {
-                const id = e.target.dataset.id;
-                const item = cart.find(i => i.id === id);
-                item.quantity = parseInt(e.target.value);
-                updateCartUI();
-                if (auth.currentUser) setDoc(doc(db, 'carts', auth.currentUser.uid), { items: cart });
-            }
+          });
         });
-        
-        cartItemsUl.addEventListener('click', (e) => {
-            if (e.target.classList.contains('remove')) {
-                const id = e.target.dataset.id;
-                cart = cart.filter(item => item.id !== id);
-                updateCartUI();
-                if (auth.currentUser) setDoc(doc(db, 'carts', auth.currentUser.uid), { items: cart });
-            }
+
+        // Load cart from Firestore for the logged in user
+        onSnapshot(doc(db, 'carts', user.uid), (docSnap) => {
+          if (docSnap.exists()) {
+            cart = docSnap.data().items || [];
+            updateCartUI();
+            profileCartItems.innerHTML = cart.map(item => `
+              <li>${item.name} - Quantity: ${item.quantity} - PKR ${item.price * item.quantity}</li>
+            `).join('');
+          } else {
+            profileCartItems.innerHTML = '<p>Your cart is empty.</p>';
+          }
         });
-        
-        document.querySelector('a[href="#cart"]').addEventListener('click', (e) => {
-            e.preventDefault();
-            cartModal.style.display = 'flex';
-            cartModal.classList.add('visible');
-        });
-        
-        // JazzCash Checkout
-        document.querySelector('.checkout').addEventListener('click', async () => {
-            if (!auth.currentUser) {
-                alert('Please log in to checkout.');
-                return;
-            }
-            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const orderId = `ZINDAGI-${Date.now()}`;
-            const checkoutData = {
-                amount: totalAmount,
-                orderId: orderId,
-                customerEmail: auth.currentUser.email,
-                items: cart,
-                timestamp: serverTimestamp()
-            };
-            
-            try {
-                await setDoc(doc(db, 'orders', orderId), checkoutData);
-                alert('Order placed successfully! Please complete payment via JazzCash.');
-                window.location.href = `https://sandbox.jazzcash.com.pk/Checkout?amount=${totalAmount}&orderId=${orderId}`;
-                cart = [];
-                updateCartUI();
-                if (auth.currentUser) setDoc(doc(db, 'carts', auth.currentUser.uid), { items: cart });
-            } catch (error) {
-                console.error('Checkout Error:', error);
-                alert('Checkout failed. Please try again.');
-            }
-        });
-        
-        // Authentication
-        const authModal = document.getElementById('authModal');
-        const authTitle = document.getElementById('authTitle');
-        const authSubmit = document.getElementById('authSubmit');
-        let loginBtn = document.getElementById('loginBtn');
-        let signupBtn = document.getElementById('signupBtn');
-        const authButtons = document.querySelector('header nav ul');
-        const profileSection = document.getElementById('profile');
-        const profileCartItems = document.getElementById('profileCartItems');
-        
-        let isLoginMode = true;
-        
-        loginBtn.addEventListener('click', () => {
-            isLoginMode = true;
-            authTitle.textContent = 'Login';
-            authSubmit.textContent = 'Login';
-            authModal.style.display = 'flex';
-            authModal.classList.add('visible');
-        });
-        
-        signupBtn.addEventListener('click', () => {
-            isLoginMode = false;
-            authTitle.textContent = 'Sign Up';
-            authSubmit.textContent = 'Sign Up';
-            authModal.style.display = 'flex';
-            authModal.classList.add('visible');
-        });
-        
-        authSubmit.addEventListener('click', async () => {
-            const email = document.getElementById('authEmail').value;
-            const password = document.getElementById('authPassword').value;
-            try {
-                if (isLoginMode) {
-                    await signInWithEmailAndPassword(auth, email, password);
-                    alert('Logged in successfully!');
-                } else {
-                    await createUserWithEmailAndPassword(auth, email, password);
-                    alert('Account created successfully!');
-                }
-                authModal.style.display = 'none';
-                authModal.classList.remove('visible');
-                logEvent(analytics, isLoginMode ? 'login' : 'sign_up', { method: 'email' });
-            } catch (error) {
-                console.error('Auth Error:', error.code, error.message);
-                if (error.code === 'auth/invalid-email') {
-                    alert('Invalid email format. Please check and try again.');
-                } else if (error.code === 'auth/weak-password') {
-                    alert('Password must be at least 6 characters long.');
-                } else if (error.code === 'auth/wrong-password') {
-                    alert('Incorrect password. Please try again.');
-                } else if (error.code === 'auth/user-not-found') {
-                    alert('No account found with this email. Please sign up.');
-                } else {
-                    alert(`Error: ${error.message}`);
-                }
-            }
-        });
-        
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                authButtons.innerHTML = `
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#profile">Profile</a></li>
-                    <li><a href="#cart">Cart (<span id="cartCount">0</span>)</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><button id="logoutBtn">Logout (${user.email})</button></li>
-                `;
-                profileSection.style.display = 'block';
-                document.getElementById('logoutBtn').addEventListener('click', () => {
-                    signOut(auth).then(() => {
-                        alert('Logged out successfully!');
-                        authButtons.innerHTML = `
-                            <li><a href="#home">Home</a></li>
-                            <li><a href="#profile">Profile</a></li>
-                            <li><a href="#cart">Cart (<span id="cartCount">0</span>)</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                            <li><button id="loginBtn">Login</button></li>
-                            <li><button id="signupBtn">Sign Up</button></li>
-                        `;
-                        loginBtn = document.getElementById('loginBtn');
-                        signupBtn = document.getElementById('signupBtn');
-                        loginBtn.addEventListener('click', () => {
-                            isLoginMode = true;
-                            authTitle.textContent = 'Login';
-                            authSubmit.textContent = 'Login';
-                            authModal.style.display = 'flex';
-                            authModal.classList.add('visible');
-                        });
-                        signupBtn.addEventListener('click', () => {
-                            isLoginMode = false;
-                            authTitle.textContent = 'Sign Up';
-                            authSubmit.textContent = 'Sign Up';
-                            authModal.style.display = 'flex';
-                            authModal.classList.add('visible');
-                        });
-                        profileSection.style.display = 'none';
-                        cart = [];
-                        updateCartUI();
-                    });
-                });
-                
-                // Load cart from Firestore
-                onSnapshot(doc(db, 'carts', user.uid), (docSnap) => {
-                    if (docSnap.exists()) {
-                        cart = docSnap.data().items || [];
-                        updateCartUI();
-                        profileCartItems.innerHTML = cart.map(item => `
-                            <li>${item.name} - Quantity: ${item.quantity} - PKR ${item.price * item.quantity}</li>
-                        `).join('');
-                    } else {
-                        profileCartItems.innerHTML = '<p>Your cart is empty.</p>';
-                    }
-                });
-            }
-        });
-        
-        // Contact form
-        const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const formData = new FormData(contactForm);
-            const data = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                message: formData.get('message'),
-                timestamp: serverTimestamp()
-            };
-            
-            try {
-                await addDoc(collection(db, 'contacts'), data);
-                alert(`Thank you, ${data.name}! Your message has been sent. Keep Moving!`);
-                logEvent(analytics, 'contact_form_submit', { user_email: data.email });
-                contactForm.reset();
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Oops! Something went wrong. Please try again.');
-            }
-        });
-        
-        // Newsletter form
-        const newsletterForm = document.getElementById('newsletterForm');
-        newsletterForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const formData = new FormData(newsletterForm);
-            const data = {
-                email: formData.get('email'),
-                timestamp: serverTimestamp()
-            };
-            
-            try {
-                await addDoc(collection(db, 'subscribers'), data);
-                alert('Thank you for subscribing! Keep Moving!');
-                logEvent(analytics, 'newsletter_subscribe', { subscriber_email: data.email });
-                newsletterForm.reset();
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Subscription failed. Please try again.');
-            }
-        });
-    </script>
+      }
+    });
+
+    // Contact form submission
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(contactForm);
+      const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        message: formData.get('message'),
+        timestamp: serverTimestamp()
+      };
+
+      try {
+        await addDoc(collection(db, 'contacts'), data);
+        alert(`Thank you, ${data.name}! Your message has been sent. Keep Moving!`);
+        logEvent(analytics, 'contact_form_submit', { user_email: data.email });
+        contactForm.reset();
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Oops! Something went wrong. Please try again.');
+      }
+    });
+
+    // Newsletter form submission
+    const newsletterForm = document.getElementById('newsletterForm');
+    newsletterForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(newsletterForm);
+      const data = {
+        email: formData.get('email'),
+        timestamp: serverTimestamp()
+      };
+
+      try {
+        await addDoc(collection(db, 'subscribers'), data);
+        alert('Thank you for subscribing! Keep Moving!');
+        logEvent(analytics, 'newsletter_subscribe', { subscriber_email: data.email });
+        newsletterForm.reset();
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Subscription failed. Please try again.');
+      }
+    });
+  </script>
 </body>
 </html>
