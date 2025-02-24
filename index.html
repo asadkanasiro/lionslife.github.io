@@ -22,35 +22,72 @@
   <!-- Sidebar Navigation (PC only) -->
   <nav class="sidebar-nav" id="sidebarNav" aria-label="Section Navigation">
     <ul>
-      <li><a href="#home"><i class="fas fa-home"></i></a></li>
-      <li><a href="#products"><i class="fas fa-box"></i></a></li>
-      <li><a href="#profile"><i class="fas fa-user"></i></a></li>
-      <li><a href="#cart"><i class="fas fa-shopping-cart"></i></a></li>
-      <li><a href="#contact"><i class="fas fa-envelope"></i></a></li>
+      <li>
+        <a href="#home" title="Home">
+          <i class="fas fa-home" aria-hidden="true"></i>
+          <span class="sr-only">Home</span>
+        </a>
+      </li>
+      <li>
+        <a href="#products" title="Collection">
+          <i class="fas fa-box" aria-hidden="true"></i>
+          <span class="sr-only">Products</span>
+        </a>
+      </li>
+      <li>
+        <a href="#profile" title="Profile">
+          <i class="fas fa-user" aria-hidden="true"></i>
+          <span class="sr-only">Profile</span>
+        </a>
+      </li>
+      <li>
+        <a href="#cart" title="Cart">
+          <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+          <span class="sr-only">Cart</span>
+        </a>
+      </li>
+      <li>
+        <a href="#contact" title="Contact">
+          <i class="fas fa-envelope" aria-hidden="true"></i>
+          <span class="sr-only">Contact</span>
+        </a>
+      </li>
     </ul>
   </nav>
 
   <!-- Header -->
-  <header>
+  <header aria-label="Main Navigation">
     <img src="logo.png" alt="Zindagi Perfumes Logo" class="logo" />
     <span class="mobile-brand">Zindagi</span>
     <nav>
       <ul>
         <li><a href="#home">Home</a></li>
-        <li><a href="#products">Collection</a></li>
+        <li><a href="#profile">Profile</a></li>
         <li><a href="#cart">Cart (<span id="cartCount">0</span>)</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><button id="loginBtn">Login</button></li>
         <li><button id="signupBtn">Sign Up</button></li>
       </ul>
     </nav>
-    <div class="hamburger">☰</div>
+    <div class="hamburger" aria-label="Menu" tabindex="0">☰</div>
   </header>
 
+  <!-- Authentication Modal -->
+  <div class="modal" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle" tabindex="-1">
+    <div class="auth-modal-content">
+      <button class="close-btn" aria-label="Close">×</button>
+      <h2 id="authTitle">Login</h2>
+      <input type="email" id="authEmail" placeholder="Email" required />
+      <input type="password" id="authPassword" placeholder="Password" required />
+      <button id="authSubmit">Submit</button>
+    </div>
+  </div>
+
   <!-- Hero Section -->
-  <section class="hero" id="home">
+  <section class="hero" id="home" aria-label="Hero Section">
     <video class="hero-video" autoplay loop muted playsinline>
       <source src="https://assets.mixkit.co/videos/preview/mixkit-luxury-perfume-bottle-on-a-dark-background-157.mp4" type="video/mp4" />
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Luxury Perfume" />
     </video>
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -60,20 +97,20 @@
   </section>
 
   <!-- Products Section -->
-  <section class="products" id="products">
+  <section class="products" id="products" aria-label="Products Section">
     <h2>Our Collection</h2>
     <div class="filter">
-      <input type="text" id="productFilter" placeholder="Search perfumes..." />
+      <input type="text" id="productFilter" placeholder="Search perfumes..." aria-label="Search perfumes" />
     </div>
     <div class="product-grid" id="productGrid">
-      <!-- Products will be dynamically rendered here -->
+      <!-- Product cards dynamically rendered -->
     </div>
   </section>
 
   <!-- Product Modal -->
-  <div class="modal" id="productModal">
+  <div class="modal" id="productModal" role="dialog" aria-modal="true" aria-labelledby="modalName">
     <div class="modal-content">
-      <button class="close-btn">&times;</button>
+      <button class="close-btn" aria-label="Close">×</button>
       <img id="modalImg" src="" alt="" />
       <h3 id="modalName"></h3>
       <p id="modalDesc"></p>
@@ -81,28 +118,17 @@
   </div>
 
   <!-- Cart Modal -->
-  <div class="modal" id="cartModal">
+  <div class="modal" id="cartModal" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
     <div class="cart-modal-content">
-      <button class="close-btn">&times;</button>
-      <h2>Your Cart</h2>
+      <button class="close-btn" aria-label="Close">×</button>
+      <h2 id="cartTitle">Your Cart</h2>
       <ul id="cartItems"></ul>
-      <button class="checkout">Proceed to Checkout</button>
-    </div>
-  </div>
-
-  <!-- Authentication Modal -->
-  <div class="modal" id="authModal">
-    <div class="auth-modal-content">
-      <button class="close-btn">&times;</button>
-      <h2 id="authTitle">Login</h2>
-      <input type="email" id="authEmail" placeholder="Email" required />
-      <input type="password" id="authPassword" placeholder="Password" required />
-      <button id="authSubmit">Submit</button>
+      <button class="checkout">Proceed to Checkout with JazzCash</button>
     </div>
   </div>
 
   <!-- Profile Section -->
-  <section class="profile" id="profile">
+  <section class="profile" id="profile" aria-label="User Profile">
     <h2>Your Profile</h2>
     <div class="cart-items">
       <h3>Saved Cart</h3>
@@ -111,7 +137,7 @@
   </section>
 
   <!-- Contact Section -->
-  <section class="contact" id="contact">
+  <section class="contact" id="contact" aria-label="Contact Us">
     <h2>Stay Connected</h2>
     <form id="contactForm">
       <input type="text" name="name" placeholder="Your Name" required />
@@ -122,7 +148,7 @@
   </section>
 
   <!-- Newsletter Section -->
-  <section class="newsletter">
+  <section class="newsletter" aria-label="Newsletter Subscription">
     <h2>Join the Movement</h2>
     <form id="newsletterForm">
       <input type="email" name="email" placeholder="Enter your email" required />
@@ -131,19 +157,62 @@
   </section>
 
   <!-- Footer -->
-  <footer>
+  <footer aria-label="Footer">
     <p>© 2025 Zindagi Perfumes. Keep Moving.</p>
     <div class="social">
-      <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
-      <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
     </div>
   </footer>
 
   <!-- Back to Top Button -->
-  <button id="backToTop"><i class="fas fa-arrow-up"></i></button>
+  <button id="backToTop" aria-label="Back to Top"><i class="fas fa-arrow-up"></i></button>
+
+  <!-- Firebase SDK Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js"></script>
 
   <!-- External JavaScript -->
-  <script src="script.js" type="module"></script>
+  <script type="module">
+    // Firebase configuration (you'll need to add your own config)
+    const firebaseConfig = {
+      // Your Firebase configuration object goes here
+      // e.g., apiKey, authDomain, projectId, etc.
+    };
+
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.database(app);
+    const productGrid = document.getElementById("productGrid");
+
+    // Fetch products in real-time from Realtime Database
+    function fetchProducts() {
+      firebase.database().ref(db, "products").on("value", (snapshot) => {
+        productGrid.innerHTML = "";
+        const products = snapshot.val();
+
+        if (products) {
+          Object.keys(products).forEach((id) => {
+            const data = products[id];
+            const card = document.createElement("div");
+            card.classList.add("product-card");
+            card.innerHTML = `
+              <img src="${data.imageUrl}" alt="${data.name}">
+              <h3>${data.name}</h3>
+              <p>${data.description}</p>
+              <p>PKR ${data.price}</p>
+              <button class="add-to-cart" data-id="${id}">Add to Cart</button>
+            `;
+            productGrid.appendChild(card);
+          });
+        } else {
+          productGrid.innerHTML = "<p>No products available.</p>";
+        }
+      });
+    }
+
+    fetchProducts();
+  </script>
 </body>
 </html>
