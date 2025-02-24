@@ -118,19 +118,6 @@ document.getElementById('backToTop').addEventListener('click', () => {
 
 
 
-// Animate sidebar icons based on section in view (for PC UI)
-const sidebarLinks = document.querySelectorAll('.sidebar-nav ul li a');
-sidebarLinks.forEach(link => link.classList.remove('active'));
-sections.forEach(section => {
-  const rect = section.getBoundingClientRect();
-  if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
-    const activeSectionId = section.getAttribute('id');
-    const activeLink = document.querySelector(`.sidebar-nav ul li a[href="#${activeSectionId}"]`);
-    if (activeLink) {
-      activeLink.classList.add('active');
-    }
-  }
-});
 
 
 
