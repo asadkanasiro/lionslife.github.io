@@ -5,7 +5,7 @@ import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11
 import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-analytics.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
 
-// Firebase configuration
+// Firebase configuration (assuming zindagi-334b7 for now)
 const firebaseConfig = {
   apiKey: "AIzaSyC-sMxHYSiwld_U5GO7oGtHPw5CaVY_16s",
   authDomain: "zindagi-334b7.firebaseapp.com",
@@ -19,9 +19,10 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-console.log('Firebase initialized:', app); // Debug initialization
+console.log('Firebase initialized:', app);
 const dbFirestore = getFirestore(app);
 const dbRealtime = getDatabase(app);
+console.log('Realtime Database initialized:', dbRealtime);
 const auth = getAuth(app);
 const analytics = getAnalytics(app);
 
@@ -135,9 +136,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const productGrid = document.getElementById('productGrid');
 function renderProducts(products) {
   productGrid.innerHTML = '';
-  console.log('Rendering products:', products); // Debug rendering
+  console.log('Rendering products:', products);
   if (products) {
     Object.entries(products).forEach(([id, data]) => {
+      console.log('Processing product:', id, data); // Log each product
       const card = document.createElement('div');
       card.classList.add('product-card');
       card.dataset.name = data.name;
@@ -156,17 +158,20 @@ function renderProducts(products) {
     });
   } else {
     productGrid.innerHTML = '<p>No products available.</p>';
+    console.log('No products found in data.');
   }
 }
 
 function fetchProducts() {
-  onValue(ref(dbRealtime, 'products'), (snapshot) => {
+  const productsRef = ref(dbRealtime, 'products');
+  console.log('Listening to:', productsRef.toString()); // Log the exact path
+  onValue(productsRef, (snapshot) => {
     const products = snapshot.val();
-    console.log('Fetched products:', products); // Debug fetch
+    console.log('Fetched products:', products);
     renderProducts(products);
   }, (error) => {
     console.error('Error fetching products:', error);
-    productGrid.innerHTML = '<p>Error loading products. Please try again later.</p>';
+    productGrid.innerHTML = '<p>Error loading products: ' + error.message + '</p>';
   });
 }
 
