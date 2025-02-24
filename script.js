@@ -19,6 +19,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+console.log('Firebase initialized:', app); // Debug initialization
 const dbFirestore = getFirestore(app);
 const dbRealtime = getDatabase(app);
 const auth = getAuth(app);
@@ -134,6 +135,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const productGrid = document.getElementById('productGrid');
 function renderProducts(products) {
   productGrid.innerHTML = '';
+  console.log('Rendering products:', products); // Debug rendering
   if (products) {
     Object.entries(products).forEach(([id, data]) => {
       const card = document.createElement('div');
@@ -141,7 +143,7 @@ function renderProducts(products) {
       card.dataset.name = data.name;
       card.dataset.desc = data.description;
       card.dataset.img = data.imageUrl;
-      card.dataset.id = id; // Random key from Realtime Database
+      card.dataset.id = id;
       card.dataset.price = data.price;
       card.innerHTML = `
         <img src="${data.imageUrl}" alt="${data.name}" loading="lazy">
@@ -160,6 +162,7 @@ function renderProducts(products) {
 function fetchProducts() {
   onValue(ref(dbRealtime, 'products'), (snapshot) => {
     const products = snapshot.val();
+    console.log('Fetched products:', products); // Debug fetch
     renderProducts(products);
   }, (error) => {
     console.error('Error fetching products:', error);
