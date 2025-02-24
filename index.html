@@ -9,7 +9,10 @@
     <title>Zindagi Perfumes - Keep Moving</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Didot:wght@400;700&family=Avenir:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    
+  <link rel="stylesheet" href="styles.css">
+  
+  
 </head>
 <body>
     <!-- Preloader -->
@@ -23,7 +26,7 @@
             <li><a href="#home" title="Home"><i class="fas fa-home"></i></a></li>
             <li><a href="#products" title="Collection"><i class="fas fa-box"></i></a></li>
             <li><a href="#profile" title="Profile"><i class="fas fa-user"></i></a></li>
-            <li><a href="#cart" title="Cart"><i class="fas fa-shopping-cart"></i></a></li>
+            <li><a href="#cart" title="Cart" class="cart-sidebar"><i class="fas fa-shopping-cart"></i><span class="cart-badge" id="sidebarCartCount">0</span></a></li>
             <li><a href="#contact" title="Contact"><i class="fas fa-envelope"></i></a></li>
         </ul>
     </div>
@@ -36,7 +39,7 @@
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#profile">Profile</a></li>
-                <li><a href="#cart">Cart (<span id="cartCount">0</span>)</a></li>
+                <li><a href="#cart" class="cart-link">Cart (<span id="cartCount">0</span>)</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><button id="loginBtn">Login</button></li>
                 <li><button id="signupBtn">Sign Up</button></li>
@@ -76,25 +79,28 @@
             <input type="text" id="productFilter" placeholder="Search perfumes..." aria-label="Search perfumes">
         </div>
         <div class="product-grid" id="productGrid">
-            <div class="product-card" data-name="Eternal Pulse" data-desc="A vibrant blend of citrus and sandalwood to energize your spirit." data-img="https://images.unsplash.com/photo-1608248543821-86fa376b4931?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" data-id="1" data-price="4999.99">
+            <div class="product-card" data-name="Eternal Pulse" data-desc="A vibrant blend of citrus and sandalwood to energize your spirit. Perfect for those who embrace every moment." data-img="https://images.unsplash.com/photo-1608248543821-86fa376b4931?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" data-id="1" data-price="4999.99">
                 <img src="https://images.unsplash.com/photo-1608248543821-86fa376b4931?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Eternal Pulse" loading="lazy">
                 <h3>Eternal Pulse</h3>
                 <p>A vibrant blend of citrus and sandalwood.</p>
-                <p>PKR 4999.99</p>
+                <p class="price">PKR 4999.99</p>
+                <button class="learn-more">Learn More</button>
                 <button class="add-to-cart">Add to Cart</button>
             </div>
-            <div class="product-card" data-name="Midnight Essence" data-desc="Deep oud and amber for a timeless, bold statement." data-img="https://images.unsplash.com/photo-1587017539504-13cf5f91c4e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" data-id="2" data-price="5999.99">
+            <div class="product-card" data-name="Midnight Essence" data-desc="Deep oud and amber for a timeless, bold statement. Crafted for the night owls and dreamers." data-img="https://images.unsplash.com/photo-1587017539504-13cf5f91c4e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" data-id="2" data-price="5999.99">
                 <img src="https://images.unsplash.com/photo-1587017539504-13cf5f91c4e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Midnight Essence" loading="lazy">
                 <h3>Midnight Essence</h3>
                 <p>Deep oud and amber for boldness.</p>
-                <p>PKR 5999.99</p>
+                <p class="price">PKR 5999.99</p>
+                <button class="learn-more">Learn More</button>
                 <button class="add-to-cart">Add to Cart</button>
             </div>
-            <div class="product-card" data-name="Saffron Whisper" data-desc="Rich saffron and rose notes for an elegant allure." data-img="https://images.unsplash.com/photo-1590736592526-2189d5da155d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" data-id="3" data-price="5499.99">
+            <div class="product-card" data-name="Saffron Whisper" data-desc="Rich saffron and rose notes for an elegant allure. Ideal for sophisticated souls." data-img="https://images.unsplash.com/photo-1590736592526-2189d5da155d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" data-id="3" data-price="5499.99">
                 <img src="https://images.unsplash.com/photo-1590736592526-2189d5da155d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Saffron Whisper" loading="lazy">
                 <h3>Saffron Whisper</h3>
                 <p>Rich saffron and rose elegance.</p>
-                <p>PKR 5499.99</p>
+                <p class="price">PKR 5499.99</p>
+                <button class="learn-more">Learn More</button>
                 <button class="add-to-cart">Add to Cart</button>
             </div>
         </div>
@@ -102,11 +108,15 @@
 
     <!-- Product Modal -->
     <div class="modal" id="productModal" aria-label="Product Details">
-        <div class="modal-content">
+        <div class="modal-content product-details">
             <span class="close-btn" aria-label="Close">×</span>
             <img id="modalImg" src="" alt="">
-            <h3 id="modalName"></h3>
-            <p id="modalDesc"></p>
+            <div class="details">
+                <h3 id="modalName"></h3>
+                <p id="modalDesc"></p>
+                <p class="price" id="modalPrice"></p>
+                <button class="add-to-cart" id="modalAddToCart">Add to Cart</button>
+            </div>
         </div>
     </div>
 
@@ -116,7 +126,15 @@
             <span class="close-btn" aria-label="Close">×</span>
             <h2>Your Cart</h2>
             <ul id="cartItems"></ul>
-            <button class="checkout">Proceed to Checkout with JazzCash</button>
+            <p class="total" id="cartTotal">Total: PKR 0.00</p>
+            <div class="checkout-section">
+                <select id="paymentMethod">
+                    <option value="jazzcash">JazzCash (Free Delivery)</option>
+                    <option value="easypaisa">EasyPaisa (Free Delivery)</option>
+                    <option value="cod">Cash on Delivery (PKR 200 Delivery)</option>
+                </select>
+                <button class="checkout">Proceed to Checkout</button>
+            </div>
         </div>
     </div>
 
@@ -162,7 +180,12 @@
     <!-- Back to Top Button -->
     <button id="backToTop" aria-label="Back to Top"><i class="fas fa-arrow-up"></i></button>
 
- 
-    <script type="module" src="script.js"></script>
+    <!-- Learn More Popup -->
+    <div id="learnMorePopup">
+        <span>Enjoying this fragrance? Add it to your cart now!</span>
+        <button id="popupAddToCart">Add to Cart</button>
+    </div>
+
+     <script type="module" src="script.js"></script>
 </body>
 </html>
