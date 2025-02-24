@@ -2,7 +2,14 @@
 //  IMPORTS & INITIALIZATION
 // =============================
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
-import { getDatabase, ref, onValue, set, push, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js";
+import {
+  getDatabase,
+  ref,
+  onValue,
+  set,
+  push,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js";
 import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-analytics.js";
 import {
   getAuth,
@@ -70,7 +77,7 @@ hamburger.addEventListener('click', () => {
 });
 
 // =============================
-//  SCROLL EFFECTS
+//  SCROLL EFFECTS & SIDEBAR ICONS
 // =============================
 window.addEventListener('scroll', () => {
   // Animate sections
@@ -107,6 +114,25 @@ window.addEventListener('scroll', () => {
   } else {
     backToTop.classList.remove('visible');
   }
+
+  // =============================
+  //  SIDEBAR ACTIVE ICONS
+  // =============================
+  const sidebarLinks = document.querySelectorAll('.sidebar-nav ul li a');
+  // Remove .active from all links
+  sidebarLinks.forEach(link => link.classList.remove('active'));
+
+  // Find which section is in the middle of the viewport
+  sections.forEach(section => {
+    const rect = section.getBoundingClientRect();
+    if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+      const activeSectionId = section.getAttribute('id');
+      const activeLink = document.querySelector(`.sidebar-nav ul li a[href="#${activeSectionId}"]`);
+      if (activeLink) {
+        activeLink.classList.add('active');
+      }
+    }
+  });
 });
 
 // =============================
@@ -117,7 +143,7 @@ document.getElementById('backToTop').addEventListener('click', () => {
 });
 
 // =============================
-//  SMOOTH SCROLLING
+//  SMOOTH SCROLLING FOR ANCHORS
 // =============================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
@@ -195,7 +221,6 @@ filterInput.addEventListener('input', () => {
 
 // =============================
 //  PRODUCT MODAL
-//  (If you have a product modal, you can attach click listeners here)
 // =============================
 const productModal = document.getElementById('productModal');
 const modalImg = document.getElementById('modalImg');
@@ -208,7 +233,7 @@ productGrid.addEventListener('click', (e) => {
   if (!card) return;
 
   if (e.target.classList.contains('add-to-cart')) {
-    // If the user clicked "Add to Cart" button
+    // If user clicked "Add to Cart" button
     addToCart(card.dataset);
   } else {
     // Otherwise open the product modal
@@ -218,7 +243,8 @@ productGrid.addEventListener('click', (e) => {
     showModal(productModal);
 
     // Update meta description for SEO (optional)
-    document.getElementById('metaDesc').content = `${card.dataset.name} - ${card.dataset.desc} at Zindagi Perfumes`;
+    document.getElementById('metaDesc').content =
+      `${card.dataset.name} - ${card.dataset.desc} at Zindagi Perfumes`;
     logEvent(analytics, 'product_view', { product_name: card.dataset.name });
   }
 });
@@ -233,7 +259,11 @@ closeBtns.forEach(btn => {
 });
 
 window.addEventListener('click', (e) => {
-  if (e.target === productModal || e.target === document.getElementById('cartModal') || e.target === document.getElementById('authModal')) {
+  if (
+    e.target === productModal ||
+    e.target === document.getElementById('cartModal') ||
+    e.target === document.getElementById('authModal')
+  ) {
     hideModal(productModal);
     hideModal(document.getElementById('cartModal'));
     hideModal(document.getElementById('authModal'));
@@ -322,14 +352,14 @@ document.querySelector('.checkout').addEventListener('click', async () => {
   const orderId = `ZINDAGI-${Date.now()}`;
   const checkoutData = {
     amount: totalAmount,
-    orderId: orderId,
+    orderId,
     customerEmail: auth.currentUser.email,
     items: cart,
-    timestamp: serverTimestamp() // Not a Realtime DB method, but let's keep it for reference
+    timestamp: serverTimestamp()  // Realtime DB doesn't have a direct serverTimestamp, but let's keep it for reference
   };
 
   try {
-    // Save the order in Realtime DB
+    // Save order to Realtime DB
     await set(ref(db, 'orders/' + orderId), checkoutData);
 
     alert('Order placed successfully! Please complete payment via JazzCash.');
@@ -467,11 +497,13 @@ onAuthStateChanged(auth, (user) => {
       }
       updateCartUI();
       // Also show the cart in the user profile
-      profileCartItems.innerHTML = cart.length
-        ? cart.map(item =>
-            `<li>${item.name} - Quantity: ${item.quantity} - PKR ${item.price * item.quantity}</li>`
-          ).join('')
-        : '<p>Your cart is empty.</p>';
+      if (cart.length) {
+        profileCartItems.innerHTML = cart.map(item => `
+          <li>${item.name} - Quantity: ${item.quantity} - PKR ${item.price * item.quantity}</li>
+        `).join('');
+      } else {
+        profileCartItems.innerHTML = '<p>Your cart is empty.</p>';
+      }
     });
   }
 });
