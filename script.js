@@ -1,7 +1,7 @@
 // Import Firebase modules
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
-import { getFirestore, collection, addDoc, serverTimestamp, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js"; // Added Realtime Database imports
+import { getFirestore, collection, addDoc, serverTimestamp, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js";
 import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-analytics.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
 
@@ -19,8 +19,8 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const dbFirestore = getFirestore(app); // Renamed to avoid conflict with Realtime Database
-const dbRealtime = getDatabase(app);   // Added Realtime Database instance
+const dbFirestore = getFirestore(app);
+const dbRealtime = getDatabase(app);
 const auth = getAuth(app);
 const analytics = getAnalytics(app);
 
@@ -135,19 +135,18 @@ const productGrid = document.getElementById('productGrid');
 function renderProducts(products) {
   productGrid.innerHTML = '';
   if (products) {
-    Object.keys(products).forEach(id => {
-      const data = products[id];
+    Object.entries(products).forEach(([id, data]) => {
       const card = document.createElement('div');
       card.classList.add('product-card');
       card.dataset.name = data.name;
       card.dataset.desc = data.description;
       card.dataset.img = data.imageUrl;
-      card.dataset.id = id;
+      card.dataset.id = id; // Random key from Realtime Database
       card.dataset.price = data.price;
       card.innerHTML = `
         <img src="${data.imageUrl}" alt="${data.name}" loading="lazy">
         <h3>${data.name}</h3>
-        <p>${data.shortDesc || data.description}</p> <!-- Use shortDesc if available, fallback to description -->
+        <p>${data.shortDesc || data.description}</p>
         <p>PKR ${data.price}</p>
         <button class="add-to-cart" aria-label="Add ${data.name} to cart">Add to Cart</button>
       `;
