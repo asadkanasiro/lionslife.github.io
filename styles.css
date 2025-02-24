@@ -806,3 +806,23 @@ footer .social a:hover {
   .newsletter form { flex-direction: column; gap: 15px; }
   .newsletter input { width: 100%; }
 }
+
+
+
+
+@media (min-width: 769px) {
+  /* Example bounce animation */
+  @keyframes bounceIcon {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+  }
+
+  .sidebar-nav ul li a.active {
+    /* 1s infinite bounce */
+    animation: bounceIcon 1s infinite;
+  }
+}
