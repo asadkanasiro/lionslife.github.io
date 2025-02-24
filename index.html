@@ -75,7 +75,7 @@
   <!-- Authentication Modal -->
   <div class="modal" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle" tabindex="-1">
     <div class="auth-modal-content">
-      <button class="close-btn" aria-label="Close">×</button>
+      <button class="close-btn" aria-label="Close">&times;</button>
       <h2 id="authTitle">Login</h2>
       <input type="email" id="authEmail" placeholder="Email" required />
       <input type="password" id="authPassword" placeholder="Password" required />
@@ -110,7 +110,7 @@
   <!-- Product Modal -->
   <div class="modal" id="productModal" role="dialog" aria-modal="true" aria-labelledby="modalName">
     <div class="modal-content">
-      <button class="close-btn" aria-label="Close">×</button>
+      <button class="close-btn" aria-label="Close">&times;</button>
       <img id="modalImg" src="" alt="" />
       <h3 id="modalName"></h3>
       <p id="modalDesc"></p>
@@ -120,7 +120,7 @@
   <!-- Cart Modal -->
   <div class="modal" id="cartModal" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
     <div class="cart-modal-content">
-      <button class="close-btn" aria-label="Close">×</button>
+      <button class="close-btn" aria-label="Close">&times;</button>
       <h2 id="cartTitle">Your Cart</h2>
       <ul id="cartItems"></ul>
       <button class="checkout">Proceed to Checkout with JazzCash</button>
@@ -169,50 +169,7 @@
   <!-- Back to Top Button -->
   <button id="backToTop" aria-label="Back to Top"><i class="fas fa-arrow-up"></i></button>
 
-  <!-- Firebase SDK Scripts -->
-  <script src="https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js"></script>
-
   <!-- External JavaScript -->
-  <script type="module">
-    // Firebase configuration (you'll need to add your own config)
-    const firebaseConfig = {
-      // Your Firebase configuration object goes here
-      // e.g., apiKey, authDomain, projectId, etc.
-    };
-
-    // Initialize Firebase
-    const app = firebase.initializeApp(firebaseConfig);
-    const db = firebase.database(app);
-    const productGrid = document.getElementById("productGrid");
-
-    // Fetch products in real-time from Realtime Database
-    function fetchProducts() {
-      firebase.database().ref(db, "products").on("value", (snapshot) => {
-        productGrid.innerHTML = "";
-        const products = snapshot.val();
-
-        if (products) {
-          Object.keys(products).forEach((id) => {
-            const data = products[id];
-            const card = document.createElement("div");
-            card.classList.add("product-card");
-            card.innerHTML = `
-              <img src="${data.imageUrl}" alt="${data.name}">
-              <h3>${data.name}</h3>
-              <p>${data.description}</p>
-              <p>PKR ${data.price}</p>
-              <button class="add-to-cart" data-id="${id}">Add to Cart</button>
-            `;
-            productGrid.appendChild(card);
-          });
-        } else {
-          productGrid.innerHTML = "<p>No products available.</p>";
-        }
-      });
-    }
-
-    fetchProducts();
-  </script>
+  <script src="script.js" type="module"></script>
 </body>
 </html>
